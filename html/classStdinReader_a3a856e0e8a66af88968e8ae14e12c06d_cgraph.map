@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classDataObject.html#ac33bff97dd6dce9aa6e0c4ec3d2fdf52" title="We can&#39;t virtually override QObject::className(), but we override it anyway." alt="" coords="240,5,403,35"/>
+<area shape="rect" id="node5" href="$classDataObject.html#a0d53083f07d3848bc3de47e453f9da96" title="overloaded to support QString" alt="" coords="452,32,593,61"/>
+<area shape="rect" id="node8" href="$classDataObject.html#ae1b26bb1fbb317a89255c728d405a8bf" title="overloaded for QString" alt="" coords="240,109,403,139"/>
+</map>

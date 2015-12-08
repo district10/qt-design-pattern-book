@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classMetaDataObject.html" title="A MetaDataValue with QObject properties, allowing for reflection." alt="" coords="65,83,183,112"/>
+<area shape="rect" id="node5" href="$classAudioMetaData.html" title="A simple typedef for MetaDataObject." alt="" coords="5,160,117,189"/>
+<area shape="rect" id="node7" href="$classPhononItem.html" title="A wrapper around Phonon::MediaSource." alt="" coords="141,160,232,189"/>
+</map>

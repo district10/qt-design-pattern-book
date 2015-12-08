@@ -1,0 +1,1202 @@
+<QtHelpProject version="1.0">
+  <namespace>net.objectlearning.libs</namespace>
+  <virtualFolder>doc</virtualFolder>
+  <customFilter name="Documentation">
+  </customFilter>
+  <filterSection>
+    <filterAttribute>doxygen</filterAttribute>
+    <toc>
+      <section title="oopapidocs 2.0" ref="index.html">
+        <section title="Namespaces">
+          <section title="Namespace List" ref="namespaces.html">
+            <section title="Variant" ref="namespaceVariant.html">
+              <section title="Dir" ref="namespaceVariant.html" />
+              <section title="File" ref="namespaceVariant.html" />
+            </section>
+          </section>
+        </section>
+        <section title="Classes">
+          <section title="Class List" ref="annotated.html">
+            <section title="AbstractFactory" ref="classAbstractFactory.html">
+              <section title="~AbstractFactory" ref="classAbstractFactory.html" />
+              <section title="newObject" ref="classAbstractFactory.html" />
+            </section>
+            <section title="ActionEditorDialog" ref="classActionEditorDialog.html">
+              <section title="ActionEditorDialog" ref="classActionEditorDialog.html" />
+              <section title="changeEvent" ref="classActionEditorDialog.html" />
+              <section title="keyPressEvent" ref="classActionEditorDialog.html" />
+              <section title="keySequence" ref="classActionEditorDialog.html" />
+              <section title="on_m_clearButton_clicked" ref="classActionEditorDialog.html" />
+              <section title="updateUi" ref="classActionEditorDialog.html" />
+            </section>
+            <section title="ActionTableEditor" ref="classActionTableEditor.html">
+              <section title="ActionTableEditor" ref="classActionTableEditor.html" />
+              <section title="ActionTableEditor" ref="classActionTableEditor.html" />
+              <section title="~ActionTableEditor" ref="classActionTableEditor.html" />
+              <section title="accept" ref="classActionTableEditor.html" />
+              <section title="allActions" ref="classActionTableEditor.html" />
+              <section title="changeEvent" ref="classActionTableEditor.html" />
+              <section title="on_m_filterField_textChanged" ref="classActionTableEditor.html" />
+              <section title="on_m_tableView_activated" ref="classActionTableEditor.html" />
+              <section title="restoreShortcuts" ref="classActionTableEditor.html" />
+              <section title="setupSortFilter" ref="classActionTableEditor.html" />
+            </section>
+            <section title="ActionTableModel" ref="classActionTableModel.html">
+              <section title="ActionTableModel" ref="classActionTableModel.html" />
+              <section title="action" ref="classActionTableModel.html" />
+              <section title="columnCount" ref="classActionTableModel.html" />
+              <section title="data" ref="classActionTableModel.html" />
+              <section title="flags" ref="classActionTableModel.html" />
+              <section title="headerData" ref="classActionTableModel.html" />
+              <section title="rowCount" ref="classActionTableModel.html" />
+              <section title="setData" ref="classActionTableModel.html" />
+              <section title="m_actions" ref="classActionTableModel.html" />
+              <section title="m_columns" ref="classActionTableModel.html" />
+            </section>
+            <section title="ActivityButton" ref="classActivityButton.html">
+              <section title="ActivityButton" ref="classActivityButton.html" />
+              <section title="isActive" ref="classActivityButton.html" />
+              <section title="setActive" ref="classActivityButton.html" />
+              <section title="updateIcon" ref="classActivityButton.html" />
+            </section>
+            <section title="ActivityItem" ref="classActivityItem.html">
+              <section title="ActivityItem" ref="classActivityItem.html" />
+              <section title="isActive" ref="classActivityItem.html" />
+              <section title="setActive" ref="classActivityItem.html" />
+              <section title="updateIcon" ref="classActivityItem.html" />
+            </section>
+            <section title="ActivityView" ref="classActivityView.html">
+              <section title="ActivityView" ref="classActivityView.html" />
+              <section title="itemClicked" ref="classActivityView.html" />
+            </section>
+            <section title="Address" ref="classAddress.html">
+              <section title="Address" ref="classAddress.html" />
+              <section title="getCity" ref="classAddress.html" />
+              <section title="getCountry" ref="classAddress.html" />
+              <section title="getLine1" ref="classAddress.html" />
+              <section title="getLine2" ref="classAddress.html" />
+              <section title="getPhone" ref="classAddress.html" />
+              <section title="setCity" ref="classAddress.html" />
+              <section title="setLine1" ref="classAddress.html" />
+              <section title="setLine2" ref="classAddress.html" />
+              <section title="setPhone" ref="classAddress.html" />
+              <section title="City" ref="classAddress.html" />
+              <section title="Line1" ref="classAddress.html" />
+              <section title="Line2" ref="classAddress.html" />
+              <section title="Phone" ref="classAddress.html" />
+            </section>
+            <section title="AudioMetaData" ref="classAudioMetaData.html">
+              <section title="AudioMetaData" ref="classAudioMetaData.html" />
+            </section>
+            <section title="Country" ref="classCountry.html">
+              <section title="CountryType" ref="classCountry.html" />
+              <section title="Country" ref="classCountry.html" />
+              <section title="Country" ref="classCountry.html" />
+              <section title="getCountryNames" ref="classCountry.html" />
+              <section title="getVal" ref="classCountry.html" />
+              <section title="operator=" ref="classCountry.html" />
+              <section title="Q_ENUMS" ref="classCountry.html" />
+              <section title="setVal" ref="classCountry.html" />
+              <section title="toString" ref="classCountry.html" />
+              <section title="val" ref="classCountry.html" />
+            </section>
+            <section title="CustomerList" ref="classCustomerList.html">
+              <section title="CustomerList" ref="classCustomerList.html" />
+              <section title="addCustomer" ref="classCustomerList.html" />
+              <section title="customerAdded" ref="classCustomerList.html" />
+              <section title="customerChanged" ref="classCustomerList.html" />
+              <section title="getCustomers" ref="classCustomerList.html" />
+              <section title="getDateList" ref="classCustomerList.html" />
+              <section title="getDateListVerbose" ref="classCustomerList.html" />
+            </section>
+            <section title="DataObject" ref="classDataObject.html">
+              <section title="DataObject" ref="classDataObject.html" />
+              <section title="DataObject" ref="classDataObject.html" />
+              <section title="~DataObject" ref="classDataObject.html" />
+              <section title="adoptChildren" ref="classDataObject.html" />
+              <section title="className" ref="classDataObject.html" />
+              <section title="clone" ref="classDataObject.html" />
+              <section title="dataObjectChanged" ref="classDataObject.html" />
+              <section title="equals" ref="classDataObject.html" />
+              <section title="metaProperty" ref="classDataObject.html" />
+              <section title="metaProperty" ref="classDataObject.html" />
+              <section title="numProperties" ref="classDataObject.html" />
+              <section title="operator=" ref="classDataObject.html" />
+              <section title="property" ref="classDataObject.html" />
+              <section title="property" ref="classDataObject.html" />
+              <section title="propertyNames" ref="classDataObject.html" />
+              <section title="propertyNames" ref="classDataObject.html" />
+              <section title="readFrom" ref="classDataObject.html" />
+              <section title="setProperty" ref="classDataObject.html" />
+              <section title="setProperty" ref="classDataObject.html" />
+              <section title="toString" ref="classDataObject.html" />
+              <section title="writeTo" ref="classDataObject.html" />
+            </section>
+            <section title="DataObjectTableModel" ref="classDataObjectTableModel.html">
+              <section title="DataObjectTableModel" ref="classDataObjectTableModel.html" />
+              <section title="~DataObjectTableModel" ref="classDataObjectTableModel.html" />
+              <section title="clear" ref="classDataObjectTableModel.html" />
+              <section title="columnCount" ref="classDataObjectTableModel.html" />
+              <section title="data" ref="classDataObjectTableModel.html" />
+              <section title="extractHeaders" ref="classDataObjectTableModel.html" />
+              <section title="fieldIndex" ref="classDataObjectTableModel.html" />
+              <section title="findRow" ref="classDataObjectTableModel.html" />
+              <section title="flags" ref="classDataObjectTableModel.html" />
+              <section title="headerData" ref="classDataObjectTableModel.html" />
+              <section title="insertRecord" ref="classDataObjectTableModel.html" />
+              <section title="insertRows" ref="classDataObjectTableModel.html" />
+              <section title="operator&lt;&lt;" ref="classDataObjectTableModel.html" />
+              <section title="removeRows" ref="classDataObjectTableModel.html" />
+              <section title="rowChanged" ref="classDataObjectTableModel.html" />
+              <section title="rowCount" ref="classDataObjectTableModel.html" />
+              <section title="setData" ref="classDataObjectTableModel.html" />
+              <section title="toString" ref="classDataObjectTableModel.html" />
+              <section title="toStringList" ref="classDataObjectTableModel.html" />
+              <section title="m_Data" ref="classDataObjectTableModel.html" />
+              <section title="m_Headers" ref="classDataObjectTableModel.html" />
+              <section title="m_isEditable" ref="classDataObjectTableModel.html" />
+              <section title="m_Original" ref="classDataObjectTableModel.html" />
+            </section>
+            <section title="DbConnectionSettings" ref="classDbConnectionSettings.html">
+              <section title="lastSaved" ref="classDbConnectionSettings.html" />
+              <section title="save" ref="classDbConnectionSettings.html" />
+            </section>
+            <section title="DocbookDoc" ref="classDocbookDoc.html">
+              <section title="DocbookDoc" ref="classDocbookDoc.html" />
+              <section title="appendix" ref="classDocbookDoc.html" />
+              <section title="bold" ref="classDocbookDoc.html" />
+              <section title="bridgehead" ref="classDocbookDoc.html" />
+              <section title="chapter" ref="classDocbookDoc.html" />
+              <section title="formalpara" ref="classDocbookDoc.html" />
+              <section title="getTitle" ref="classDocbookDoc.html" />
+              <section title="listitem" ref="classDocbookDoc.html" />
+              <section title="orderedlist" ref="classDocbookDoc.html" />
+              <section title="para" ref="classDocbookDoc.html" />
+              <section title="section" ref="classDocbookDoc.html" />
+              <section title="setRole" ref="classDocbookDoc.html" />
+              <section title="simplesect" ref="classDocbookDoc.html" />
+              <section title="title" ref="classDocbookDoc.html" />
+              <section title="xref" ref="classDocbookDoc.html" />
+              <section title="xrefP" ref="classDocbookDoc.html" />
+              <section title="currentChapter" ref="classDocbookDoc.html" />
+              <section title="currentList" ref="classDocbookDoc.html" />
+              <section title="currentPara" ref="classDocbookDoc.html" />
+              <section title="currentParent" ref="classDocbookDoc.html" />
+            </section>
+            <section title="DocbookWalker" ref="classDocbookWalker.html">
+              <section title="DocbookWalker" ref="classDocbookWalker.html" />
+              <section title="~DocbookWalker" ref="classDocbookWalker.html" />
+              <section title="currentChapter" ref="classDocbookWalker.html" />
+              <section title="currentHeading" ref="classDocbookWalker.html" />
+              <section title="currentSection" ref="classDocbookWalker.html" />
+              <section title="heading" ref="classDocbookWalker.html" />
+              <section title="newAppendix" ref="classDocbookWalker.html" />
+              <section title="newChapter" ref="classDocbookWalker.html" />
+              <section title="newSection" ref="classDocbookWalker.html" />
+              <section title="transform" ref="classDocbookWalker.html" />
+              <section title="visit" ref="classDocbookWalker.html" />
+              <section title="visited" ref="classDocbookWalker.html" />
+              <section title="walkTree" ref="classDocbookWalker.html" />
+              <section title="m_document" ref="classDocbookWalker.html" />
+            </section>
+            <section title="Enum" ref="classEnum.html">
+              <section title="Enum" ref="classEnum.html" />
+              <section title="Enum" ref="classEnum.html" />
+              <section title="~Enum" ref="classEnum.html" />
+              <section title="fromString" ref="classEnum.html" />
+              <section title="initMap" ref="classEnum.html" />
+              <section title="intValue" ref="classEnum.html" />
+              <section title="nameMap" ref="classEnum.html" />
+              <section title="names" ref="classEnum.html" />
+              <section title="operator!=" ref="classEnum.html" />
+              <section title="operator&lt;" ref="classEnum.html" />
+              <section title="operator=" ref="classEnum.html" />
+              <section title="operator=" ref="classEnum.html" />
+              <section title="operator==" ref="classEnum.html" />
+              <section title="operator==" ref="classEnum.html" />
+              <section title="operator&gt;" ref="classEnum.html" />
+              <section title="setIntValue" ref="classEnum.html" />
+              <section title="toString" ref="classEnum.html" />
+              <section title="operator&gt;&gt;" ref="classEnum.html" />
+              <section title="operator&gt;&gt;" ref="classEnum.html" />
+              <section title="m_Val" ref="classEnum.html" />
+            </section>
+            <section title="MetaDataFunctor" ref="classMetaDataFunctor.html">
+              <section title="operator()" ref="classMetaDataFunctor.html" />
+            </section>
+            <section title="TagLib::MetaDataLoader" ref="classTagLib_1_1MetaDataLoader.html">
+              <section title="SUPER" ref="classTagLib_1_1MetaDataLoader.html" />
+              <section title="MetaDataLoader" ref="classTagLib_1_1MetaDataLoader.html" />
+              <section title="~MetaDataLoader" ref="classTagLib_1_1MetaDataLoader.html" />
+              <section title="cancel" ref="classTagLib_1_1MetaDataLoader.html" />
+              <section title="clone" ref="classTagLib_1_1MetaDataLoader.html" />
+              <section title="get" ref="classTagLib_1_1MetaDataLoader.html" />
+              <section title="get" ref="classTagLib_1_1MetaDataLoader.html" />
+              <section title="instance" ref="classTagLib_1_1MetaDataLoader.html" />
+              <section title="isRunning" ref="classTagLib_1_1MetaDataLoader.html" />
+              <section title="supportedExtensions" ref="classTagLib_1_1MetaDataLoader.html" />
+            </section>
+            <section title="Abstract::MetaDataLoader" ref="classAbstract_1_1MetaDataLoader.html">
+              <section title="MetaDataLoader" ref="classAbstract_1_1MetaDataLoader.html" />
+              <section title="~MetaDataLoader" ref="classAbstract_1_1MetaDataLoader.html" />
+              <section title="cancel" ref="classAbstract_1_1MetaDataLoader.html" />
+              <section title="clone" ref="classAbstract_1_1MetaDataLoader.html" />
+              <section title="fetched" ref="classAbstract_1_1MetaDataLoader.html" />
+              <section title="finished" ref="classAbstract_1_1MetaDataLoader.html" />
+              <section title="get" ref="classAbstract_1_1MetaDataLoader.html" />
+              <section title="get" ref="classAbstract_1_1MetaDataLoader.html" />
+              <section title="instance" ref="classAbstract_1_1MetaDataLoader.html" />
+              <section title="isRunning" ref="classAbstract_1_1MetaDataLoader.html" />
+              <section title="progressRangeChanged" ref="classAbstract_1_1MetaDataLoader.html" />
+              <section title="progressValueChanged" ref="classAbstract_1_1MetaDataLoader.html" />
+              <section title="supportedExtensions" ref="classAbstract_1_1MetaDataLoader.html" />
+            </section>
+            <section title="Phonon::MetaDataLoader" ref="classPhonon_1_1MetaDataLoader.html">
+              <section title="MetaDataLoader" ref="classPhonon_1_1MetaDataLoader.html" />
+              <section title="~MetaDataLoader" ref="classPhonon_1_1MetaDataLoader.html" />
+              <section title="cancel" ref="classPhonon_1_1MetaDataLoader.html" />
+              <section title="clone" ref="classPhonon_1_1MetaDataLoader.html" />
+              <section title="get" ref="classPhonon_1_1MetaDataLoader.html" />
+              <section title="get" ref="classPhonon_1_1MetaDataLoader.html" />
+              <section title="instance" ref="classPhonon_1_1MetaDataLoader.html" />
+              <section title="isRunning" ref="classPhonon_1_1MetaDataLoader.html" />
+              <section title="supportedExtensions" ref="classPhonon_1_1MetaDataLoader.html" />
+            </section>
+            <section title="MetaDataLoaderProgressWidget" ref="classMetaDataLoaderProgressWidget.html">
+              <section title="MetaDataLoaderProgressWidget" ref="classMetaDataLoaderProgressWidget.html" />
+              <section title="cancelButton" ref="classMetaDataLoaderProgressWidget.html" />
+              <section title="hookup" ref="classMetaDataLoaderProgressWidget.html" />
+              <section title="progressBar" ref="classMetaDataLoaderProgressWidget.html" />
+              <section title="updateRange" ref="classMetaDataLoaderProgressWidget.html" />
+              <section title="updateStatus" ref="classMetaDataLoaderProgressWidget.html" />
+            </section>
+            <section title="MetaDataObject" ref="classMetaDataObject.html">
+              <section title="SUPER" ref="classMetaDataObject.html" />
+              <section title="MetaDataObject" ref="classMetaDataObject.html" />
+              <section title="operator=" ref="classMetaDataObject.html" />
+              <section title="operator=" ref="classMetaDataObject.html" />
+              <section title="setUrl" ref="classMetaDataObject.html" />
+              <section title="AlbumTitle" ref="classMetaDataObject.html" />
+              <section title="Artist" ref="classMetaDataObject.html" />
+              <section title="Comment" ref="classMetaDataObject.html" />
+              <section title="FileName" ref="classMetaDataObject.html" />
+              <section title="Genre" ref="classMetaDataObject.html" />
+              <section title="Image" ref="classMetaDataObject.html" />
+              <section title="Preference" ref="classMetaDataObject.html" />
+              <section title="TrackNumber" ref="classMetaDataObject.html" />
+              <section title="TrackTime" ref="classMetaDataObject.html" />
+              <section title="TrackTitle" ref="classMetaDataObject.html" />
+              <section title="Url" ref="classMetaDataObject.html" />
+            </section>
+            <section title="MetaDataTable" ref="classMetaDataTable.html">
+              <section title="~MetaDataTable" ref="classMetaDataTable.html" />
+              <section title="MetaDataTable" ref="classMetaDataTable.html" />
+              <section title="allSongs" ref="classMetaDataTable.html" />
+              <section title="clearTable" ref="classMetaDataTable.html" />
+              <section title="createMetadataTable" ref="classMetaDataTable.html" />
+              <section title="dropMetaData" ref="classMetaDataTable.html" />
+              <section title="findRecord" ref="classMetaDataTable.html" />
+              <section title="genres" ref="classMetaDataTable.html" />
+              <section title="hasMetaData" ref="classMetaDataTable.html" />
+              <section title="insert" ref="classMetaDataTable.html" />
+              <section title="inserted" ref="classMetaDataTable.html" />
+              <section title="instance" ref="classMetaDataTable.html" />
+              <section title="tableName" ref="classMetaDataTable.html" />
+              <section title="visit" ref="classMetaDataTable.html" />
+              <section title="m_createTableQStr" ref="classMetaDataTable.html" />
+              <section title="m_deleteQuery" ref="classMetaDataTable.html" />
+              <section title="m_driver" ref="classMetaDataTable.html" />
+              <section title="m_insertQuery" ref="classMetaDataTable.html" />
+              <section title="m_mdl" ref="classMetaDataTable.html" />
+              <section title="m_previous" ref="classMetaDataTable.html" />
+              <section title="m_tableName" ref="classMetaDataTable.html" />
+            </section>
+            <section title="MetaDataValue" ref="classMetaDataValue.html">
+              <section title="MetaDataValue" ref="classMetaDataValue.html" />
+              <section title="MetaDataValue" ref="classMetaDataValue.html" />
+              <section title="~MetaDataValue" ref="classMetaDataValue.html" />
+              <section title="albumTitle" ref="classMetaDataValue.html" />
+              <section title="artist" ref="classMetaDataValue.html" />
+              <section title="comment" ref="classMetaDataValue.html" />
+              <section title="fileName" ref="classMetaDataValue.html" />
+              <section title="genre" ref="classMetaDataValue.html" />
+              <section title="image" ref="classMetaDataValue.html" />
+              <section title="isNull" ref="classMetaDataValue.html" />
+              <section title="operator=" ref="classMetaDataValue.html" />
+              <section title="preference" ref="classMetaDataValue.html" />
+              <section title="setAlbumTitle" ref="classMetaDataValue.html" />
+              <section title="setArtist" ref="classMetaDataValue.html" />
+              <section title="setComment" ref="classMetaDataValue.html" />
+              <section title="setFileName" ref="classMetaDataValue.html" />
+              <section title="setGenre" ref="classMetaDataValue.html" />
+              <section title="setImage" ref="classMetaDataValue.html" />
+              <section title="setNull" ref="classMetaDataValue.html" />
+              <section title="setPreference" ref="classMetaDataValue.html" />
+              <section title="setTrackNumber" ref="classMetaDataValue.html" />
+              <section title="setTrackTime" ref="classMetaDataValue.html" />
+              <section title="setTrackTitle" ref="classMetaDataValue.html" />
+              <section title="setUrl" ref="classMetaDataValue.html" />
+              <section title="trackNumber" ref="classMetaDataValue.html" />
+              <section title="trackTime" ref="classMetaDataValue.html" />
+              <section title="trackTimeString" ref="classMetaDataValue.html" />
+              <section title="trackTitle" ref="classMetaDataValue.html" />
+              <section title="url" ref="classMetaDataValue.html" />
+              <section title="operator&lt;&lt;" ref="classMetaDataValue.html" />
+              <section title="operator&lt;&lt;" ref="classMetaDataValue.html" />
+              <section title="operator==" ref="classMetaDataValue.html" />
+              <section title="operator&gt;&gt;" ref="classMetaDataValue.html" />
+              <section title="operator&gt;&gt;" ref="classMetaDataValue.html" />
+              <section title="m_AlbumTitle" ref="classMetaDataValue.html" />
+              <section title="m_Artist" ref="classMetaDataValue.html" />
+              <section title="m_Comment" ref="classMetaDataValue.html" />
+              <section title="m_Genre" ref="classMetaDataValue.html" />
+              <section title="m_Image" ref="classMetaDataValue.html" />
+              <section title="m_isNull" ref="classMetaDataValue.html" />
+              <section title="m_Preference" ref="classMetaDataValue.html" />
+              <section title="m_TrackNumber" ref="classMetaDataValue.html" />
+              <section title="m_TrackTime" ref="classMetaDataValue.html" />
+              <section title="m_TrackTitle" ref="classMetaDataValue.html" />
+              <section title="m_Url" ref="classMetaDataValue.html" />
+            </section>
+            <section title="MetaDataWidget" ref="classMetaDataWidget.html">
+              <section title="MetaDataWidget" ref="classMetaDataWidget.html" />
+              <section title="clear" ref="classMetaDataWidget.html" />
+              <section title="display" ref="classMetaDataWidget.html" />
+              <section title="model" ref="classMetaDataWidget.html" />
+              <section title="processButton" ref="classMetaDataWidget.html" />
+              <section title="revert" ref="classMetaDataWidget.html" />
+              <section title="submit" ref="classMetaDataWidget.html" />
+            </section>
+            <section title="ObjectFactory" ref="classObjectFactory.html">
+              <section title="ObjectFactory" ref="classObjectFactory.html" />
+              <section title="newObject" ref="classObjectFactory.html" />
+              <section title="m_knownClasses" ref="classObjectFactory.html" />
+            </section>
+            <section title="PhononItem" ref="classPhononItem.html">
+              <section title="~PhononItem" ref="classPhononItem.html" />
+              <section title="PhononItem" ref="classPhononItem.html" />
+              <section title="albumTitle" ref="classPhononItem.html" />
+              <section title="artist" ref="classPhononItem.html" />
+              <section title="checkMetaData" ref="classPhononItem.html" />
+              <section title="comment" ref="classPhononItem.html" />
+              <section title="fetched" ref="classPhononItem.html" />
+              <section title="fetchMetaData" ref="classPhononItem.html" />
+              <section title="genre" ref="classPhononItem.html" />
+              <section title="preference" ref="classPhononItem.html" />
+              <section title="setFileName" ref="classPhononItem.html" />
+              <section title="source" ref="classPhononItem.html" />
+              <section title="trackNumber" ref="classPhononItem.html" />
+              <section title="trackTime" ref="classPhononItem.html" />
+              <section title="trackTitle" ref="classPhononItem.html" />
+              <section title="Phonon::MetaDataLoader" ref="classPhononItem.html" />
+            </section>
+            <section title="PlayListDb" ref="classPlayListDb.html">
+              <section title="addFile" ref="classPlayListDb.html" />
+              <section title="clear" ref="classPlayListDb.html" />
+              <section title="last" ref="classPlayListDb.html" />
+              <section title="loadAndStore" ref="classPlayListDb.html" />
+              <section title="playList" ref="classPlayListDb.html" />
+              <section title="playLists" ref="classPlayListDb.html" />
+              <section title="removeEntry" ref="classPlayListDb.html" />
+              <section title="removeFile" ref="classPlayListDb.html" />
+              <section title="rename" ref="classPlayListDb.html" />
+              <section title="shuffle" ref="classPlayListDb.html" />
+              <section title="tableName" ref="classPlayListDb.html" />
+              <section title="takeFirst" ref="classPlayListDb.html" />
+              <section title="TABLEPREFIX" ref="classPlayListDb.html" />
+            </section>
+            <section title="Preference" ref="classPreference.html">
+              <section title="Preference" ref="classPreference.html" />
+              <section title="Preference" ref="classPreference.html" />
+              <section title="nameMap" ref="classPreference.html" />
+            </section>
+            <section title="QOB_signal_record" ref="classQOB__signal__record.html">
+              <section title="QOB_signal_record" ref="classQOB__signal__record.html" />
+              <section title="~QOB_signal_record" ref="classQOB__signal__record.html" />
+              <section title="m_count" ref="classQOB__signal__record.html" />
+              <section title="m_sigmapper" ref="classQOB__signal__record.html" />
+            </section>
+            <section title="QObjectBrowser" ref="classQObjectBrowser.html">
+              <section title="QObjectBrowser" ref="classQObjectBrowser.html" />
+              <section title="closeEvent" ref="classQObjectBrowser.html" />
+              <section title="dumpObject" ref="classQObjectBrowser.html" />
+              <section title="get_current_object" ref="classQObjectBrowser.html" />
+              <section title="hidden" ref="classQObjectBrowser.html" />
+              <section title="on_browse_focus" ref="classQObjectBrowser.html" />
+              <section title="on_current_item_changed" ref="classQObjectBrowser.html" />
+              <section title="on_focus_changed" ref="classQObjectBrowser.html" />
+              <section title="on_focus_widget" ref="classQObjectBrowser.html" />
+              <section title="on_hide_widget" ref="classQObjectBrowser.html" />
+              <section title="on_object_changed" ref="classQObjectBrowser.html" />
+              <section title="on_show_widget" ref="classQObjectBrowser.html" />
+              <section title="on_update" ref="classQObjectBrowser.html" />
+              <section title="restoreSettings" ref="classQObjectBrowser.html" />
+              <section title="saveSettings" ref="classQObjectBrowser.html" />
+              <section title="set_object" ref="classQObjectBrowser.html" />
+              <section title="valid_object" ref="classQObjectBrowser.html" />
+              <section title="m_control" ref="classQObjectBrowser.html" />
+              <section title="m_last_focus_window" ref="classQObjectBrowser.html" />
+              <section title="m_model" ref="classQObjectBrowser.html" />
+              <section title="m_tree" ref="classQObjectBrowser.html" />
+            </section>
+            <section title="QObjectBrowserAction" ref="classQObjectBrowserAction.html">
+              <section title="QObjectBrowserAction" ref="classQObjectBrowserAction.html" />
+              <section title="checkCheck" ref="classQObjectBrowserAction.html" />
+              <section title="isChecked" ref="classQObjectBrowserAction.html" />
+              <section title="setChecked" ref="classQObjectBrowserAction.html" />
+            </section>
+            <section title="QObjectBrowserControl" ref="classQObjectBrowserControl.html">
+              <section title="QObjectBrowserControl" ref="classQObjectBrowserControl.html" />
+              <section title="~QObjectBrowserControl" ref="classQObjectBrowserControl.html" />
+              <section title="clear" ref="classQObjectBrowserControl.html" />
+              <section title="clear_signal_records" ref="classQObjectBrowserControl.html" />
+              <section title="hasdescendent" ref="classQObjectBrowserControl.html" />
+              <section title="object_changed" ref="classQObjectBrowserControl.html" />
+              <section title="on_children_table_cell_clicked" ref="classQObjectBrowserControl.html" />
+              <section title="on_object_destroyed" ref="classQObjectBrowserControl.html" />
+              <section title="on_signal_triggered" ref="classQObjectBrowserControl.html" />
+              <section title="on_up_to_parent" ref="classQObjectBrowserControl.html" />
+              <section title="on_update_children" ref="classQObjectBrowserControl.html" />
+              <section title="on_update_properties" ref="classQObjectBrowserControl.html" />
+              <section title="set_children" ref="classQObjectBrowserControl.html" />
+              <section title="set_methods" ref="classQObjectBrowserControl.html" />
+              <section title="set_object" ref="classQObjectBrowserControl.html" />
+              <section title="set_properties" ref="classQObjectBrowserControl.html" />
+              <section title="set_signals" ref="classQObjectBrowserControl.html" />
+              <section title="set_slots" ref="classQObjectBrowserControl.html" />
+              <section title="update_signal_value" ref="classQObjectBrowserControl.html" />
+              <section title="update_signal_values" ref="classQObjectBrowserControl.html" />
+              <section title="m_obj" ref="classQObjectBrowserControl.html" />
+              <section title="m_signal_records" ref="classQObjectBrowserControl.html" />
+            </section>
+            <section title="QObjectReader" ref="classQObjectReader.html">
+              <section title="QObjectReader" ref="classQObjectReader.html" />
+              <section title="QObjectReader" ref="classQObjectReader.html" />
+              <section title="~QObjectReader" ref="classQObjectReader.html" />
+              <section title="endDocument" ref="classQObjectReader.html" />
+              <section title="endElement" ref="classQObjectReader.html" />
+              <section title="getRoot" ref="classQObjectReader.html" />
+              <section title="parse" ref="classQObjectReader.html" />
+              <section title="parseFile" ref="classQObjectReader.html" />
+              <section title="startElement" ref="classQObjectReader.html" />
+            </section>
+            <section title="QObjectTreeModel" ref="classQObjectTreeModel.html">
+              <section title="QObjectTreeModel" ref="classQObjectTreeModel.html" />
+              <section title="~QObjectTreeModel" ref="classQObjectTreeModel.html" />
+              <section title="addExtraObject" ref="classQObjectTreeModel.html" />
+              <section title="clear_persistent_data" ref="classQObjectTreeModel.html" />
+              <section title="columnCount" ref="classQObjectTreeModel.html" />
+              <section title="data" ref="classQObjectTreeModel.html" />
+              <section title="find_item" ref="classQObjectTreeModel.html" />
+              <section title="flags" ref="classQObjectTreeModel.html" />
+              <section title="getindex" ref="classQObjectTreeModel.html" />
+              <section title="headerData" ref="classQObjectTreeModel.html" />
+              <section title="index" ref="classQObjectTreeModel.html" />
+              <section title="parent" ref="classQObjectTreeModel.html" />
+              <section title="refresh" ref="classQObjectTreeModel.html" />
+              <section title="refresh" ref="classQObjectTreeModel.html" />
+              <section title="rowCount" ref="classQObjectTreeModel.html" />
+              <section title="rootItem" ref="classQObjectTreeModel.html" />
+              <section title="sm_extraObjects" ref="classQObjectTreeModel.html" />
+            </section>
+            <section title="QObjectWriter" ref="classQObjectWriter.html">
+              <section title="QObjectWriter" ref="classQObjectWriter.html" />
+              <section title="mapType" ref="classQObjectWriter.html" />
+              <section title="propertyNames" ref="classQObjectWriter.html" />
+              <section title="toString" ref="classQObjectWriter.html" />
+              <section title="toString" ref="classQObjectWriter.html" />
+            </section>
+            <section title="SimpleDelegate" ref="classSimpleDelegate.html">
+              <section title="SUPER" ref="classSimpleDelegate.html" />
+              <section title="SimpleDelegate" ref="classSimpleDelegate.html" />
+              <section title="paint" ref="classSimpleDelegate.html" />
+            </section>
+            <section title="StdinReader" ref="classStdinReader.html">
+              <section title="readProperties" ref="classStdinReader.html" />
+            </section>
+            <section title="TimeDisplay" ref="classTimeDisplay.html">
+              <section title="TimeDisplay" ref="classTimeDisplay.html" />
+            </section>
+            <section title="VariantWriter" ref="classVariantWriter.html">
+              <section title="toString" ref="classVariantWriter.html" />
+            </section>
+          </section>
+          <section title="Class Index" ref="classes.html" />
+          <section title="Class Hierarchy" ref="hierarchy.html">
+            <section title="AbstractFactory" ref="classAbstractFactory.html">
+              <section title="ObjectFactory" ref="classObjectFactory.html" />
+            </section>
+            <section title="ActionEditorDialog" ref="classActionEditorDialog.html" />
+            <section title="ActionTableEditor" ref="classActionTableEditor.html" />
+            <section title="ActionTableModel" ref="classActionTableModel.html" />
+            <section title="ActivityButton" ref="classActivityButton.html" />
+            <section title="ActivityItem" ref="classActivityItem.html" />
+            <section title="ActivityView" ref="classActivityView.html" />
+            <section title="Address" ref="classAddress.html" />
+            <section title="DataObject" ref="classDataObject.html">
+              <section title="Country" ref="classCountry.html" />
+              <section title="CustomerList" ref="classCustomerList.html" />
+              <section title="MetaDataObject" ref="classMetaDataObject.html">
+                <section title="AudioMetaData" ref="classAudioMetaData.html" />
+                <section title="PhononItem" ref="classPhononItem.html" />
+              </section>
+            </section>
+            <section title="DataObjectTableModel" ref="classDataObjectTableModel.html" />
+            <section title="DbConnectionSettings" ref="classDbConnectionSettings.html" />
+            <section title="DocbookDoc" ref="classDocbookDoc.html" />
+            <section title="DocbookWalker" ref="classDocbookWalker.html" />
+            <section title="Enum" ref="classEnum.html">
+              <section title="Preference" ref="classPreference.html" />
+            </section>
+            <section title="MetaDataFunctor" ref="classMetaDataFunctor.html" />
+            <section title="Abstract::MetaDataLoader" ref="classAbstract_1_1MetaDataLoader.html">
+              <section title="Phonon::MetaDataLoader" ref="classPhonon_1_1MetaDataLoader.html" />
+              <section title="TagLib::MetaDataLoader" ref="classTagLib_1_1MetaDataLoader.html" />
+            </section>
+            <section title="MetaDataLoaderProgressWidget" ref="classMetaDataLoaderProgressWidget.html" />
+            <section title="MetaDataTable" ref="classMetaDataTable.html" />
+            <section title="MetaDataValue" ref="classMetaDataValue.html">
+              <section title="MetaDataObject" ref="classMetaDataObject.html" />
+            </section>
+            <section title="MetaDataWidget" ref="classMetaDataWidget.html" />
+            <section title="PlayListDb" ref="classPlayListDb.html" />
+            <section title="QOB_signal_record" ref="classQOB__signal__record.html" />
+            <section title="QObjectBrowser" ref="classQObjectBrowser.html" />
+            <section title="QObjectBrowserAction" ref="classQObjectBrowserAction.html" />
+            <section title="QObjectBrowserControl" ref="classQObjectBrowserControl.html" />
+            <section title="QObjectReader" ref="classQObjectReader.html" />
+            <section title="QObjectTreeModel" ref="classQObjectTreeModel.html" />
+            <section title="SimpleDelegate" ref="classSimpleDelegate.html" />
+            <section title="StdinReader" ref="classStdinReader.html" />
+            <section title="TimeDisplay" ref="classTimeDisplay.html" />
+            <section title="VariantWriter" ref="classVariantWriter.html">
+              <section title="QObjectWriter" ref="classQObjectWriter.html" />
+            </section>
+          </section>
+          <section title="Class Members" ref="functions.html">
+            <section title="All" ref="functions.html" />
+            <section title="Functions" ref="functions_func.html" />
+            <section title="Enumerations" ref="functions_enum.html" />
+          </section>
+        </section>
+        <section title="Files">
+          <section title="File List" ref="files.html">
+            <section title="docs/src/libs/actioneditor/actioneditor_export.h" />
+            <section title="docs/src/libs/actioneditor/actioneditordialog.cpp" />
+            <section title="docs/src/libs/actioneditor/actioneditordialog.h" />
+            <section title="docs/src/libs/actioneditor/actiontableeditor.cpp" />
+            <section title="docs/src/libs/actioneditor/actiontableeditor.h" />
+            <section title="docs/src/libs/actioneditor/actiontablemodel.cpp" />
+            <section title="docs/src/libs/actioneditor/actiontablemodel.h" />
+            <section title="docs/src/libs/actioneditor/qrc_icons.cpp" />
+            <section title="docs/src/libs/customer/cexport.h" />
+            <section title="docs/src/libs/customer/customer.cpp" />
+            <section title="docs/src/libs/customer/customer.h" />
+            <section title="docs/src/libs/customer/customerfactory.cpp" />
+            <section title="docs/src/libs/customer/customerfactory.h" />
+            <section title="docs/src/libs/customer/customerlist.cpp" />
+            <section title="docs/src/libs/customer/customerlist.h" />
+            <section title="docs/src/libs/customer/custType.cpp" />
+            <section title="docs/src/libs/customer/custType.h" />
+            <section title="docs/src/libs/dataobjects/abstractfactory.cpp" />
+            <section title="docs/src/libs/dataobjects/abstractfactory.h" />
+            <section title="docs/src/libs/dataobjects/address.cpp" />
+            <section title="docs/src/libs/dataobjects/address.h" />
+            <section title="docs/src/libs/dataobjects/country.cpp" />
+            <section title="docs/src/libs/dataobjects/country.h" />
+            <section title="docs/src/libs/dataobjects/dataobject.cpp" />
+            <section title="docs/src/libs/dataobjects/dataobject.h" />
+            <section title="docs/src/libs/dataobjects/dataobjecttablemodel.cpp" />
+            <section title="docs/src/libs/dataobjects/dataobjecttablemodel.h" />
+            <section title="docs/src/libs/dataobjects/dobjs_export.h" />
+            <section title="docs/src/libs/dataobjects/enum.cpp" />
+            <section title="docs/src/libs/dataobjects/enum.h" />
+            <section title="docs/src/libs/dataobjects/objectfactory.cpp" />
+            <section title="docs/src/libs/dataobjects/objectfactory.h" />
+            <section title="docs/src/libs/dataobjects/qobjectreader.cpp" />
+            <section title="docs/src/libs/dataobjects/qobjectreader.h" />
+            <section title="docs/src/libs/dataobjects/qobjectwriter.cpp" />
+            <section title="docs/src/libs/dataobjects/qobjectwriter.h" />
+            <section title="docs/src/libs/dataobjects/stdinreader.cpp" />
+            <section title="docs/src/libs/dataobjects/stdinreader.h" />
+            <section title="docs/src/libs/dataobjects/variant.h" />
+            <section title="docs/src/libs/docbook/docbook_export.h" />
+            <section title="docs/src/libs/docbook/docbookdoc.cpp" />
+            <section title="docs/src/libs/docbook/docbookdoc.h" />
+            <section title="docs/src/libs/docbook/docbookwalker.cpp" />
+            <section title="docs/src/libs/docbook/docbookwalker.h" />
+            <section title="docs/src/libs/filetagger/filetagger_export.h" />
+            <section title="docs/src/libs/filetagger/tmetadataloader.cpp" />
+            <section title="docs/src/libs/filetagger/tmetadataloader.h" />
+            <section title="docs/src/libs/icons/activity.cpp" />
+            <section title="docs/src/libs/icons/activity.h" />
+            <section title="docs/src/libs/icons/activityitem.cpp" />
+            <section title="docs/src/libs/icons/activityitem.h" />
+            <section title="docs/src/libs/icons/icons_export.h" />
+            <section title="docs/src/libs/icons/qrc_icons.cpp" />
+            <section title="docs/src/libs/metadata/abstractmetadataloader.cpp" />
+            <section title="docs/src/libs/metadata/abstractmetadataloader.h" />
+            <section title="docs/src/libs/metadata/audiometadata.h" />
+            <section title="docs/src/libs/metadata/metadataexport.h" />
+            <section title="docs/src/libs/metadata/metadataloaderprogresswidget.cpp" />
+            <section title="docs/src/libs/metadata/metadataloaderprogresswidget.h" />
+            <section title="docs/src/libs/metadata/metadataobject.cpp" />
+            <section title="docs/src/libs/metadata/metadataobject.h" />
+            <section title="docs/src/libs/metadata/metadatavalue.cpp" />
+            <section title="docs/src/libs/metadata/metadatavalue.h" />
+            <section title="docs/src/libs/metadata/metadatawidget.cpp" />
+            <section title="docs/src/libs/metadata/metadatawidget.h" />
+            <section title="docs/src/libs/metadata/preference.cpp" />
+            <section title="docs/src/libs/metadata/preference.h" />
+            <section title="docs/src/libs/metadata/preferencecombo.cpp" />
+            <section title="docs/src/libs/metadata/preferencecombo.h" />
+            <section title="docs/src/libs/metadata/simpledelegate.cpp" />
+            <section title="docs/src/libs/metadata/simpledelegate.h" />
+            <section title="docs/src/libs/metadata/timedisplay.cpp" />
+            <section title="docs/src/libs/metadata/timedisplay.h" />
+            <section title="docs/src/libs/modeltest/modeltest.cpp" />
+            <section title="docs/src/libs/modeltest/modeltest.h" />
+            <section title="docs/src/libs/objectbrowser/obexport.h" />
+            <section title="docs/src/libs/objectbrowser/qobjectbrowser.cpp" />
+            <section title="docs/src/libs/objectbrowser/qobjectbrowser.h" />
+            <section title="docs/src/libs/objectbrowser/qobjectbrowseraction.cpp" />
+            <section title="docs/src/libs/objectbrowser/qobjectbrowseraction.h" />
+            <section title="docs/src/libs/objectbrowser/qobjecttree.cpp" />
+            <section title="docs/src/libs/objectbrowser/qobjecttree.h" />
+            <section title="docs/src/libs/objectbrowser/qrc_objectbrowser.cpp" />
+            <section title="docs/src/libs/phononmetadata/metadataloader.cpp" />
+            <section title="docs/src/libs/phononmetadata/metadataloader.h" />
+            <section title="docs/src/libs/phononmetadata/phonon_mdexport.h" />
+            <section title="docs/src/libs/phononmetadata/phononitem.cpp" />
+            <section title="docs/src/libs/phononmetadata/phononitem.h" />
+            <section title="docs/src/libs/sqlmetadata/dbconnectionform.cpp" />
+            <section title="docs/src/libs/sqlmetadata/dbconnectionform.h" />
+            <section title="docs/src/libs/sqlmetadata/dbconnectionsettings.cpp" />
+            <section title="docs/src/libs/sqlmetadata/dbconnectionsettings.h" />
+            <section title="docs/src/libs/sqlmetadata/dbutils.cpp" />
+            <section title="docs/src/libs/sqlmetadata/dbutils.h" />
+            <section title="docs/src/libs/sqlmetadata/metadatatable.cpp" />
+            <section title="docs/src/libs/sqlmetadata/metadatatable.h" />
+            <section title="docs/src/libs/sqlmetadata/playlistdb.cpp" />
+            <section title="docs/src/libs/sqlmetadata/playlistdb.h" />
+            <section title="docs/src/libs/sqlmetadata/sqlmdexport.h" />
+          </section>
+        </section>
+        <section title="Directories" ref="dirs.html">
+          <section title="docs" ref="dir_b7bff6a328a54dced92cc2da1b92af7b.html">
+            <section title="src" ref="dir_ab982da26330c280617e7412fd1c5327.html">
+              <section title="libs" ref="dir_ed5bf971d05af7fe4369becb3486e466.html">
+                <section title="actioneditor" ref="dir_48bd6377efd26ba723a12b6abe94b67c.html" />
+                <section title="customer" ref="dir_da1a67009aa79f9fe5cdf1a6e7f0b3ac.html" />
+                <section title="dataobjects" ref="dir_e8697ed70dc11c51492843a2af55296a.html" />
+                <section title="docbook" ref="dir_da728871ddf54124568ef955f8b480de.html" />
+                <section title="filetagger" ref="dir_7b2e028ef44893e0700def8f2b8b7c1b.html" />
+                <section title="icons" ref="dir_9c80f71c7362aa7353acf108a54d19e5.html" />
+                <section title="metadata" ref="dir_f3bea65a9794d6811d644575ef9b66cb.html" />
+                <section title="modeltest" ref="dir_a0240b327f821c8b97b30e1bf5cac11e.html" />
+                <section title="objectbrowser" ref="dir_8a038fdad246d2cd5be39ee16b164c29.html" />
+                <section title="phononmetadata" ref="dir_f9aacd9ea0fa0d1865ce5506c7b2dbf6.html" />
+                <section title="sqlmetadata" ref="dir_c866ac114e005d1d0fc6573db793e1bb.html" />
+              </section>
+            </section>
+          </section>
+        </section>
+      </section>
+    </toc>
+    <keywords>
+      <keyword name="AbstractFactory" id="AbstractFactory" ref="classAbstractFactory.html" />
+      <keyword name="newObject" id="AbstractFactory::newObject" ref="classAbstractFactory.html#a27751ded3346e5587ca727497467ead2" />
+      <keyword name="ActionEditorDialog" id="ActionEditorDialog" ref="classActionEditorDialog.html" />
+      <keyword name="ActionEditorDialog" id="ActionEditorDialog::ActionEditorDialog" ref="classActionEditorDialog.html#ab4f50cc168f62ba885581ad0aab7dc99" />
+      <keyword name="keySequence" id="ActionEditorDialog::keySequence" ref="classActionEditorDialog.html#a8393d5593a2b5430db681c8681173b70" />
+      <keyword name="ActionTableEditor" id="ActionTableEditor" ref="classActionTableEditor.html" />
+      <keyword name="ActionTableEditor" id="ActionTableEditor::ActionTableEditor" ref="classActionTableEditor.html#a4d422abf1d315ec461015f76cdc907fc" />
+      <keyword name="ActionTableEditor" id="ActionTableEditor::ActionTableEditor" ref="classActionTableEditor.html#a4e296dd329a064fa73785e5a292dcbfc" />
+      <keyword name="allActions" id="ActionTableEditor::allActions" ref="classActionTableEditor.html#a291f140aacf94e490341ca0b45d106f9" />
+      <keyword name="restoreShortcuts" id="ActionTableEditor::restoreShortcuts" ref="classActionTableEditor.html#afe45482a728c106ed129cd86a611f50e" />
+      <keyword name="accept" id="ActionTableEditor::accept" ref="classActionTableEditor.html#a77a40b1247a9c69305263a4bf58648bb" />
+      <keyword name="ActionTableModel" id="ActionTableModel" ref="classActionTableModel.html" />
+      <keyword name="ActivityButton" id="ActivityButton" ref="classActivityButton.html" />
+      <keyword name="setActive" id="ActivityButton::setActive" ref="classActivityButton.html#ad8e401eb7eb4c9c7d6fc7aecafb6fe4f" />
+      <keyword name="isActive" id="ActivityButton::isActive" ref="classActivityButton.html#a5fd835a9cb11daea8e788ed26f8fd562" />
+      <keyword name="ActivityItem" id="ActivityItem" ref="classActivityItem.html" />
+      <keyword name="setActive" id="ActivityItem::setActive" ref="classActivityItem.html#aa20d1369e974119b2bd0e47f4dd1023a" />
+      <keyword name="isActive" id="ActivityItem::isActive" ref="classActivityItem.html#ae8b6bf8bc8f39167e96d40feb9427794" />
+      <keyword name="ActivityView" id="ActivityView" ref="classActivityView.html" />
+      <keyword name="Address" id="Address" ref="classAddress.html" />
+      <keyword name="AudioMetaData" id="AudioMetaData" ref="classAudioMetaData.html" />
+      <keyword name="Country" id="Country" ref="classCountry.html" />
+      <keyword name="operator=" id="Country::operator=" ref="classCountry.html#a228a23fa3f6a736d98f8718aa80b7e03" />
+      <keyword name="toString" id="Country::toString" ref="classCountry.html#a86f3d58e45f718b10a5e1ebf13dade05" />
+      <keyword name="getCountryNames" id="Country::getCountryNames" ref="classCountry.html#ae673b6bdaab06c142b15347f1fa7851f" />
+      <keyword name="CustomerList" id="CustomerList" ref="classCustomerList.html" />
+      <keyword name="DataObject" id="DataObject" ref="classDataObject.html" />
+      <keyword name="setProperty" id="DataObject::setProperty" ref="classDataObject.html#ae1b26bb1fbb317a89255c728d405a8bf" />
+      <keyword name="dataObjectChanged" id="DataObject::dataObjectChanged" ref="classDataObject.html#afda20f30b24d2839db4a6162348ceeb9" />
+      <keyword name="writeTo" id="DataObject::writeTo" ref="classDataObject.html#aefb901bfe228cf6009871424e0878772" />
+      <keyword name="adoptChildren" id="DataObject::adoptChildren" ref="classDataObject.html#a5efdc7b0112faa3b9253e5279bc8e5b6" />
+      <keyword name="className" id="DataObject::className" ref="classDataObject.html#ac33bff97dd6dce9aa6e0c4ec3d2fdf52" />
+      <keyword name="propertyNames" id="DataObject::propertyNames" ref="classDataObject.html#ab9d7e03dc9104ee5c24a439f7592dbe1" />
+      <keyword name="numProperties" id="DataObject::numProperties" ref="classDataObject.html#aae027f7771477b27ea623d4c15c43b35" />
+      <keyword name="toString" id="DataObject::toString" ref="classDataObject.html#a9d31b82c43501987ea0f7265985d9d13" />
+      <keyword name="property" id="DataObject::property" ref="classDataObject.html#a0d53083f07d3848bc3de47e453f9da96" />
+      <keyword name="clone" id="DataObject::clone" ref="classDataObject.html#aa4fedeb55f06a032f3389e33a69ed544" />
+      <keyword name="equals" id="DataObject::equals" ref="classDataObject.html#a27de6525b6f1981a5fae674c7b7c17ac" />
+      <keyword name="DataObjectTableModel" id="DataObjectTableModel" ref="classDataObjectTableModel.html" />
+      <keyword name="rowChanged" id="DataObjectTableModel::rowChanged" ref="classDataObjectTableModel.html#abffea84c47ce7da7b1d628a76b565273" />
+      <keyword name="DataObjectTableModel" id="DataObjectTableModel::DataObjectTableModel" ref="classDataObjectTableModel.html#afc0fd3f14e7056c4154ded221e10c1d4" />
+      <keyword name="insertRecord" id="DataObjectTableModel::insertRecord" ref="classDataObjectTableModel.html#aa6a2841c87d0cfc5d2fd6ad58cc03ae6" />
+      <keyword name="toStringList" id="DataObjectTableModel::toStringList" ref="classDataObjectTableModel.html#a033d1e7b573f67d6d69036d034e890c2" />
+      <keyword name="~DataObjectTableModel" id="DataObjectTableModel::~DataObjectTableModel" ref="classDataObjectTableModel.html#af8b2d0935dadc11f4e18a4dec33a110c" />
+      <keyword name="data" id="DataObjectTableModel::data" ref="classDataObjectTableModel.html#ad1872b01daefefda84c935d965a9b278" />
+      <keyword name="operator&lt;&lt;" id="DataObjectTableModel::operator&lt;&lt;" ref="classDataObjectTableModel.html#a195db302bccf39a19623ea23461721a1" />
+      <keyword name="extractHeaders" id="DataObjectTableModel::extractHeaders" ref="classDataObjectTableModel.html#ad5689e184c9910f4399f5586d5061ad0" />
+      <keyword name="DbConnectionSettings" id="DbConnectionSettings" ref="classDbConnectionSettings.html" />
+      <keyword name="DocbookDoc" id="DocbookDoc" ref="classDocbookDoc.html" />
+      <keyword name="title" id="DocbookDoc::title" ref="classDocbookDoc.html#a489c81cf5dbb4c8bcd6d5bcbe0b3f3a8" />
+      <keyword name="bridgehead" id="DocbookDoc::bridgehead" ref="classDocbookDoc.html#a1216f940b92cfd1cc8540d581a19e906" />
+      <keyword name="chapter" id="DocbookDoc::chapter" ref="classDocbookDoc.html#a3f2f53e28ed0ddf8433afd9dad64269d" />
+      <keyword name="xref" id="DocbookDoc::xref" ref="classDocbookDoc.html#aaa4e98756a0a9ee2250a7c62b0ba22a4" />
+      <keyword name="xrefP" id="DocbookDoc::xrefP" ref="classDocbookDoc.html#a4cb1a139594a08c523aa79935a030a0b" />
+      <keyword name="section" id="DocbookDoc::section" ref="classDocbookDoc.html#a79739ca9e8f5a96691633e770019db1b" />
+      <keyword name="appendix" id="DocbookDoc::appendix" ref="classDocbookDoc.html#ae00f3416e1c4f05bccf6e3d364a3439e" />
+      <keyword name="bold" id="DocbookDoc::bold" ref="classDocbookDoc.html#a30a62803e77611985d1745ab46331376" />
+      <keyword name="getTitle" id="DocbookDoc::getTitle" ref="classDocbookDoc.html#a0ce30c3d9a13cb2ce7d7de6cf989d9c5" />
+      <keyword name="formalpara" id="DocbookDoc::formalpara" ref="classDocbookDoc.html#a85c292c53827ac61f9b7c0f3a5a17e7e" />
+      <keyword name="para" id="DocbookDoc::para" ref="classDocbookDoc.html#afdf3bcbebaefcc3ad9c4588fd44b4f5b" />
+      <keyword name="simplesect" id="DocbookDoc::simplesect" ref="classDocbookDoc.html#a15dd4283214f9549698c825954eb3569" />
+      <keyword name="setRole" id="DocbookDoc::setRole" ref="classDocbookDoc.html#a81f9244a49f5710fbe652e30ad111731" />
+      <keyword name="DocbookWalker" id="DocbookWalker" ref="classDocbookWalker.html" />
+      <keyword name="transform" id="DocbookWalker::transform" ref="classDocbookWalker.html#a42ede203b92f2f217be8abb05b837e48" />
+      <keyword name="visited" id="DocbookWalker::visited" ref="classDocbookWalker.html#ab03dc27d775b601330ef781773281f52" />
+      <keyword name="visit" id="DocbookWalker::visit" ref="classDocbookWalker.html#a1eb1b541c9dfae006cd873c912e9f3b8" />
+      <keyword name="currentHeading" id="DocbookWalker::currentHeading" ref="classDocbookWalker.html#ac0bc4e25c4784e655ab12070e582f30a" />
+      <keyword name="heading" id="DocbookWalker::heading" ref="classDocbookWalker.html#a0b8adcfce3a615470d039dfe63efc5f0" />
+      <keyword name="Enum" id="Enum" ref="classEnum.html" />
+      <keyword name="nameMap" id="Enum::nameMap" ref="classEnum.html#a16ed815780971f879c93e87fa938aade" />
+      <keyword name="toString" id="Enum::toString" ref="classEnum.html#a64f0306d8f83b3e224ce2c204803bed6" />
+      <keyword name="fromString" id="Enum::fromString" ref="classEnum.html#afbb4170ce4beaa9987914db577f6237c" />
+      <keyword name="intValue" id="Enum::intValue" ref="classEnum.html#af30ea023bd5043fd43f6fb79da38e4ea" />
+      <keyword name="names" id="Enum::names" ref="classEnum.html#aca253f52f9b953d20bdda04538fe3fc8" />
+      <keyword name="initMap" id="Enum::initMap" ref="classEnum.html#af08c55070e1ee013a950dac83ff4c5c8" />
+      <keyword name="MetaDataFunctor" id="MetaDataFunctor" ref="classMetaDataFunctor.html" />
+      <keyword name="MetaDataLoaderProgressWidget" id="MetaDataLoaderProgressWidget" ref="classMetaDataLoaderProgressWidget.html" />
+      <keyword name="MetaDataLoaderProgressWidget" id="MetaDataLoaderProgressWidget::MetaDataLoaderProgressWidget" ref="classMetaDataLoaderProgressWidget.html#a7c463471e3e9efb4c86ebe5c54507c05" />
+      <keyword name="hookup" id="MetaDataLoaderProgressWidget::hookup" ref="classMetaDataLoaderProgressWidget.html#a17dce6c030bbaf335ac0258574ff2066" />
+      <keyword name="MetaDataObject" id="MetaDataObject" ref="classMetaDataObject.html" />
+      <keyword name="MetaDataTable" id="MetaDataTable" ref="classMetaDataTable.html" />
+      <keyword name="inserted" id="MetaDataTable::inserted" ref="classMetaDataTable.html#a85dd6e1f7b7d95ba93364870a1799b30" />
+      <keyword name="visit" id="MetaDataTable::visit" ref="classMetaDataTable.html#a2d475313c195555775f852ca1cb61168" />
+      <keyword name="clearTable" id="MetaDataTable::clearTable" ref="classMetaDataTable.html#a342b987f8304c8d059a16a53bb70a75c" />
+      <keyword name="genres" id="MetaDataTable::genres" ref="classMetaDataTable.html#a46699f2be0cce6fb39c88788dcaddf06" />
+      <keyword name="hasMetaData" id="MetaDataTable::hasMetaData" ref="classMetaDataTable.html#aae2c255d9e7b3c685685fcb83ca5e8d5" />
+      <keyword name="dropMetaData" id="MetaDataTable::dropMetaData" ref="classMetaDataTable.html#a14cf13669501a9523813e57c15c9c8a9" />
+      <keyword name="findRecord" id="MetaDataTable::findRecord" ref="classMetaDataTable.html#a21fcd98ca599ff4294adca9aed298d05" />
+      <keyword name="MetaDataTable" id="MetaDataTable::MetaDataTable" ref="classMetaDataTable.html#a99c5109f3291ba80a8a67a817d50c381" />
+      <keyword name="MetaDataValue" id="MetaDataValue" ref="classMetaDataValue.html" />
+      <keyword name="trackTime" id="MetaDataValue::trackTime" ref="classMetaDataValue.html#a8fc17ed6db1d21ec20d16aaa66093472" />
+      <keyword name="setFileName" id="MetaDataValue::setFileName" ref="classMetaDataValue.html#ab6e7c517fb6a5756154e10485100d601" />
+      <keyword name="MetaDataWidget" id="MetaDataWidget" ref="classMetaDataWidget.html" />
+      <keyword name="clear" id="MetaDataWidget::clear" ref="classMetaDataWidget.html#ad8b291f009bd35233e2aa74389de1268" />
+      <keyword name="ObjectFactory" id="ObjectFactory" ref="classObjectFactory.html" />
+      <keyword name="newObject" id="ObjectFactory::newObject" ref="classObjectFactory.html#ad5625cc42f868ac270e539a03f27d6da" />
+      <keyword name="PhononItem" id="PhononItem" ref="classPhononItem.html" />
+      <keyword name="setFileName" id="PhononItem::setFileName" ref="classPhononItem.html#a5cac80f2e493387d936404ff8b9d2832" />
+      <keyword name="trackTime" id="PhononItem::trackTime" ref="classPhononItem.html#a2500037e0aa9f52c5788a35abc85407b" />
+      <keyword name="checkMetaData" id="PhononItem::checkMetaData" ref="classPhononItem.html#a3e8da2dfa0a71ef741c41f5895f5a565" />
+      <keyword name="PhononItem" id="PhononItem::PhononItem" ref="classPhononItem.html#a212f45e9dce96fa2321d7e93d477d246" />
+      <keyword name="Phonon::MetaDataLoader" id="PhononItem::Phonon::MetaDataLoader" ref="classPhononItem.html#a5f1d7f8cdffe73c4849a0b902c21ad99" />
+      <keyword name="PlayListDb" id="PlayListDb" ref="classPlayListDb.html" />
+      <keyword name="addFile" id="PlayListDb::addFile" ref="classPlayListDb.html#a6069a4b06d575bea69654af0f85623cb" />
+      <keyword name="removeFile" id="PlayListDb::removeFile" ref="classPlayListDb.html#a8c61369aa01c10c5d648318e5400b9e3" />
+      <keyword name="removeEntry" id="PlayListDb::removeEntry" ref="classPlayListDb.html#a048dc587dc3167503f2b7ff72bbe2d85" />
+      <keyword name="playList" id="PlayListDb::playList" ref="classPlayListDb.html#ad50b94b5f4cfa8e91f3d7e430a55f9ea" />
+      <keyword name="playLists" id="PlayListDb::playLists" ref="classPlayListDb.html#a51ef2901edbfae2a8eb693fcb3c0b3d8" />
+      <keyword name="takeFirst" id="PlayListDb::takeFirst" ref="classPlayListDb.html#ab23d54a5d3c03f1356183aa22b574d7d" />
+      <keyword name="last" id="PlayListDb::last" ref="classPlayListDb.html#a682e57563b0eb275d7e791b92397ffc4" />
+      <keyword name="loadAndStore" id="PlayListDb::loadAndStore" ref="classPlayListDb.html#a9a5fd19905112aeef56c5bcfcb1ee9ac" />
+      <keyword name="rename" id="PlayListDb::rename" ref="classPlayListDb.html#a23902882fe43e2e73e2516d1b96c16e8" />
+      <keyword name="clear" id="PlayListDb::clear" ref="classPlayListDb.html#a8548588147b86976a4368177191a6359" />
+      <keyword name="tableName" id="PlayListDb::tableName" ref="classPlayListDb.html#a96810dd9069dceaac13a9f215efd5e9d" />
+      <keyword name="Preference" id="Preference" ref="classPreference.html" />
+      <keyword name="Preference" id="Preference::Preference" ref="classPreference.html#acc8c90162215f9baa703fd805a8e58a2" />
+      <keyword name="nameMap" id="Preference::nameMap" ref="classPreference.html#ae5d9ddf37fb9be4c39ceb4ca576e9877" />
+      <keyword name="QOB_signal_record" id="QOB_signal_record" ref="classQOB__signal__record.html" />
+      <keyword name="QObjectBrowser" id="QObjectBrowser" ref="classQObjectBrowser.html" />
+      <keyword name="QObjectBrowserAction" id="QObjectBrowserAction" ref="classQObjectBrowserAction.html" />
+      <keyword name="QObjectBrowserAction" id="QObjectBrowserAction::QObjectBrowserAction" ref="classQObjectBrowserAction.html#accf3a99e80f5a18432f621da5bab2084" />
+      <keyword name="QObjectBrowserControl" id="QObjectBrowserControl" ref="classQObjectBrowserControl.html" />
+      <keyword name="QObjectReader" id="QObjectReader" ref="classQObjectReader.html" />
+      <keyword name="QObjectReader" id="QObjectReader::QObjectReader" ref="classQObjectReader.html#ad909e51291de483cdd93612a9656df56" />
+      <keyword name="getRoot" id="QObjectReader::getRoot" ref="classQObjectReader.html#a5690bf27d3bf5ef3547388db72762fbd" />
+      <keyword name="QObjectTreeModel" id="QObjectTreeModel" ref="classQObjectTreeModel.html" />
+      <keyword name="addExtraObject" id="QObjectTreeModel::addExtraObject" ref="classQObjectTreeModel.html#a700b20171c8f417e5684713b31cf8500" />
+      <keyword name="QObjectWriter" id="QObjectWriter" ref="classQObjectWriter.html" />
+      <keyword name="QObjectWriter" id="QObjectWriter::QObjectWriter" ref="classQObjectWriter.html#a400c54e7a0362a1c886d0655e2cf5ec9" />
+      <keyword name="toString" id="QObjectWriter::toString" ref="classQObjectWriter.html#acd4d37f42ddada827eeceab973541384" />
+      <keyword name="SimpleDelegate" id="SimpleDelegate" ref="classSimpleDelegate.html" />
+      <keyword name="StdinReader" id="StdinReader" ref="classStdinReader.html" />
+      <keyword name="readProperties" id="StdinReader::readProperties" ref="classStdinReader.html#a3a856e0e8a66af88968e8ae14e12c06d" />
+      <keyword name="TimeDisplay" id="TimeDisplay" ref="classTimeDisplay.html" />
+      <keyword name="VariantWriter" id="VariantWriter" ref="classVariantWriter.html" />
+      <keyword name="toString" id="VariantWriter::toString" ref="classVariantWriter.html#af370a8b4313ec4878cc396ca4fb3c162" />
+      <keyword name="Abstract::MetaDataLoader" id="Abstract::MetaDataLoader" ref="classAbstract_1_1MetaDataLoader.html" />
+      <keyword name="fetched" id="Abstract::MetaDataLoader::fetched" ref="classAbstract_1_1MetaDataLoader.html#afba76cdd4918d37835889866fa2a0d61" />
+      <keyword name="clone" id="Abstract::MetaDataLoader::clone" ref="classAbstract_1_1MetaDataLoader.html#a935b990c5055d2811c85c1f0473e224d" />
+      <keyword name="get" id="Abstract::MetaDataLoader::get" ref="classAbstract_1_1MetaDataLoader.html#a954ed6687e3b2390154fe5fa4ff18279" />
+      <keyword name="instance" id="Abstract::MetaDataLoader::instance" ref="classAbstract_1_1MetaDataLoader.html#a37013183501cec8d1b66eb9ee4b90180" />
+      <keyword name="Phonon::MetaDataLoader" id="Phonon::MetaDataLoader" ref="classPhonon_1_1MetaDataLoader.html" />
+      <keyword name="cancel" id="Phonon::MetaDataLoader::cancel" ref="classPhonon_1_1MetaDataLoader.html#a07361a8d7fd6d2625d5e1b159daa29a1" />
+      <keyword name="clone" id="Phonon::MetaDataLoader::clone" ref="classPhonon_1_1MetaDataLoader.html#ad7017edba96ff8ac6c63262c9b2e9929" />
+      <keyword name="get" id="Phonon::MetaDataLoader::get" ref="classPhonon_1_1MetaDataLoader.html#a701281e9bf24f64435437ebdb48503e7" />
+      <keyword name="supportedExtensions" id="Phonon::MetaDataLoader::supportedExtensions" ref="classPhonon_1_1MetaDataLoader.html#a4138afde5bf6aabed4766df025a428ef" />
+      <keyword name="instance" id="Phonon::MetaDataLoader::instance" ref="classPhonon_1_1MetaDataLoader.html#a37013183501cec8d1b66eb9ee4b90180" />
+      <keyword name="TagLib::MetaDataLoader" id="TagLib::MetaDataLoader" ref="classTagLib_1_1MetaDataLoader.html" />
+      <keyword name="clone" id="TagLib::MetaDataLoader::clone" ref="classTagLib_1_1MetaDataLoader.html#a20637a4c77918579d7679e4eba64d157" />
+      <keyword name="get" id="TagLib::MetaDataLoader::get" ref="classTagLib_1_1MetaDataLoader.html#ac1f47ce714645472e893163d143d4765" />
+      <keyword name="instance" id="TagLib::MetaDataLoader::instance" ref="classTagLib_1_1MetaDataLoader.html#aaa49d3dcb226630e39e62392c3e257b4" />
+      <keyword name="Variant" id="Variant" ref="namespaceVariant.html" />
+    </keywords>
+    <files>
+      <file>tabs.css</file>
+      <file>tab_a.png</file>
+      <file>tab_b.png</file>
+      <file>tab_h.png</file>
+      <file>tab_s.png</file>
+      <file>nav_h.png</file>
+      <file>nav_f.png</file>
+      <file>bc_s.png</file>
+      <file>doxygen.png</file>
+      <file>closed.png</file>
+      <file>open.png</file>
+      <file>oop.css</file>
+      <file>/search/mag_sel.png</file>
+      <file>/search/search_l.png</file>
+      <file>/search/search_m.png</file>
+      <file>/search/search_r.png</file>
+      <file>/search/close.png</file>
+      <file>search/search.css</file>
+      <file>search/search.js</file>
+      <file>actioneditor__export_8h_source.html</file>
+      <file>actioneditordialog_8cpp_source.html</file>
+      <file>actioneditordialog_8h_source.html</file>
+      <file>actiontableeditor_8cpp_source.html</file>
+      <file>actiontableeditor_8h_source.html</file>
+      <file>actiontablemodel_8cpp_source.html</file>
+      <file>actiontablemodel_8h_source.html</file>
+      <file>actioneditor_2qrc__icons_8cpp_source.html</file>
+      <file>icons_2qrc__icons_8cpp_source.html</file>
+      <file>cexport_8h_source.html</file>
+      <file>customer_8cpp_source.html</file>
+      <file>customer_8h_source.html</file>
+      <file>customerfactory_8cpp_source.html</file>
+      <file>customerfactory_8h_source.html</file>
+      <file>customerlist_8cpp_source.html</file>
+      <file>customerlist_8h_source.html</file>
+      <file>custType_8cpp_source.html</file>
+      <file>custType_8h_source.html</file>
+      <file>abstractfactory_8cpp_source.html</file>
+      <file>abstractfactory_8h_source.html</file>
+      <file>address_8cpp_source.html</file>
+      <file>address_8h_source.html</file>
+      <file>country_8cpp_source.html</file>
+      <file>country_8h_source.html</file>
+      <file>dataobject_8cpp_source.html</file>
+      <file>dataobject_8h_source.html</file>
+      <file>dataobjecttablemodel_8cpp_source.html</file>
+      <file>dataobjecttablemodel_8h_source.html</file>
+      <file>dobjs__export_8h_source.html</file>
+      <file>enum_8cpp_source.html</file>
+      <file>enum_8h_source.html</file>
+      <file>objectfactory_8cpp_source.html</file>
+      <file>objectfactory_8h_source.html</file>
+      <file>qobjectreader_8cpp_source.html</file>
+      <file>qobjectreader_8h_source.html</file>
+      <file>qobjectwriter_8cpp_source.html</file>
+      <file>qobjectwriter_8h_source.html</file>
+      <file>stdinreader_8cpp_source.html</file>
+      <file>stdinreader_8h_source.html</file>
+      <file>variant_8h_source.html</file>
+      <file>docbook__export_8h_source.html</file>
+      <file>docbookdoc_8cpp_source.html</file>
+      <file>docbookdoc_8h_source.html</file>
+      <file>docbookwalker_8cpp_source.html</file>
+      <file>docbookwalker_8h_source.html</file>
+      <file>filetagger__export_8h_source.html</file>
+      <file>tmetadataloader_8cpp_source.html</file>
+      <file>tmetadataloader_8h_source.html</file>
+      <file>activity_8cpp_source.html</file>
+      <file>activity_8h_source.html</file>
+      <file>activityitem_8cpp_source.html</file>
+      <file>activityitem_8h_source.html</file>
+      <file>icons__export_8h_source.html</file>
+      <file>abstractmetadataloader_8cpp_source.html</file>
+      <file>abstractmetadataloader_8h_source.html</file>
+      <file>audiometadata_8h_source.html</file>
+      <file>metadataexport_8h_source.html</file>
+      <file>metadataloaderprogresswidget_8cpp_source.html</file>
+      <file>metadataloaderprogresswidget_8h_source.html</file>
+      <file>metadataobject_8cpp_source.html</file>
+      <file>metadataobject_8h_source.html</file>
+      <file>metadatavalue_8cpp_source.html</file>
+      <file>metadatavalue_8h_source.html</file>
+      <file>metadatawidget_8cpp_source.html</file>
+      <file>metadatawidget_8h_source.html</file>
+      <file>preference_8cpp_source.html</file>
+      <file>preference_8h_source.html</file>
+      <file>preferencecombo_8cpp_source.html</file>
+      <file>preferencecombo_8h_source.html</file>
+      <file>simpledelegate_8cpp_source.html</file>
+      <file>simpledelegate_8h_source.html</file>
+      <file>timedisplay_8cpp_source.html</file>
+      <file>timedisplay_8h_source.html</file>
+      <file>modeltest_8cpp_source.html</file>
+      <file>modeltest_8h_source.html</file>
+      <file>obexport_8h_source.html</file>
+      <file>qobjectbrowser_8cpp_source.html</file>
+      <file>qobjectbrowser_8h_source.html</file>
+      <file>qobjectbrowseraction_8cpp_source.html</file>
+      <file>qobjectbrowseraction_8h_source.html</file>
+      <file>qobjecttree_8cpp_source.html</file>
+      <file>qobjecttree_8h_source.html</file>
+      <file>qrc__objectbrowser_8cpp_source.html</file>
+      <file>metadataloader_8cpp_source.html</file>
+      <file>metadataloader_8h_source.html</file>
+      <file>phonon__mdexport_8h_source.html</file>
+      <file>phononitem_8cpp_source.html</file>
+      <file>phononitem_8h_source.html</file>
+      <file>dbconnectionform_8cpp_source.html</file>
+      <file>dbconnectionform_8h_source.html</file>
+      <file>dbconnectionsettings_8cpp_source.html</file>
+      <file>dbconnectionsettings_8h_source.html</file>
+      <file>dbutils_8cpp_source.html</file>
+      <file>dbutils_8h_source.html</file>
+      <file>metadatatable_8cpp_source.html</file>
+      <file>metadatatable_8h_source.html</file>
+      <file>playlistdb_8cpp_source.html</file>
+      <file>playlistdb_8h_source.html</file>
+      <file>sqlmdexport_8h_source.html</file>
+      <file>classAbstractFactory.html</file>
+      <file>classAbstractFactory__inherit__graph.png</file>
+      <file>classAbstractFactory-members.html</file>
+      <file>classActionEditorDialog.html</file>
+      <file>classActionEditorDialog-members.html</file>
+      <file>classActionTableEditor.html</file>
+      <file>classActionTableEditor_a4d422abf1d315ec461015f76cdc907fc_cgraph.png</file>
+      <file>classActionTableEditor-members.html</file>
+      <file>classActionTableModel.html</file>
+      <file>classActionTableModel-members.html</file>
+      <file>classActivityButton.html</file>
+      <file>classActivityButton-members.html</file>
+      <file>classActivityItem.html</file>
+      <file>classActivityItem_aa20d1369e974119b2bd0e47f4dd1023a_cgraph.png</file>
+      <file>classActivityItem-members.html</file>
+      <file>classActivityView.html</file>
+      <file>classActivityView-members.html</file>
+      <file>classAddress.html</file>
+      <file>classAddress-members.html</file>
+      <file>classAudioMetaData.html</file>
+      <file>classAudioMetaData__inherit__graph.png</file>
+      <file>classAudioMetaData__coll__graph.png</file>
+      <file>classAudioMetaData-members.html</file>
+      <file>classCountry.html</file>
+      <file>classCountry__inherit__graph.png</file>
+      <file>classCountry__coll__graph.png</file>
+      <file>classCountry-members.html</file>
+      <file>classCustomerList.html</file>
+      <file>classCustomerList__inherit__graph.png</file>
+      <file>classCustomerList__coll__graph.png</file>
+      <file>classCustomerList-members.html</file>
+      <file>classDataObject.html</file>
+      <file>classDataObject__inherit__graph.png</file>
+      <file>classDataObject_ac33bff97dd6dce9aa6e0c4ec3d2fdf52_cgraph.png</file>
+      <file>classDataObject_aa4fedeb55f06a032f3389e33a69ed544_cgraph.png</file>
+      <file>classDataObject_a27de6525b6f1981a5fae674c7b7c17ac_cgraph.png</file>
+      <file>classDataObject_aae027f7771477b27ea623d4c15c43b35_cgraph.png</file>
+      <file>classDataObject_a9d31b82c43501987ea0f7265985d9d13_cgraph.png</file>
+      <file>classDataObject_aefb901bfe228cf6009871424e0878772_cgraph.png</file>
+      <file>classDataObject-members.html</file>
+      <file>classDataObjectTableModel.html</file>
+      <file>classDataObjectTableModel__coll__graph.png</file>
+      <file>classDataObjectTableModel_afc0fd3f14e7056c4154ded221e10c1d4_cgraph.png</file>
+      <file>classDataObjectTableModel_ad5689e184c9910f4399f5586d5061ad0_cgraph.png</file>
+      <file>classDataObjectTableModel_aa6a2841c87d0cfc5d2fd6ad58cc03ae6_cgraph.png</file>
+      <file>classDataObjectTableModel-members.html</file>
+      <file>classDbConnectionSettings.html</file>
+      <file>classDbConnectionSettings-members.html</file>
+      <file>classDocbookDoc.html</file>
+      <file>classDocbookDoc_ae00f3416e1c4f05bccf6e3d364a3439e_cgraph.png</file>
+      <file>classDocbookDoc_a30a62803e77611985d1745ab46331376_cgraph.png</file>
+      <file>classDocbookDoc_a1216f940b92cfd1cc8540d581a19e906_cgraph.png</file>
+      <file>classDocbookDoc_a3f2f53e28ed0ddf8433afd9dad64269d_cgraph.png</file>
+      <file>classDocbookDoc_a85c292c53827ac61f9b7c0f3a5a17e7e_cgraph.png</file>
+      <file>classDocbookDoc_a79739ca9e8f5a96691633e770019db1b_cgraph.png</file>
+      <file>classDocbookDoc_a15dd4283214f9549698c825954eb3569_cgraph.png</file>
+      <file>classDocbookDoc_a4cb1a139594a08c523aa79935a030a0b_cgraph.png</file>
+      <file>classDocbookDoc-members.html</file>
+      <file>classDocbookWalker.html</file>
+      <file>classDocbookWalker__coll__graph.png</file>
+      <file>classDocbookWalker_ac0bc4e25c4784e655ab12070e582f30a_cgraph.png</file>
+      <file>classDocbookWalker_a0b8adcfce3a615470d039dfe63efc5f0_cgraph.png</file>
+      <file>classDocbookWalker-members.html</file>
+      <file>classEnum.html</file>
+      <file>classEnum__inherit__graph.png</file>
+      <file>classEnum_afbb4170ce4beaa9987914db577f6237c_cgraph.png</file>
+      <file>classEnum_af08c55070e1ee013a950dac83ff4c5c8_cgraph.png</file>
+      <file>classEnum_aca253f52f9b953d20bdda04538fe3fc8_cgraph.png</file>
+      <file>classEnum-members.html</file>
+      <file>classMetaDataFunctor.html</file>
+      <file>classMetaDataFunctor-members.html</file>
+      <file>classMetaDataLoaderProgressWidget.html</file>
+      <file>classMetaDataLoaderProgressWidget_a7c463471e3e9efb4c86ebe5c54507c05_cgraph.png</file>
+      <file>classMetaDataLoaderProgressWidget-members.html</file>
+      <file>classMetaDataObject.html</file>
+      <file>classMetaDataObject__inherit__graph.png</file>
+      <file>classMetaDataObject__coll__graph.png</file>
+      <file>classMetaDataObject-members.html</file>
+      <file>classMetaDataTable.html</file>
+      <file>classMetaDataTable__coll__graph.png</file>
+      <file>classMetaDataTable_a99c5109f3291ba80a8a67a817d50c381_cgraph.png</file>
+      <file>classMetaDataTable_aae2c255d9e7b3c685685fcb83ca5e8d5_cgraph.png</file>
+      <file>classMetaDataTable_a2d475313c195555775f852ca1cb61168_cgraph.png</file>
+      <file>classMetaDataTable-members.html</file>
+      <file>classMetaDataValue.html</file>
+      <file>classMetaDataValue__inherit__graph.png</file>
+      <file>classMetaDataValue__coll__graph.png</file>
+      <file>classMetaDataValue-members.html</file>
+      <file>classMetaDataWidget.html</file>
+      <file>classMetaDataWidget-members.html</file>
+      <file>classObjectFactory.html</file>
+      <file>classObjectFactory__inherit__graph.png</file>
+      <file>classObjectFactory__coll__graph.png</file>
+      <file>classObjectFactory-members.html</file>
+      <file>classPhononItem.html</file>
+      <file>classPhononItem__inherit__graph.png</file>
+      <file>classPhononItem__coll__graph.png</file>
+      <file>classPhononItem_a212f45e9dce96fa2321d7e93d477d246_cgraph.png</file>
+      <file>classPhononItem_a2500037e0aa9f52c5788a35abc85407b_cgraph.png</file>
+      <file>classPhononItem-members.html</file>
+      <file>classPlayListDb.html</file>
+      <file>classPlayListDb_a6069a4b06d575bea69654af0f85623cb_cgraph.png</file>
+      <file>classPlayListDb_ad50b94b5f4cfa8e91f3d7e430a55f9ea_cgraph.png</file>
+      <file>classPlayListDb_ab23d54a5d3c03f1356183aa22b574d7d_cgraph.png</file>
+      <file>classPlayListDb-members.html</file>
+      <file>classPreference.html</file>
+      <file>classPreference__inherit__graph.png</file>
+      <file>classPreference__coll__graph.png</file>
+      <file>classPreference_ae5d9ddf37fb9be4c39ceb4ca576e9877_cgraph.png</file>
+      <file>classPreference-members.html</file>
+      <file>classQOB__signal__record.html</file>
+      <file>classQOB__signal__record-members.html</file>
+      <file>classQObjectBrowser.html</file>
+      <file>classQObjectBrowser__coll__graph.png</file>
+      <file>classQObjectBrowser-members.html</file>
+      <file>classQObjectBrowserAction.html</file>
+      <file>classQObjectBrowserAction-members.html</file>
+      <file>classQObjectBrowserControl.html</file>
+      <file>classQObjectBrowserControl-members.html</file>
+      <file>classQObjectReader.html</file>
+      <file>classQObjectReader-members.html</file>
+      <file>classQObjectTreeModel.html</file>
+      <file>classQObjectTreeModel-members.html</file>
+      <file>classQObjectWriter.html</file>
+      <file>classQObjectWriter__inherit__graph.png</file>
+      <file>classQObjectWriter__coll__graph.png</file>
+      <file>classQObjectWriter_acd4d37f42ddada827eeceab973541384_cgraph.png</file>
+      <file>classQObjectWriter-members.html</file>
+      <file>classSimpleDelegate.html</file>
+      <file>classSimpleDelegate-members.html</file>
+      <file>classStdinReader.html</file>
+      <file>classStdinReader_a3a856e0e8a66af88968e8ae14e12c06d_cgraph.png</file>
+      <file>classStdinReader-members.html</file>
+      <file>classTimeDisplay.html</file>
+      <file>classTimeDisplay-members.html</file>
+      <file>classVariantWriter.html</file>
+      <file>classVariantWriter__inherit__graph.png</file>
+      <file>classVariantWriter-members.html</file>
+      <file>classAbstract_1_1MetaDataLoader.html</file>
+      <file>classAbstract_1_1MetaDataLoader__inherit__graph.png</file>
+      <file>classAbstract_1_1MetaDataLoader-members.html</file>
+      <file>classPhonon_1_1MetaDataLoader.html</file>
+      <file>classPhonon_1_1MetaDataLoader__inherit__graph.png</file>
+      <file>classPhonon_1_1MetaDataLoader__coll__graph.png</file>
+      <file>classPhonon_1_1MetaDataLoader-members.html</file>
+      <file>classTagLib_1_1MetaDataLoader.html</file>
+      <file>classTagLib_1_1MetaDataLoader__inherit__graph.png</file>
+      <file>classTagLib_1_1MetaDataLoader__coll__graph.png</file>
+      <file>classTagLib_1_1MetaDataLoader-members.html</file>
+      <file>namespaceVariant.html</file>
+      <file>graph_legend.png</file>
+      <file>graph_legend.html</file>
+      <file>dir_48bd6377efd26ba723a12b6abe94b67c.html</file>
+      <file>dir_48bd6377efd26ba723a12b6abe94b67c_dep.png</file>
+      <file>dir_da1a67009aa79f9fe5cdf1a6e7f0b3ac.html</file>
+      <file>dir_da1a67009aa79f9fe5cdf1a6e7f0b3ac_dep.png</file>
+      <file>dir_e8697ed70dc11c51492843a2af55296a.html</file>
+      <file>dir_e8697ed70dc11c51492843a2af55296a_dep.png</file>
+      <file>dir_da728871ddf54124568ef955f8b480de.html</file>
+      <file>dir_da728871ddf54124568ef955f8b480de_dep.png</file>
+      <file>dir_b7bff6a328a54dced92cc2da1b92af7b.html</file>
+      <file>dir_b7bff6a328a54dced92cc2da1b92af7b_dep.png</file>
+      <file>dir_7b2e028ef44893e0700def8f2b8b7c1b.html</file>
+      <file>dir_7b2e028ef44893e0700def8f2b8b7c1b_dep.png</file>
+      <file>dir_9c80f71c7362aa7353acf108a54d19e5.html</file>
+      <file>dir_9c80f71c7362aa7353acf108a54d19e5_dep.png</file>
+      <file>dir_ed5bf971d05af7fe4369becb3486e466.html</file>
+      <file>dir_ed5bf971d05af7fe4369becb3486e466_dep.png</file>
+      <file>dir_f3bea65a9794d6811d644575ef9b66cb.html</file>
+      <file>dir_f3bea65a9794d6811d644575ef9b66cb_dep.png</file>
+      <file>dir_a0240b327f821c8b97b30e1bf5cac11e.html</file>
+      <file>dir_a0240b327f821c8b97b30e1bf5cac11e_dep.png</file>
+      <file>dir_8a038fdad246d2cd5be39ee16b164c29.html</file>
+      <file>dir_8a038fdad246d2cd5be39ee16b164c29_dep.png</file>
+      <file>dir_f9aacd9ea0fa0d1865ce5506c7b2dbf6.html</file>
+      <file>dir_f9aacd9ea0fa0d1865ce5506c7b2dbf6_dep.png</file>
+      <file>dir_c866ac114e005d1d0fc6573db793e1bb.html</file>
+      <file>dir_c866ac114e005d1d0fc6573db793e1bb_dep.png</file>
+      <file>dir_ab982da26330c280617e7412fd1c5327.html</file>
+      <file>dir_ab982da26330c280617e7412fd1c5327_dep.png</file>
+      <file>index.html</file>
+      <file>namespaces.html</file>
+      <file>annotated.html</file>
+      <file>classes.html</file>
+      <file>hierarchy.html</file>
+      <file>inherits.html</file>
+      <file>inherit_graph_0.png</file>
+      <file>inherit_graph_1.png</file>
+      <file>inherit_graph_2.png</file>
+      <file>inherit_graph_3.png</file>
+      <file>inherit_graph_4.png</file>
+      <file>inherit_graph_5.png</file>
+      <file>inherit_graph_6.png</file>
+      <file>inherit_graph_7.png</file>
+      <file>inherit_graph_8.png</file>
+      <file>inherit_graph_9.png</file>
+      <file>inherit_graph_10.png</file>
+      <file>inherit_graph_11.png</file>
+      <file>inherit_graph_12.png</file>
+      <file>inherit_graph_13.png</file>
+      <file>inherit_graph_14.png</file>
+      <file>inherit_graph_15.png</file>
+      <file>inherit_graph_16.png</file>
+      <file>inherit_graph_17.png</file>
+      <file>inherit_graph_18.png</file>
+      <file>inherit_graph_19.png</file>
+      <file>inherit_graph_20.png</file>
+      <file>inherit_graph_21.png</file>
+      <file>inherit_graph_22.png</file>
+      <file>inherit_graph_23.png</file>
+      <file>inherit_graph_24.png</file>
+      <file>inherit_graph_25.png</file>
+      <file>inherit_graph_26.png</file>
+      <file>inherit_graph_27.png</file>
+      <file>inherit_graph_28.png</file>
+      <file>inherit_graph_29.png</file>
+      <file>functions.html</file>
+      <file>functions_func.html</file>
+      <file>functions_enum.html</file>
+      <file>files.html</file>
+      <file>dirs.html</file>
+    </files>
+  </filterSection>
+</QtHelpProject>

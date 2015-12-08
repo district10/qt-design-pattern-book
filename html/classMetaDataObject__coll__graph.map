@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$classDataObject.html" title="Common base class for some cloneable reflectable data structures." alt="" coords="5,181,93,211"/>
+<area shape="rect" id="node4" href="$classMetaDataValue.html" title="Simple Value type for audio metadata." alt="" coords="117,181,229,211"/>
+<area shape="rect" id="node6" href="$classPreference.html" title="A Preference Enum class, that defines preferences for mp3 tracks similar to what is in musicmatch..." alt="" coords="131,85,216,115"/>
+<area shape="rect" id="node8" href="$classEnum.html" title="An object&#45;oriented enumerator class." alt="" coords="145,5,201,35"/>
+</map>

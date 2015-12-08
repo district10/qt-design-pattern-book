@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$classMetaDataObject.html" title="A MetaDataValue with QObject properties, allowing for reflection." alt="" coords="52,83,169,112"/>
+<area shape="rect" id="node4" href="$classDataObject.html" title="Common base class for some cloneable reflectable data structures." alt="" coords="5,5,93,35"/>
+<area shape="rect" id="node6" href="$classMetaDataValue.html" title="Simple Value type for audio metadata." alt="" coords="117,5,229,35"/>
+</map>

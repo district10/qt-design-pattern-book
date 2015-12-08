@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classAbstract_1_1MetaDataLoader.html" title="Abstract Interface for loading metadata from files." alt="" coords="7,32,180,61"/>
+<area shape="rect" id="node3" href="$classPhonon_1_1MetaDataLoader.html" title="class that loads metadata tags via the PhononItem class." alt="" coords="229,5,400,35"/>
+<area shape="rect" id="node5" href="$classTagLib_1_1MetaDataLoader.html" title="Loads metadata from mp3 files using TagLib 1.6.3." alt="" coords="232,59,397,88"/>
+</map>

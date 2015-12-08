@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classVariantWriter.html" title="An easy way to provide additional writers for specific user types." alt="" coords="5,5,104,35"/>
+<area shape="rect" id="node3" href="$classQObjectWriter.html" title="Writes out QObject properties and child objects in an XML format that can be read in later..." alt="" coords="153,5,257,35"/>
+</map>

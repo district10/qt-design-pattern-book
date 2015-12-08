@@ -1,0 +1,814 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Exceptions</title><link rel="stylesheet" href="oop.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.75.2"><link rel="home" href="#exceptions" title="Exceptions"><link rel="next" href="#exceptionhandling" title="1. Exception Handling"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><script xmlns="http://www.w3.org/TR/xhtml1/transitional" src="solutions.js"></script><div class="article" title="Exceptions"><div class="titlepage"><div><div><h2 class="title"><a name="exceptions"></a>Exceptions </h2></div><div><div class="author"><h3 class="author"><span class="firstname"> Paul </span> <span class="surname"> Ezust </span></h3></div></div><div><div class="author"><h3 class="author"><span class="firstname"> Alan </span> <span class="surname"> Ezust </span></h3></div></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#exceptionhandling">1. Exception Handling</a></span></dt><dt><span class="section"><a href="#exceptiontypes">2. Exception Types</a></span></dt><dt><span class="section"><a href="#throwclause">3. 
+   <code class="literal">throw</code>ing things around  </a></span></dt><dt><span class="section"><a href="#trycatch">4. <code class="literal">try</code> and <code class="literal">catch</code></a></span></dt><dd><dl><dt><span class="section"><a href="#ex-trycatch">4.1. Exercises: try and catch</a></span></dt></dl></dd><dt><span class="section"><a href="#throw">5.  More about <code class="literal">throw</code> </a></span></dt><dt><span class="section"><a href="#rethrownexceptions">6.  Rethrown Exceptions </a></span></dt><dt><span class="section"><a href="#exceptionexpressions">7.  Exception Expressions </a></span></dt><dt><span class="section"><a href="#newfailure">8. What happens if <code class="literal">new</code> fails?</a></span></dt><dd><dl><dt><span class="section"><a href="#setnewhandler">8.1.  <code class="literal">set_new_handler() : Another Approach To <code class="literal">new</code> Failures</code>  </a></span></dt><dt><span class="section"><a href="#newhandlerbadalloc">8.2.  Using <code class="literal">set_new_handler</code> and <code class="literal">bad_alloc</code> </a></span></dt><dt><span class="section"><a href="#nullcheckingnew">8.3. Checking for null: <code class="literal">new(nothrow)</code> </a></span></dt></dl></dd><dt><span class="section"><a href="#exercise">9.  Exercise: Exceptions </a></span></dt><dt><span class="bibliography"><a href="#bibliography">Bibliography</a></span></dt></dl></div><a class="indexterm" name="idp110016"></a><p class="parabook">
+   We all know that things sometimes break and that improbable or unforeseen events can mess up the most carefully laid plans. 
+   This is especially true with programming and might explain why programmers have such great respect for Murphy's Law. <sup>[<a name="idp111312" href="#ftn.idp111312" class="footnote">1</a>]</sup>
+  
+   When we write programs we try to anticipate the things that can go wrong and make allowances for them; i.e., we try to make our programs foolproof. 
+   This may seem inconsistent with a very important corollary to Murphy's law, <sup>[<a name="idp112208" href="#ftn.idp112208" class="footnote">2</a>]</sup> but we persevere anyway.
+ </p><p class="parabook">
+   Exception handling permits the program to respond to an exceptional situation by invoking a procedure that is specifically designed to handle it. 
+   This can enable the program to recover from a condition that might normally cause it to crash or get into a bad state. 
+ </p><p class="parabook">
+   Exception handling was added to C++ relatively late in the development of the language. 
+   As with any good thing, there is a cost associated with exception handling. 
+   Enabling exception handling adds a significant amount of additional code to the executable, which can degrade runtime performance. 
+   Some developers avoid this feature completely. 
+   Qt library code, for example, does not require any exception handling in client code. 
+ </p><div class="section" title="1. Exception Handling"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="exceptionhandling"></a>1. Exception Handling</h2></div></div></div><a class="indexterm" name="idp115520"></a><a class="indexterm" name="idp116416"></a><a class="indexterm" name="idp116928"></a><a class="indexterm" name="idp117696"></a><p class="parabook">
+    An <b xmlns="http://www.w3.org/TR/xhtml1/transitional">exception</b> is an object or piece of data that is <b xmlns="http://www.w3.org/TR/xhtml1/transitional">thrown</b> from one place (the location of the error) to another (a <b xmlns="http://www.w3.org/TR/xhtml1/transitional"><code xmlns="" class="literal">catch</code></b> statement, which contains the appropriate code for handling the situation). 
+    The context for exception handling is a <b xmlns="http://www.w3.org/TR/xhtml1/transitional"><code xmlns="" class="literal">try</code></b> block which is followed by one or more <code class="literal">catch</code> statements.
+    Here is an arrangement that might be used to handle exceptions.
+</p><pre class="programlisting">
+try {
+   // to do something
+}
+catch ( <i xmlns="http://www.w3.org/TR/xhtml1/transitional">ExceptionType<sub xmlns="">1</sub> &amp; refName</i> ) {
+   // handle one <i xmlns="http://www.w3.org/TR/xhtml1/transitional">ExceptionType</i>
+}
+...
+catch ( <i xmlns="http://www.w3.org/TR/xhtml1/transitional">ExceptionType<sub xmlns="">N</sub> &amp; optionalParam</i> ) {
+    // statements for processing one of the possible thrown exceptions.
+}</pre><p class="parabook">
+   
+  </p></div><div class="section" title="2. Exception Types"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="exceptiontypes"></a>2. Exception Types</h2></div></div></div><p class="parabook">
+    The keyword <code class="literal">throw</code> can be followed by an expression of <i xmlns="http://www.w3.org/TR/xhtml1/transitional">any type</i>. 
+    In particular, this includes
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p> Standard exceptions</p></li><li class="listitem"><p> Built-in types</p></li><li class="listitem"><p> Custom classes</p></li></ul></div><p class="parabook">
+   
+  </p><p class="parabook">
+    The exception handling mechanism can transmit information about a runtime problem. 
+    Even though it is perfectly legal to <code class="literal">throw</code> a piece of data of a simple type (e.g., <code class="literal">int</code>), this is not regarded as good practice. 
+   
+    Instead, it is best to work with <code class="literal">std::exception</code> objects of classes with descriptive names, and a consistent interface
+    that can be used by client code to increase the informational value of <code class="literal">catch</code> statements.
+  </p><p class="parabook">
+   
+    <a class="xref" href="#examplexceptions" title="Example 1. src/exceptions/example/exceptions.h">Example 1</a> contains some custom exception types. 
+  </p><div xmlns="http://www.w3.org/TR/xhtml1/transitional" class=""><div xmlns="" class="example"><a name="examplexceptions"></a><p class="title"><b>Example 1. <a class="ulink" href="src/exceptions/example/exceptions.h" target="_top">src/exceptions/example/exceptions.h</a></b></p><div class="example-contents"><div class="screenco"><pre class="screen">[ . . . . ]
+/* a custom exception with no data */
+class SizeMatchError {
+  public:
+    SizeMatchError() {}
+    <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span> what() {
+        return "Size mismatch for Vector addition!";
+    }
+};
+
+/* a custom exception with data */
+class BadSizeError {
+  public:
+    BadSizeError(int sz): m_Sz(sz) {}
+    <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span> what() const {
+        return <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span>("Invalid size for Vector: %1").arg(m_Sz);
+    }
+    int m_Sz;
+};
+
+#include &lt;stdexcept&gt;
+using std::exception;
+
+/* a custom exception extending from std::exception */
+class RangeError : public exception { 
+  public:
+    RangeError() {}
+    const char* what() const throw() { <a name="co0-1311620972.36853"></a><img src="icons/callouts/1.png" alt="1" border="0">
+        return "Subscript out of range!";
+    }
+};
+[ . . . . ]
+</pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#co0-1311620972.36853"><img src="icons/callouts/1.png" alt="1" border="0"></a> </p></td><td valign="top" align="left"><p>matches base class virtual signature</p></td></tr></table></div></div></div></div><br xmlns="" class="example-break"></div><p class="parabook">
+     In <a class="xref" href="#throwclause" title="3.  throwing things around">Section 3</a> we discuss function signatures like that of <code class="literal">RangeError::what()</code>.
+  </p></div><div class="section" title="3.  throwing things around"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="throwclause"></a>3. 
+   <code class="literal">throw</code>ing things around  </h2></div></div></div><p class="parabook">
+    Generally, <code class="literal">throw</code> statements occur inside function definitions, and transmit information to the client code about an exceptional circumstance. 
+    The expression inside the throw is <i xmlns="http://www.w3.org/TR/xhtml1/transitional">copied</i> into a temporary buffer, making it possible to throw temporary stack objects. 
+    A <code class="literal">throw</code> statement resembles a function call, but really it is more like an express-<code class="literal">return</code>. 
+    This is why:
+  </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p> A <code class="literal">throw</code> statement always <i xmlns="http://www.w3.org/TR/xhtml1/transitional">returns</i> information to an earlier position in the program stack. </p></li><li class="listitem"><p> There is no way to go "back" to the location of the <code class="literal">throw</code>, because <code class="literal">throw</code> has gone "back" already. </p></li><li class="listitem"><p> The stack is <i xmlns="http://www.w3.org/TR/xhtml1/transitional">unwound</i>, meaning that all stack objects are popped and destroyed, until we reach the stack frame corresponding to a <code class="literal">try/catch</code> block with a compatible <code class="literal">catch</code> parameter. </p></li><li class="listitem"><p> If a matching <code class="literal">catch</code> statement is found, its code is executed. </p></li><li class="listitem"><p> If no matching <code class="literal">catch</code> is found, the <b xmlns="http://www.w3.org/TR/xhtml1/transitional">default handler</b> (<code class="literal">terminate()</code> or <code class="literal">abort()</code>) is called, which results in the program terminating.
+    </p></li></ul></div><p class="parabook">
+   
+  </p><div class="sidebar" title="throwing from Constructors and Destructors"><p class="title"><b>
+    <code class="literal">throw</code>ing from Constructors and Destructors </b></p><a class="indexterm" name="idp157504"></a><a class="indexterm" name="idp158592"></a><p> For a variety of reasons, exceptions do not mix well with constructors and destructors. </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p> Throwing from a destructor is a <i xmlns="http://www.w3.org/TR/xhtml1/transitional">very bad idea</i> especially if one of those objects is being cleaned up as a result of another <code class="literal">throw</code>. </p></li><li class="listitem"><p> Throwing an exception from a constructor means that the object's destructor will never be called. </p></li></ol></div><p> To avoid this, these functions should be <b xmlns="http://www.w3.org/TR/xhtml1/transitional">exception-safe</b>, meaning that they <code class="literal">catch</code> and handle any possible exceptions that might be thrown. </p></div><div xmlns="http://www.w3.org/TR/xhtml1/transitional" class="cent"><h3> <code xmlns="" class="literal">throw()</code> in a Function Signature </h3></div><p class="parabook">
+    The ANSI/ISO standard permits member function declarations in class definitions to specify which exceptions might be thrown when the function is called. 
+    This declaration syntax informs the authors of client code so that they can place <code class="literal">try</code> blocks and <code class="literal">catch</code> statements appropriately. 
+    A <code class="literal">throw()</code> expression in a function declaration is part of that function's signature. 
+  </p><p class="parabook">
+    The template-based <code class="literal">Vector</code> class shown in <a class="xref" href="#vectorh" title="Example 2. src/exceptions/example/vector.h">Example 2</a> throws a variety of different kinds of exceptions, to demonstrate this feature. 
+  </p><div xmlns="http://www.w3.org/TR/xhtml1/transitional" class=""><div xmlns="" class="example"><a name="vectorh"></a><p class="title"><b>Example 2. <a class="ulink" href="src/exceptions/example/vector.h" target="_top">src/exceptions/example/vector.h</a></b></p><div class="example-contents"><pre class="screen">[ . . . . ]
+
+#include "exceptions.h"
+using std::bad_alloc;
+#include &lt;<span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span>&gt;
+#include &lt;<span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstringlist.html"><tt>QStringList</tt></a></span>&gt;
+#include &lt;<span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qtextstream.html"><tt>QTextStream</tt></a></span>&gt;
+
+template &lt;class T&gt; class Vector {
+ public:
+    typedef T* iterator;
+    explicit Vector(int n = 100) throw(BadSizeError, bad_alloc);
+    Vector(const Vector &amp; v) throw(bad_alloc);
+    Vector(const T* a, int n) throw(BadSizeError, bad_alloc);
+    ~Vector();
+    <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span> toString() const;
+    iterator begin() const {
+        return m_P;
+    }
+    iterator end() const {
+        return m_P + m_Size;
+    }
+    T&amp; operator[](int i) throw(RangeError);
+    Vector&amp; operator=(const Vector&amp; v) throw(bad_alloc);
+    Vector operator+(const Vector&amp; v) const throw(SizeMatchError);
+ private:
+    int m_Size;
+    T* m_P;
+    void copy(const T* a, int n) throw(BadSizeError, bad_alloc);
+};
+</pre></div></div><br xmlns="" class="example-break"></div><p class="parabook">
+    The conditions for each <code class="literal">throw</code> are specified in the member function definitions, shown in <a class="xref" href="#vectorhimpl" title="Example 3. src/exceptions/example/vector.h">Example 3</a>. 
+    Notice we have function definitions in a header file; this is because they are template functions. 
+  </p><div xmlns="http://www.w3.org/TR/xhtml1/transitional" class=""><div xmlns="" class="example"><a name="vectorhimpl"></a><p class="title"><b>Example 3. <a class="ulink" href="src/exceptions/example/vector.h" target="_top">src/exceptions/example/vector.h</a></b></p><div class="example-contents"><div class="screenco"><pre class="screen">[ . . . . ]
+
+template &lt;class T&gt; Vector&lt;T&gt;::
+Vector(int n) throw(BadSizeError, bad_alloc) : m_Size(n) {
+    if(n &lt;= 0)
+        throw BadSizeError(n);
+    m_P = new T[m_Size];   <a name="co0-1311620972.41105"></a><img src="icons/callouts/1.png" alt="1" border="0">
+}
+[ . . . . ]
+
+template &lt;class T&gt; T&amp; Vector&lt;T&gt;::
+operator[](int i) throw(RangeError) {
+    if(i &gt;= 0 &amp;&amp; i &lt; m_Size )
+        return (m_P[i]);
+    else
+        throw RangeError();
+}
+[ . . . . ]
+
+template &lt;class T&gt; Vector&lt;T&gt; Vector&lt;T&gt;::
+operator+(const Vector&amp; v) const throw(SizeMatchError) {
+    if(m_Size != v.m_Size) {
+        throw SizeMatchError();
+    } else {
+        Vector sum(m_Size);
+        for(int i = 0; i &lt; m_Size; ++i)
+            sum.m_P[i] = m_P[i] + v.m_P[i];
+        return sum;
+    }
+}
+</pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#co0-1311620972.41105"><img src="icons/callouts/1.png" alt="1" border="0"></a> </p></td><td valign="top" align="left"><p>new will throw bad_alloc if it fails.</p></td></tr></table></div></div></div></div><br xmlns="" class="example-break"></div></div><div class="section" title="4. try and catch"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="trycatch"></a>4. <code class="literal">try</code> and <code class="literal">catch</code></h2></div></div></div><a class="indexterm" name="idp184208"></a><a class="indexterm" name="idp185008"></a><p class="parabook">
+    Exceptions are raised when certain kinds of operations fail during the execution of a function. 
+    If an exception is thrown from within a <code class="literal">try</code> block (perhaps deeply nested within the block), it can be handled by a <code class="literal">catch</code> statement with a parameter that is compatible with the exception type. 
+  </p><p class="parabook">
+    The syntax of a <code class="literal">try</code> block has the following form:
+</p><pre class="programlisting"> try <i xmlns="http://www.w3.org/TR/xhtml1/transitional">compoundStatement handlerList</i>
+    </pre><p class="parabook">
+   
+  </p><p class="parabook">
+    The order in which handlers are defined determines the order that they will be tested against the type of the thrown expression. 
+    It is an error to list handlers in an order that prevents any of them from being called.<sup>[<a name="idp190320" href="#ftn.idp190320" class="footnote">3</a>]</sup>
+  </p><p class="parabook">
+    The <code class="literal">throw</code> expression matches the <code class="literal">catch</code> parameter type if it is assignment-compatible with that type. 
+  </p><p class="parabook">
+    The syntax of a handler has the following form:
+</p><pre class="programlisting">catch (<i xmlns="http://www.w3.org/TR/xhtml1/transitional">formalArgument</i>) <i xmlns="http://www.w3.org/TR/xhtml1/transitional">compoundStatement</i> </pre><p class="parabook">
+   
+    A <code class="literal">catch</code> statement looks like the definition of a function that has one parameter but no return type. 
+    It is a good idea to declare the <i xmlns="http://www.w3.org/TR/xhtml1/transitional">formalArgument</i> as a reference, to avoid making an unnecessary copy. 
+  </p><p class="parabook">
+    If a thrown exception is not caught by an appropriate handler, the default handler will abort the program. 
+  </p><div xmlns="http://www.w3.org/TR/xhtml1/transitional" class=""><div xmlns="" class="example"><a name="catchcpp"></a><p class="title"><b>Example 4. <a class="ulink" href="src/exceptions/catch.cpp" target="_top">src/exceptions/catch.cpp</a></b></p><div class="example-contents"><div class="screenco"><pre class="screen">#include  &lt;iostream&gt;
+#include  &lt;cstdlib&gt;
+
+using namespace std;
+
+void foo() {
+    int  i, j;
+    i = 14;
+    j = 15;
+    throw i;
+}
+
+void call_foo() {
+    int  k;
+    k  = 12;
+    foo();
+    throw ("This is from call_foo");
+}
+
+void call_foo2() {
+    double  x = 1.3;
+    unsigned m = 1234;
+    throw (x);
+    throw m;
+}
+
+int main() {
+    try {
+      call_foo();
+      call_foo2();
+    } 
+    catch(const char* message) { <a name="co0-1311620972.44574"></a><img src="icons/callouts/1.png" alt="1" border="0">
+      cerr &lt;&lt; message &lt;&lt; endl;
+      exit(1);
+    }
+    catch(int &amp;n) {
+      cout &lt;&lt; "caught int " &lt;&lt; n &lt;&lt; endl;
+    } 
+    catch(double&amp; d) { <a name="co1-1311620972.44590"></a><img src="icons/callouts/2.png" alt="2" border="0">
+        cout &lt;&lt; "caught a double:" &lt;&lt; d &lt;&lt;  endl;
+    }
+    catch( ... ) { <a name="co2-1311620972.44600"></a><img src="icons/callouts/3.png" alt="3" border="0">
+      cerr &lt;&lt; "ellipsis catch" &lt;&lt; endl;
+      abort();
+    }
+}
+<span><b xmlns="http://www.w3.org/TR/xhtml1/transitional">Output:</b>
+
+# with the first throw commented out
+src/generic&gt; g++ catch.cpp
+src/generic&gt; ./a.out
+This is from call_foo
+src/generic&gt;  
+
+# with the first two throws commented out
+src/generic&gt; g++ catch.cpp
+src/generic&gt; ./a.out
+caught a double
+src/generic&gt;  
+ 
+# with the first three throws commented out
+src/generic&gt; g++ catch.cpp
+src/generic&gt; ./a.out
+ellipsis catch
+Aborted
+src/generic&gt;  
+
+# with all the throws enabled
+src/generic&gt; g++ catch.cpp
+src/generic&gt; ./a.out
+caught int 14
+src/generic&gt;  
+
+</span>
+</pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#co0-1311620972.44574"><img src="icons/callouts/1.png" alt="1" border="0"></a> </p></td><td valign="top" align="left"><p>Is const necessary here?</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#co1-1311620972.44590"><img src="icons/callouts/2.png" alt="2" border="0"></a> </p></td><td valign="top" align="left"><p>abstract parameter</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#co2-1311620972.44600"><img src="icons/callouts/3.png" alt="3" border="0"></a> </p></td><td valign="top" align="left"><p>default action to be taken</p></td></tr></table></div></div></div></div><br xmlns="" class="example-break"></div><a class="indexterm" name="idp210720"></a><p class="parabook">
+    <a class="xref" href="#catchcpp" title="Example 4. src/exceptions/catch.cpp">Example 4</a> demonstrates a few  possibilities for handlers. 
+    The formal parameter of <code class="literal">catch()</code> can be abstract (i.e., it can have type information without a variable name). 
+    The final <code class="literal">catch(...)</code> can use an ellipsis and matches any exception type. 
+  </p><p class="parabook">
+    The system calls clean-up functions, including destructors for stack objects and for objects local to the try block. 
+    When the handler has completed execution, if the program has not  been terminated, execution will resume at the first statement following the <code class="literal">try</code> block.
+  </p><p class="parabook">
+   
+    <a class="xref" href="#exceptionscpp" title="Example 5. src/exceptions/example/exceptions.cpp">Example 5</a> shows come client code for the <code class="literal">Vector</code> template class and exception classes that we defined in the preceding sections. 
+    Depending on how much system memory you have on your computer, you may need to adjust the initial values of <code class="literal">BIGSIZE</code> and <code class="literal">WASTERS</code> to get this program to run properly. 
+    The output is included after the code.
+  </p><div xmlns="http://www.w3.org/TR/xhtml1/transitional" class=""><div xmlns="" class="example"><a name="exceptionscpp"></a><p class="title"><b>Example 5. <a class="ulink" href="src/exceptions/example/exceptions.cpp" target="_top">src/exceptions/example/exceptions.cpp</a></b></p><div class="example-contents"><div class="screenco"><pre class="screen">#include "vector.h"
+#include &lt;<span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qtextstream.html"><tt>QTextStream</tt></a></span>&gt;
+#include &lt;<span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qdebug.html"><tt>QDebug</tt></a></span>&gt;
+
+<span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qtextstream.html"><tt>QTextStream</tt></a></span> cout(stdout);
+
+
+void g (int m) {
+    static int counter(0);
+    static const int BIGSIZE(50000000), WASTERS(6);
+    ++counter;
+    try {
+        Vector&lt;int&gt;  a(m), b(m), c(m);
+        qDebug() &lt;&lt; "in try block, doing vector calculations. m= " 
+             &lt;&lt; m ;
+        for (int i = 0; i &lt; m; ++i) {
+            a[i] = i;
+            b[i] = 2 * i + 1;
+        }
+        c = a + b;
+        qDebug() &lt;&lt; c.toString();
+        if (counter == 2) 
+            int value = c[m];  <a name="co0-1311620972.45257"></a><img src="icons/callouts/1.png" alt="1" border="0">
+        if (counter ==3) {
+            Vector&lt;int&gt; d(2*m);
+            for (int i = 0; i &lt; 2*m; ++i)
+                d[i] = i * 3;
+            c = a + d;  <a name="co1-1311620972.45273"></a><img src="icons/callouts/2.png" alt="2" border="0">
+        }
+        if (counter == 4) {
+            for (int i = 0; i &lt; WASTERS; ++i) <a name="co2-1311620972.45282"></a><img src="icons/callouts/3.png" alt="3" border="0">
+                double* ptr = new double(BIGSIZE);
+            Vector&lt;int&gt; d(100 * BIGSIZE);
+            Vector&lt;int&gt; e(100 * BIGSIZE);  <a name="co3-1311620972.45296"></a><img src="icons/callouts/4.png" alt="4" border="0">
+             for (int i = 0; i &lt; BIGSIZE; ++i)
+                 d[i] = 3 * i;
+        }
+    } 
+    catch(BadSizeError&amp; bse) { <a name="co4-1311620972.45308"></a><img src="icons/callouts/5.png" alt="5" border="0">
+        qDebug() &lt;&lt; bse.what() ;
+    }
+    catch(RangeError&amp; rer) {
+        qDebug() &lt;&lt; rer.what() ;
+    }
+    catch(SizeMatchError&amp; sme) {
+        qDebug() &lt;&lt; sme.what();
+    }
+    catch(...) {
+        qDebug() &lt;&lt; "Unhandled error! Aborting...";
+        abort();
+    }
+    qDebug() &lt;&lt; "This is what happens after the try block." ;
+}
+
+
+int main() {
+    g(-5);    <a name="co5-1311620972.45336"></a><img src="icons/callouts/6.png" alt="6" border="0">
+    g(5);
+    g(7);
+    g(9);
+}
+
+<span><b xmlns="http://www.w3.org/TR/xhtml1/transitional">Output:</b>
+
+src/exceptions/example&gt; ./example
+Invalid size for Vector: -5
+This is what happens after the try block.
+in try block, doing vector calculations. m= 5
+&lt;1, 4, 7, 10, 13&gt;
+Subscript out of range!
+This is what happens after the try block.
+in try block, doing vector calculations. m= 7
+&lt;1, 4, 7, 10, 13, 16, 19&gt;
+Size mismatch for Vector addition!
+This is what happens after the try block.
+in try block, doing vector calculations. m= 9
+&lt;1, 4, 7, 10, 13, 16, 19, 22, 25&gt;
+Unhandled error! Aborting...
+Aborted
+src/exceptions/example&gt; 
+
+</span>
+
+</pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#co0-1311620972.45257"><img src="icons/callouts/1.png" alt="1" border="0"></a> </p></td><td valign="top" align="left"><p>Expect RangeError to be thrown.</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#co1-1311620972.45273"><img src="icons/callouts/2.png" alt="2" border="0"></a> </p></td><td valign="top" align="left"><p>Expect SizeMatchError to be thrown.</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#co2-1311620972.45282"><img src="icons/callouts/3.png" alt="3" border="0"></a> </p></td><td valign="top" align="left"><p>Use up most of the available  memory.</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#co3-1311620972.45296"><img src="icons/callouts/4.png" alt="4" border="0"></a> </p></td><td valign="top" align="left"><p>Expect bad_alloc to be thrown.</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#co4-1311620972.45308"><img src="icons/callouts/5.png" alt="5" border="0"></a> </p></td><td valign="top" align="left"><p>Always catch exception objects by reference.</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#co5-1311620972.45336"><img src="icons/callouts/6.png" alt="6" border="0"></a> </p></td><td valign="top" align="left"><p>Expect BadSizeError to be thrown.</p></td></tr></table></div></div></div></div><br xmlns="" class="example-break"></div><p class="parabook">
+    Because we did not have a handler for the <code class="literal">bad_alloc</code> exception, the default handler was called. 
+  </p><div class="section" title="4.1. Exercises: try and catch"><div class="titlepage"><div><div><h3 class="title"><a name="ex-trycatch"></a>4.1. Exercises: try and catch</h3></div></div></div><p> Make some changes to <a class="xref" href="#exceptionscpp" title="Example 5. src/exceptions/example/exceptions.cpp">Example 5</a> to better understand exceptions. Try the following experiments and write your observations. </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p> What happens if we omit/remove the default handler? </p></li><li class="listitem"><p> What happens if we omit/remove one of the exception types from the <code class="literal">throw()</code> list in the member function header? </p></li></ol></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p><sup>[<a name="ftn.idp190320" href="#idp190320" class="para">3</a>] </sup> An example would be having a <code class="literal">catch(<span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qobject.html"><tt>QObject</tt></a></span>&amp;)</code> before a <code class="literal">catch(<span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qwidget.html"><tt>QWidget</tt></a></span>&amp;)</code>. Because only one <code class="literal">catch</code> gets executed, and the <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qobject.html"><tt>QObject</tt></a></span> is more general than the <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qwidget.html"><tt>QWidget</tt></a></span>, it makes no sense to have the catch(<span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qwidget.html"><tt>QWidget</tt></a></span>&amp;) unless it appears before the catch(<span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qobject.html"><tt>QObject</tt></a></span>&amp;). </p></div></div></div><div class="section" title="5.  More about throw"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="throw"></a>5.  More about <code class="literal">throw</code> </h2></div></div></div><a class="indexterm" name="idp241392"></a><p>Syntactically, <code class="literal">throw</code> can be used in three ways:</p><div class="variablelist"><dl><dt><span class="term"><code class="literal">throw</code><i xmlns="http://www.w3.org/TR/xhtml1/transitional">expression</i></span></dt><dd><p> This form raises an exception. The innermost <code class="literal">try</code> block in which an exception is raised is used to select the <code class="literal">catch</code> statement that handles the exception.</p></dd><dt><span class="term"><code class="literal">throw</code></span></dt><dd><p> This form, with no argument, is used inside a <code class="literal">catch</code> to rethrow the current exception. It is typically used when you want to propagate the exception to the next outer level. </p></dd><dt><span class="term"><i xmlns="http://www.w3.org/TR/xhtml1/transitional">returnType functionName</i>(<i xmlns="http://www.w3.org/TR/xhtml1/transitional">arglist</i>)<code class="literal">throw</code>(<i xmlns="http://www.w3.org/TR/xhtml1/transitional">exceptionType list</i>); </span></dt><dd><p> An exception specification is part of the function signature. A <code class="literal">throw</code> following a function prototype indicates that the exception could be thrown from inside the function body and, therefore, should be handled by client code.</p><p> This construct is somewhat controversial. The C++ developer community is split about when it is a good idea to use exception specifications. </p></dd></dl></div><p class="parabook">
+    In  <a class="xref" href="#throw0cpp" title="Example 6. src/exceptions/throw0/throw0.cpp">Example 6</a> we make use of the fact that C++ allows composite objects to be thrown. 
+    We define a class specifically so that we can throw an object of that type if necessary. 
+    We use the quadratic formula to compute one of the roots of a quadratic equation and we must be careful not to allow a negative value to be passed to the square root function. 
+  </p><div xmlns="http://www.w3.org/TR/xhtml1/transitional" class=""><div xmlns="" class="example"><a name="throw0cpp"></a><p class="title"><b>Example 6. <a class="ulink" href="src/exceptions/throw0/throw0.cpp" target="_top">src/exceptions/throw0/throw0.cpp</a></b></p><div class="example-contents"><pre class="screen">[ . . . . ]
+class NegArg {
+  public:
+    NegArg(double d) : m_Val(d), m_Msg("Negative value") {}
+    <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span> getMsg() {
+        return <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span>("%1: %2").arg(m_Msg).arg(m_Val);
+    }
+  private:
+    double m_Val;
+    <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span> m_Msg;
+};
+
+double discr(double a, double b, double c) {
+    double d = b * b - 4 * a * c;
+    if (d &lt; 0)
+        throw NegArg(d);
+    return d;
+}
+
+double quadratic_root1(double a, double b, double c) {
+    return (-b + sqrt(discr(a,b,c))/(2 * a));
+}
+
+int main() {
+    try {
+        qDebug() &lt;&lt; quadratic_root1(1, 3, 1) ;
+        qDebug() &lt;&lt; quadratic_root1(1, 1, 1) ;
+    }
+    catch(NegArg&amp; narg) {
+        qDebug() &lt;&lt; "Attempt to take square root of "
+             &lt;&lt; narg.getMsg() &lt;&lt; endl;
+    }
+    qDebug() &lt;&lt; "Just below the try block." ;
+}
+<span><b xmlns="http://www.w3.org/TR/xhtml1/transitional">Output:</b>
+
+-1.88197
+Attempt to take square root of Negative value: -3
+Just below the try block. 
+</span>
+</pre></div></div><br xmlns="" class="example-break"></div><p class="parabook">
+    The <code class="literal">NegArg</code> object thrown by the <code class="literal">discr()</code> function persists until the handler with the appropriate signature, <code class="literal">catch(NegArg)</code> exits. 
+    The NegArg object is available for use inside the handler - in this case to display some information about the problem. 
+    In this example, the throw prevented the program from attempting to compute the square root of a negative number. 
+  </p><p class="parabook">
+    When a nested function throws an exception, the process stack is  "unwound" until an exception handler with the right signature is found.  
+  </p></div><div class="section" title="6.  Rethrown Exceptions"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="rethrownexceptions"></a>6.  Rethrown Exceptions </h2></div></div></div><p class="parabook">
+    Using <code class="literal">throw</code> without an expression rethrows a caught exception.
+     The <code class="literal">catch</code> that rethrows the exception presumably cannot complete the handling of the existing exception, so it passes control to the nearest surrounding <code class="literal">try</code> block, where a suitable handler with the same signature (or ellipsis) is invoked. 
+    The exception expression continues to exist until all handling is completed. 
+  </p><p class="parabook">
+    If the exception handler does not terminate the execution of the program, execution resumes below the outermost <code class="literal">try</code> block that last handled the rethrown expression. 
+   
+    <a class="xref" href="#throw2cpp" title="Example 7. src/exceptions/throw2/throw2.cpp">Example 7</a> attempts to illustrate how an outer <code class="literal">try</code> can handle exceptions that the inner one delegates. 
+  </p><div xmlns="http://www.w3.org/TR/xhtml1/transitional" class=""><div xmlns="" class="example"><a name="throw2cpp"></a><p class="title"><b>Example 7. <a class="ulink" href="src/exceptions/throw2/throw2.cpp" target="_top">src/exceptions/throw2/throw2.cpp</a></b></p><div class="example-contents"><div class="screenco"><pre class="screen">#include &lt;iostream&gt;
+
+void foo() {
+    int  i, j;
+    i = 14;
+    j = 15;
+    throw i;
+}
+
+void call_foo() {
+    int  k;
+    k  = 12;
+    foo();
+}
+
+int main() {
+    using namespace std;
+    try {
+        cout &lt;&lt; "In the outer try block" &lt;&lt; endl;
+        try {
+            call_foo(); <a name="co0-1311620972.50500"></a><img src="icons/callouts/1.png" alt="1" border="0">
+        }
+        catch(int n) {
+            cout &lt;&lt; "I can't handle this exception!" &lt;&lt; endl;
+            throw;
+        }
+    } 
+    catch(float z) {
+        cout &lt;&lt; "Wrong catch!" &lt;&lt; endl;
+    }
+    catch(char s) {
+        cout &lt;&lt; "This is also wrong!" &lt;&lt; endl;
+    }
+    catch(int n) {
+        cout &lt;&lt; "\ncaught it " &lt;&lt; n &lt;&lt; endl;
+    }
+    cout &lt;&lt; "Just below the outermost try block." &lt;&lt; endl;
+}
+<span><b xmlns="http://www.w3.org/TR/xhtml1/transitional">Output:</b>
+
+In the outer try block
+I can't handle this exception!
+ 
+caught it 14
+Just below the outermost try block.
+
+</span>
+</pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#co0-1311620972.50500"><img src="icons/callouts/1.png" alt="1" border="0"></a> </p></td><td valign="top" align="left"><p>foo exited with i and j destroyed</p></td></tr></table></div></div></div></div><br xmlns="" class="example-break"></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="icons/note.png"></td><th align="left">Note</th></tr><tr><td align="left" valign="top"><p>
+Remember that  we do not recommend throwing basic types such as <code class="literal">int</code>, <code class="literal">float</code>, and <code class="literal">char</code>. A single number or character conveys little information and does not explain itself to someone reading the code.  We violate this rule in some of our examples only to keep them as simple and brief as possible. </p></td></tr></table></div></div><div class="section" title="7.  Exception Expressions"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="exceptionexpressions"></a>7.  Exception Expressions </h2></div></div></div><p class="parabook">
+    As we just saw, it is often a good idea to package exception information as an object of a class. 
+    The thrown expression can then provide information that the handler can use when it executes. 
+    For example, such a class could have several constructors. The  <code class="literal">throw</code> can supply appropriate arguments for the particular constructor that fits the exception. 
+  </p><pre class="programlisting">
+class VectError {
+  private:
+    int  m_Ub, m_Index, m_Size;
+  public:
+    VectError(Error er, int ix, int ub); // subscript out of bounds
+    VectError(Error er, int sz);         // out of memory
+    enum Error { BOUNDS, HEAP, OTHER }  m_ErrType;
+    [ . . . ]
+};
+</pre><p class="parabook">
+    With such a class definition, an exception can be thrown as follows:
+</p><pre class="programlisting">
+throw VectError(VectError::BOUNDS, i, ub);
+or
+throw VectError(VectError::HEAP, size);
+</pre><p class="parabook">
+   
+  </p><div class="important" title="Question" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Important: Question"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Important]" src="icons/important.png"></td><th align="left">Question</th></tr><tr><td align="left" valign="top"><p class="question">  Notice that this is a temporary object that is being thrown, but the <code class="literal">throw</code> unwinds all stack objects until it gets a matching handler. How can this work? </p></td></tr></table></div><p> Exception objects are copied into a special location (not the stack) before the stack is unwound.  </p><p class="parabook">
+    It is possible to nest <code class="literal">try</code> blocks. 
+    If no matching handler is available in the immediate <code class="literal">try</code> block, the search continues, stepwise, in each of the surrounding <code class="literal">try</code> blocks.
+    If no handler can be found that matches, then the default handler is used; i.e., <code class="literal">terminate()</code>. 
+  </p></div><div class="section" title="8. What happens if new fails?"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="newfailure"></a>8. What happens if <code class="literal">new</code> fails?</h2></div></div></div><a class="indexterm" name="idp358880"></a><p class="parabook">
+   Every book on C++ has a section on handling new failures. 
+   The way to handle such failures tends to vary, because the behavior of a C++ program when it runs out of memory is not the same from one platform to another. 
+ </p><p class="parabook">
+   We begin our discussion with a caveat.
+   When a C++ program has a memory leak and runs for a long time, eventually there will be no memory available to it. 
+   You might think that would cause an exception to be thrown. However 
+   most desktop operating systems (including *nix and Win32) implement <a class="indexterm" name="idp362000"></a><em class="firstterm">virtual memory</em>, which permits the operating system, when its random access memory (RAM) fills up beyond some preset level, to copy the contents of memory that has not been used recently to a special place on the system disk drive.
+   This substitution of relatively slow memory (disk storage) for fast memory (RAM) is generally invisible to the user (except for the performance degradation). 
+   Hand-held devices are another matter, and may have more strict memory restrictions imposed, rather than permitting any virtual memory swapping at all. 
+   If the demands on the system RAM are especially heavy, an OS may use virtual memory to keep satisfying allocation requests until the system starts  <a class="indexterm" name="idp363536"></a><em class="firstterm">thrashing</em>.<sup>[<a name="idp364400" href="#ftn.idp364400" class="footnote">4</a>]</sup> 
+   When this happens, the whole system grinds to a halt until the system administrator can intervene and kill the memory-eating process. 
+   At no point will any of the memory allocation failure-handling code be reached in the errant process. 
+   It is for these reasons that memory allocation errors are handled differently, or not at all, depending on the designated platform. 
+ </p><a class="indexterm" name="idp365936"></a><p class="parabook">
+   Having said this, the ANSI/ISO standard does specify that the free store operator <code class="literal">new</code> should throw a <code class="literal">bad_alloc</code> exception instead of returning <code class="literal">NULL</code> if it cannot carry out an allocation request.
+   If a thrown <code class="literal">bad_alloc</code> exception is not caught by a <code class="literal">catch()</code> block, the "default exception handler" is called,  which could be either <code class="literal">abort()</code> or <code class="literal">terminate()</code>. 
+ </p><p class="parabook">
+   <a class="xref" href="#badalloc1cpp" title="Example 8. src/newfailure/bad-alloc1.cpp">Example 8</a> demonstrates this feature of C++. 
+ </p><div xmlns="http://www.w3.org/TR/xhtml1/transitional" class=""><div xmlns="" class="example"><a name="badalloc1cpp"></a><p class="title"><b>Example 8. <a class="ulink" href="src/newfailure/bad-alloc1.cpp" target="_top">src/newfailure/bad-alloc1.cpp</a></b></p><div class="example-contents"><pre class="screen">#include &lt;iostream&gt;
+#include &lt;new&gt;
+using namespace std;
+
+void memoryEater() {
+    int i = 0;
+    double* ptr;
+    try {
+        while (1) {
+            ptr = new double[50000000];
+            cerr &lt;&lt; ++i &lt;&lt; '\t' ;
+        }
+    } catch (bad_alloc&amp; excpt) {
+        cerr &lt;&lt; "\nException occurred: "
+        &lt;&lt; excpt.what() &lt;&lt; endl;
+    }
+}
+
+int main() {
+    memoryEater();
+    cout &lt;&lt; "Done!" &lt;&lt; endl;
+    return 0;
+}
+<span><b xmlns="http://www.w3.org/TR/xhtml1/transitional">Output:</b>
+
+src/newfailure&gt; g++ bad-alloc1.cpp
+src/newfailure&gt; ./a.out
+1       2       3       4       5       6       7
+Exception occurred: St9bad_alloc
+Done!
+src/newfailure&gt;
+
+</span>
+
+</pre></div></div><br xmlns="" class="example-break"></div><div class="important" title="Question" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Important: Question"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Important]" src="icons/important.png"></td><th align="left">Question</th></tr><tr><td align="left" valign="top"><p class="question"> Why were we able to reach the exception handling code in this example, without causing any thrashing? </p></td></tr></table></div><div class="section" title="8.1.  set_new_handler() : Another Approach To new Failures"><div class="titlepage"><div><div><h3 class="title"><a name="setnewhandler"></a>8.1.  <code class="literal">set_new_handler() : Another Approach To <code class="literal">new</code> Failures</code>  </h3></div></div></div><a class="indexterm" name="idp87968"></a><p class="parabook">
+    We can specify what <code class="literal">new</code> should do when there is not enough memory to satisfy an allocation request. 
+    When <code class="literal">new</code> fails, it first calls the function specified by <code class="literal">set_new_handler().</code>   
+    If <code class="literal">new_handler</code> has not been set, a <code class="literal">bad_alloc</code> object is thrown that can be queried for more information by calling one of its member functions, as shown in <a class="xref" href="#badalloc1cpp" title="Example 8. src/newfailure/bad-alloc1.cpp">Example 8</a>. 
+     <a class="xref" href="#setnewhandlercpp" title="Example 9. src/newfailure/setnewhandler.cpp">Example 9</a> shows how to specify our own <code class="literal">new_handler</code>. 
+  </p><div xmlns="http://www.w3.org/TR/xhtml1/transitional" class=""><div xmlns="" class="example"><a name="setnewhandlercpp"></a><p class="title"><b>Example 9. <a class="ulink" href="src/newfailure/setnewhandler.cpp" target="_top">src/newfailure/setnewhandler.cpp</a></b></p><div class="example-contents"><pre class="screen">#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;new&gt;
+using namespace std;
+
+void memoryEater() {
+    int i = 0;
+    double* ptr;
+    while (1) {
+        ptr = new double[50000000];
+        cerr &lt;&lt; ++i &lt;&lt; '\t' ;
+    }
+}
+
+void out_of_store() {
+    cerr &lt;&lt; "\noperator new failed: out of store\n";
+    exit(1);
+}
+
+int main() {
+    set_new_handler(out_of_store);
+    memoryEater(); 
+    cout &lt;&lt; "Done!" &lt;&lt; endl;
+    return 0;
+}
+<span><b xmlns="http://www.w3.org/TR/xhtml1/transitional">Output:</b>
+
+src/newfailure&gt; g++ setnewhandler.cpp
+src/newfailure&gt; ./a.out
+1       2       3       4       5       6       7
+operator new failed: out of store
+OOP&gt;
+
+</span>
+
+</pre></div></div><br xmlns="" class="example-break"></div><p class="parabook">
+    Note the absence of a <code class="literal">try</code> block. 
+  </p><div class="important" title="Question" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Important: Question"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Important]" src="icons/important.png"></td><th align="left">Question</th></tr><tr><td align="left" valign="top"><p class="question"> What happens if the last command in the <code class="literal">out_of_store()</code> function is not <code class="literal">exit()</code>? </p></td></tr></table></div></div><div class="section" title="8.2.  Using set_new_handler and bad_alloc"><div class="titlepage"><div><div><h3 class="title"><a name="newhandlerbadalloc"></a>8.2.  Using <code class="literal">set_new_handler</code> and <code class="literal">bad_alloc</code> </h3></div></div></div><p class="parabook">
+    <a class="xref" href="#badalloc2cpp" title="Example 10. src/newfailure/bad-alloc2.cpp">Example 10</a> combines both the <code class="literal">new_handler</code> and an exception, by throwing a standard exception from the <code class="literal">new_handler</code>. 
+    In this way, you can <i xmlns="http://www.w3.org/TR/xhtml1/transitional">intercept</i> the default behavior of a <code class="literal">bad_alloc</code>, but perform some custom operations before conditionally throwing the normal exception. 
+  </p><div xmlns="http://www.w3.org/TR/xhtml1/transitional" class=""><div xmlns="" class="example"><a name="badalloc2cpp"></a><p class="title"><b>Example 10. <a class="ulink" href="src/newfailure/bad-alloc2.cpp" target="_top">src/newfailure/bad-alloc2.cpp</a></b></p><div class="example-contents"><pre class="screen">#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;new&gt;
+using namespace std;
+
+void memoryEater() {
+    int i = 0;
+    double* ptr;
+    try {
+        while (1) {
+            ptr = new double[50000000];
+            cerr &lt;&lt; ++i &lt;&lt; '\t' ;
+        }
+    } catch(bad_alloc&amp; excpt) {
+        cerr &lt;&lt; "\nException occurred: "
+        &lt;&lt; excpt.what() &lt;&lt; endl;
+    }
+}
+
+void out_of_store() {
+    cerr &lt;&lt; "\noperator new failed: out of store\n";
+    throw bad_alloc();
+}
+
+int main() {
+    set_new_handler(out_of_store);
+    memoryEater(); 
+    cout &lt;&lt; "Done!" &lt;&lt; endl;
+    return 0;
+}
+<span><b xmlns="http://www.w3.org/TR/xhtml1/transitional">Output:</b>
+
+src/newfailure&gt; g++ bad-alloc2.cpp
+src/newfailure&gt; ./a.out
+1       2       3       4       5       6       7
+operator new failed: out of store
+ 
+Exception occurred: St9bad_alloc
+Done!
+src/newfailure&gt;
+
+</span>
+
+</pre></div></div><br xmlns="" class="example-break"></div></div><div class="section" title="8.3. Checking for null: new(nothrow)"><div class="titlepage"><div><div><h3 class="title"><a name="nullcheckingnew"></a>8.3. Checking for null: <code class="literal">new(nothrow)</code> </h3></div></div></div><p class="parabook">
+    You may encounter the old null-checking style for detecting failures of <code class="literal">new</code> in legacy code. 
+    That's a sure sign that there are going to be problems with maintenance. 
+    Fortunately, there is a simple way to update that old approach.
+  </p><p class="parabook">
+    In <a class="xref" href="#nullcheckingcpp" title="Example 11. src/newfailure/nullchecking.cpp">Example 11</a>, we add the qualifier <code class="literal">(nothrow)</code> to the allocation statement. 
+    As its name suggests, this qualifier supresses the throwing of <code class="literal">bad_alloc</code> and enables <code class="literal">new</code> to return a <code class="literal">0</code> pointer if it fails. 
+  </p><div xmlns="http://www.w3.org/TR/xhtml1/transitional" class=""><div xmlns="" class="example"><a name="nullcheckingcpp"></a><p class="title"><b>Example 11. <a class="ulink" href="src/newfailure/nullchecking.cpp" target="_top">src/newfailure/nullchecking.cpp</a></b></p><div class="example-contents"><pre class="screen">#include &lt;iostream&gt;
+#include &lt;new&gt;
+using namespace std;
+
+void memoryEater() {
+    int i = 0;
+    double* ptr;
+    while (1) {
+        ptr = new (nothrow) double[50000000];
+        if (ptr == 0)
+            return;
+        cerr &lt;&lt; ++i &lt;&lt; '\t' ;
+    }
+}
+
+int main() {
+    memoryEater(); 
+    cout &lt;&lt; "Done!" &lt;&lt; endl;
+    return 0;
+}
+<span><b xmlns="http://www.w3.org/TR/xhtml1/transitional">Output:</b>
+
+src/newfailure&gt; g++ nullchecking.cpp
+src/newfailure&gt; ./a.out
+1       2       3       4       5       6       7      Done!
+src/newfailure&gt;
+
+</span>
+
+</pre></div></div><br xmlns="" class="example-break"></div><p> According to <a class="xref" href="#Sutter2001">[Sutter2001]</a>, <code class="literal">nothrow</code> is to be avoided, because it offers no clear advantages over throwing/handling exceptions, and an uncaught memory exception does perform <i xmlns="http://www.w3.org/TR/xhtml1/transitional">some</i> cleanup, while an uncaught null pointer exception usually terminates without any kind of cleanup. However, on systems with virtual memory, there is little point in checking for <code class="literal">new</code> failures anyway, because an errant program will often bring the virtual memory system into a thrashing state before any of the new failure handling code is reached. </p></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p><sup>[<a name="ftn.idp364400" href="#idp364400" class="para">4</a>] </sup>When a system is constantly swapping memory back and forth to disk, preventing other I/O from happening, we call that "thrashing."</p></div></div></div><div class="section" title="9.  Exercise: Exceptions"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="exercise"></a>9.  Exercise: Exceptions </h2></div></div></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p> It is often a good idea to organize exception types in hierarchies. This is done for the same reasons that we organize any classes in hierarchies. </p><p> Assume that <code class="literal">DerivedTypeError</code> is derived from <code class="literal">BaseTypeError</code>.  How many errors can you find in the following sequence of handlers.
+</p><pre class="programlisting">
+    catch(void*)                // any char* would match
+    catch(char*)
+    catch(BaseTypeError&amp;)       // any DerivedTypeError&amp; would match
+    catch(DerivedTypeError&amp;)
+</pre><p>
+    </p></li><li class="listitem"><p> As we have seen, you can <code class="literal">throw</code> standard exceptions, custom classes, or even basic types (but please don't throw those).  The following examples demonstrate the use of custom exceptions inside the scope of a <code class="literal">namespace</code>. </p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p> There are function defintions missing from <a class="xref" href="#registrarcpp" title="Example 14. src/exceptions/registrar/registrar.cpp">Example 14</a>, which need to be defined before this application is built. Define the missing functions. </p></li><li class="listitem"><p> Complete and test the client code (<a class="xref" href="#registrarclientcodecpp" title="Example 15. src/exceptions/registrar/registrarClientCode.cpp">Example 15</a>),
+    and ensure it works under exceptional circumstances. </p></li></ol></div><p> The <code class="literal">namespace</code> defined in <a class="xref" href="#registrar" title="Example 12. src/exceptions/registrar/registrar.h">Example 12</a> contains the main class definitions. </p><div xmlns="http://www.w3.org/TR/xhtml1/transitional" class=""><div xmlns="" class="example"><a name="registrar"></a><p class="title"><b>Example 12. <a class="ulink" href="src/exceptions/registrar/registrar.h" target="_top">src/exceptions/registrar/registrar.h</a></b></p><div class="example-contents"><div class="screenco"><pre class="screen">[ . . . . ]
+
+#include "exceptions.h"
+#include &lt;<span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstringlist.html"><tt>QStringList</tt></a></span>&gt;
+
+namespace Registrar_Namespace {
+    
+    class Student {
+    public:
+        Student(const <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span>&amp; name);
+        long getNumber() const;
+        <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span> getName() const;
+        // other members as needed ...
+    private:
+        long m_Number; <a name="co0-1311620972.52042"></a><img src="icons/callouts/1.png" alt="1" border="0">
+        <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span> m_Name;
+        static long nextNumber(); <a name="co1-1311620972.52052"></a><img src="icons/callouts/2.png" alt="2" border="0">
+    };
+
+    class Registrar {
+    public:
+        static Registrar&amp; instance();
+        void insert(const Student&amp; stu) throw (DupNumberException);
+        void insert(const <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span>&amp; name);
+        void remove(const Student&amp; stu) throw (NoStudentException);
+        void remove(const long num)     throw (NoNumberException);
+        bool isInList(const Student&amp; stu) const;
+        bool isInList(const <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span>&amp; name) const;
+        
+        <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstringlist.html"><tt>QStringList</tt></a></span> report(<span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span> name="all");
+        
+        // other members as needed
+    private:
+        Registrar() {};
+        Registrar(const Registrar&amp;); <a name="co2-1311620972.52109"></a><img src="icons/callouts/3.png" alt="3" border="0">
+        Registrar&amp; operator=(const Registrar&amp;);
+        <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qlist.html"><tt>QList</tt></a></span>&lt;Student&gt; m_List;
+
+    };
+}
+[ . . . . ]
+</pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#co0-1311620972.52042"><img src="icons/callouts/1.png" alt="1" border="0"></a> </p></td><td valign="top" align="left"><p>student number</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#co1-1311620972.52052"><img src="icons/callouts/2.png" alt="2" border="0"></a> </p></td><td valign="top" align="left"><p>used by constructor</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#co2-1311620972.52109"><img src="icons/callouts/3.png" alt="3" border="0"></a> </p></td><td valign="top" align="left"><p>private constructors</p></td></tr></table></div></div></div></div><br xmlns="" class="example-break"></div><p> In <a class="xref" href="#regexceptionsh" title="Example 13. src/exceptions/registrar/exceptions.h">Example 13</a>, we added some exceptions to the same <code class="literal">namespace</code> from another header file. </p><div xmlns="http://www.w3.org/TR/xhtml1/transitional" class=""><div xmlns="" class="example"><a name="regexceptionsh"></a><p class="title"><b>Example 13. <a class="ulink" href="src/exceptions/registrar/exceptions.h" target="_top">src/exceptions/registrar/exceptions.h</a></b></p><div class="example-contents"><pre class="screen">#ifndef EXCEPTIONS_H
+#define EXCEPTIONS_H
+
+#include &lt;<span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span>&gt;
+
+namespace Registrar_Namespace {
+
+    class Exception {
+    public:
+        Exception (const <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span>&amp; reason);
+        virtual ~Exception () { }
+        <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span> what () const;
+    private:
+        <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span> m_Reason;
+    };
+
+    class NoNumberException : public Exception {
+    public:
+        NoNumberException(const <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span>&amp; reason);
+    };
+
+    class NoStudentException : public Exception {
+    public:
+        NoStudentException(const <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span>&amp; reason);
+    };
+
+    class DupNumberException : public Exception {
+    public:
+        DupNumberException(const <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span>&amp; reason);
+    };
+
+}
+
+#endif        //  #ifndef EXCEPTIONS_H
+
+</pre></div></div><br xmlns="" class="example-break"></div><p> Part of the implementation file is provided to you in <a class="xref" href="#registrarcpp" title="Example 14. src/exceptions/registrar/registrar.cpp">Example 14</a>, to help you get started on the exercises.
+</p><div xmlns="http://www.w3.org/TR/xhtml1/transitional" class=""><div xmlns="" class="example"><a name="registrarcpp"></a><p class="title"><b>Example 14. <a class="ulink" href="src/exceptions/registrar/registrar.cpp" target="_top">src/exceptions/registrar/registrar.cpp</a></b></p><div class="example-contents"><div class="screenco"><pre class="screen">/*  Selected implementation examples
+    This file is not complete! */
+#include "registrar.h"
+
+namespace Registrar_Namespace {
+    long Student::nextNumber() { <a name="co0-1311620972.54060"></a><img src="icons/callouts/1.png" alt="1" border="0">
+         static long number = 1000000;
+         return ++number;
+    }
+
+    Registrar&amp; Registrar::instance() { <a name="co1-1311620972.54083"></a><img src="icons/callouts/2.png" alt="2" border="0">
+        
+        static Registrar onlyInstance;
+        return onlyInstance;
+    }
+
+    Exception::Exception(const <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span>&amp; reason) 
+        : m_Reason(reason) {}
+    
+    <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span> Exception::what() const {
+        return m_Reason;
+    }
+    
+    NoNumberException::NoNumberException(const <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span>&amp; reason) 
+        : Exception(reason) {}
+    
+    NoStudentException::NoStudentException(const <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span>&amp; reason) 
+        : Exception(reason) {}
+    
+    DupNumberException::DupNumberException(const <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstring.html"><tt>QString</tt></a></span>&amp; reason) 
+        : Exception(reason) {}
+}
+</pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#co0-1311620972.54060"><img src="icons/callouts/1.png" alt="1" border="0"></a> </p></td><td valign="top" align="left"><p>Without the above using declaration, this would be "long
+Registrar_Namespace::Student::nextNumber"</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#co1-1311620972.54083"><img src="icons/callouts/2.png" alt="2" border="0"></a> </p></td><td valign="top" align="left"><p>Implementation of Singleton factory method: this is the only
+way  clients can create instances of this Registrar.</p></td></tr></table></div></div></div></div><br xmlns="" class="example-break"></div><p>
+     <a class="xref" href="#registrarclientcodecpp" title="Example 15. src/exceptions/registrar/registrarClientCode.cpp">Example 15</a> contains some some client code to test these classes. </p><div xmlns="http://www.w3.org/TR/xhtml1/transitional" class=""><div xmlns="" class="example"><a name="registrarclientcodecpp"></a><p class="title"><b>Example 15. <a class="ulink" href="src/exceptions/registrar/registrarClientCode.cpp" target="_top">src/exceptions/registrar/registrarClientCode.cpp</a></b></p><div class="example-contents"><pre class="screen">#include "registrar.h"
+#include &lt;<span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qdebug.html"><tt>QDebug</tt></a></span>&gt;
+
+int main() {
+
+    using namespace Registrar_Namespace;
+    Registrar&amp; reg = Registrar::instance();
+    while (1) {
+        try {
+            reg.insert("George");
+            reg.insert("Peter");
+            reg.insert("Mildred");
+            Student s("George");
+            reg.insert(s);
+            reg.remove(1000004);
+            reg.remove(1000004);
+            reg.remove(s);
+            <span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="classname"><a href="/qtdocs/qstringlist.html"><tt>QStringList</tt></a></span> report = reg.report();
+            qDebug() &lt;&lt; report.join("\n");
+        } catch (NoStudentException&amp; nse) {
+            qDebug() &lt;&lt; nse.what() ;
+        }
+        catch (NoNumberException&amp; nne) {
+            qDebug() &lt;&lt; nne.what() ;
+        }
+        catch (DupNumberException&amp; dne) {
+            qDebug() &lt;&lt; dne.what() ;
+        }
+    }
+}
+</pre></div></div><br xmlns="" class="example-break"></div></li></ol></div></div><div class="bibliography" title="Bibliography"><div class="titlepage"><div><div><h2 class="title"><a name="bibliography"></a>Bibliography</h2></div></div></div><div class="bibliodiv" title="C++ References"><h3 class="title"><a name="cppbooks"></a>C++ References</h3><div class="biblioentry" title="The C++ Programming Language"><a name="str97"></a><p>[<abbr class="abbrev">Stroustrup97</abbr>] <span class="title"><i>The C++ Programming Language</i>. </span><span class="edition"> Special Edition. </span><span class="authorgroup"><span class="firstname">Bjarne</span> <span class="surname">Stroustrup</span>. </span><span class="pubdate">1997. </span><span class="publishername">Addison Wesley. </span><span class="isbn">0-201-70073-5. </span></p></div><div class="biblioentry" title="Effective C++"><a name="meyers"></a><p>[<abbr class="abbrev">meyers</abbr>] <span class="title"><i>Effective C++</i>. </span><span class="authorgroup"><span class="firstname">Scott</span> <span class="surname">Meyers</span>. </span><span class="pubdate">1999-2005. </span><span class="publishername">Addison Wesley Professional Software Series
+    . </span><span class="isbn">0321334876. </span></p></div><div class="biblioentry"><a name="Sutter2001"></a><p>[Sutter2001] <span class="biblioset" title="To New Perchance To... Part 2">“To New Perchance To... Part 2”. <span class="authorgroup"><span class="firstname">Herb</span> <span class="surname">Sutter</span>. </span><span class="pubdate">May 2001. </span><span class="publishername">
+    <a class="ulink" href="http://www.gotw.ca/publications/mill16.htm" target="_top"><i xmlns="http://www.w3.org/TR/xhtml1/transitional">C/C++ Users Journal</i></a>
+    . </span></span></p></div></div></div><div class="footnotes"><br><hr width="100" align="left"><div class="footnote"><p><sup>[<a name="ftn.idp111312" href="#idp111312" class="para">1</a>] </sup>Whatever can go wrong will go wrong.</p></div><div class="footnote"><p><sup>[<a name="ftn.idp112208" href="#idp112208" class="para">2</a>] </sup>It is impossible to make anything foolproof because fools are too clever.</p></div></div></div><table xmlns="http://www.w3.org/TR/xhtml1/transitional" class="footer" width="100%"><tr><td class="gendate"> Generated: July 25 2011 </td><td class="copyright"> © 2011 Paul Ezust and Alan Ezust. </td></tr></table></body></html>

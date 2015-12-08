@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classDataObject.html" title="Common base class for some cloneable reflectable data structures." alt="" coords="17,59,105,88"/>
+<area shape="rect" id="node3" href="$classCountry.html" title="an example DataObject" alt="" coords="191,5,257,35"/>
+<area shape="rect" id="node5" href="$classCustomerList.html" title="This class manages a collection of customers, through the child object list." alt="" coords="175,59,273,88"/>
+<area shape="rect" id="node7" href="$classMetaDataObject.html" title="A MetaDataValue with QObject properties, allowing for reflection." alt="" coords="165,112,283,141"/>
+<area shape="rect" id="node9" href="$classAudioMetaData.html" title="A simple typedef for MetaDataObject." alt="" coords="331,85,443,115"/>
+<area shape="rect" id="node11" href="$classPhononItem.html" title="A wrapper around Phonon::MediaSource." alt="" coords="341,139,432,168"/>
+<area shape="rect" id="node12" href="$classMetaDataValue.html" title="Simple Value type for audio metadata." alt="" coords="5,112,117,141"/>
+</map>

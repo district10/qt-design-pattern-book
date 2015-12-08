@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<section xsi:noNamespaceSchemaLocation="http://www.docbook.org/xsd/4.4/docbook.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="newfailure" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+
+ <title>What happens if <literal>new</literal> fails?</title>
+ <indexterm>
+  <primary>new</primary>
+  <secondary>failures</secondary>
+ </indexterm>
+ <para role="parabook">
+   Every book on C++ has a section on handling new failures. 
+   The way to handle such failures tends to vary, because the behavior of a C++ program when it runs out of memory is not the same from one platform to another. 
+ </para>
+ <para role="parabook">
+   We begin our discussion with a caveat.
+   When a C++ program has a memory leak and runs for a long time, eventually there will be no memory available to it. 
+   You might think that would cause an exception to be thrown. However 
+   most desktop operating systems (including *nix and Win32) implement <indexterm><primary>virtual memory</primary></indexterm><firstterm>virtual memory</firstterm>, which permits the operating system, when its random access memory (RAM) fills up beyond some preset level, to copy the contents of memory that has not been used recently to a special place on the system disk drive.
+   This substitution of relatively slow memory (disk storage) for fast memory (RAM) is generally invisible to the user (except for the performance degradation). 
+   Hand-held devices are another matter, and may have more strict memory restrictions imposed, rather than permitting any virtual memory swapping at all. 
+   If the demands on the system RAM are especially heavy, an OS may use virtual memory to keep satisfying allocation requests until the system starts  <indexterm><primary>thrashing</primary></indexterm><firstterm>thrashing</firstterm>.<footnote>
+    <para>When a system is constantly swapping memory back and forth to disk, preventing other I/O from happening, we call that &quot;thrashing.&quot;</para> </footnote> 
+   When this happens, the whole system grinds to a halt until the system administrator can intervene and kill the memory-eating process. 
+   At no point will any of the memory allocation failure-handling code be reached in the errant process. 
+   It is for these reasons that memory allocation errors are handled differently, or not at all, depending on the designated platform. 
+ </para>
+ <indexterm>
+  <primary>bad_alloc</primary>
+ </indexterm>
+ <para role="parabook">
+   Having said this, the ANSI/ISO standard does specify that the free store operator <literal>new</literal> should throw a <literal>bad_alloc</literal> exception instead of returning <literal>NULL</literal> if it cannot carry out an allocation request.
+   If a thrown <literal>bad_alloc</literal> exception is not caught by a <literal>catch()</literal> block, the &quot;default exception handler&quot; is called,  which could be either <literal>abort()</literal> or <literal>terminate()</literal>. 
+ </para>
+ <para role="parabook">
+   <xref linkend="badalloc1cpp"/> demonstrates this feature of C++. 
+ </para>
+ <example id="badalloc1cpp"><title><ulink url="src/newfailure/bad-alloc1.cpp" role="html">src/newfailure/bad-alloc1.cpp</ulink></title><screen>#include &lt;iostream&gt;
+#include &lt;new&gt;
+using namespace std;
+
+void memoryEater() {
+    int i = 0;
+    double* ptr;
+    try {
+        while (1) {
+            ptr = new double[50000000];
+            cerr &lt;&lt; ++i &lt;&lt; '\t' ;
+        }
+    } catch (bad_alloc&amp; excpt) {
+        cerr &lt;&lt; &quot;\nException occurred: &quot;
+        &lt;&lt; excpt.what() &lt;&lt; endl;
+    }
+}
+
+int main() {
+    memoryEater();
+    cout &lt;&lt; &quot;Done!&quot; &lt;&lt; endl;
+    return 0;
+}
+<phrase><emphasis role="strong">Output:</emphasis>
+
+src/newfailure&gt; g++ bad-alloc1.cpp
+src/newfailure&gt; ./a.out
+1       2       3       4       5       6       7
+Exception occurred: St9bad_alloc
+Done!
+src/newfailure&gt;
+
+</phrase>
+
+</screen></example>
+ <important role="question"><title role="question">Question</title>
+  <para role="question"> Why were we able to reach the exception handling code in this example, without causing any thrashing? </para>
+  
+ </important>
+ <section id="setnewhandler">
+  <title> <literal>set_new_handler() : Another Approach To <literal>new</literal> Failures</literal>  </title>
+  <indexterm> <primary>set_new_handler</primary> </indexterm>
+  <para role="parabook">
+    We can specify what <literal>new</literal> should do when there is not enough memory to satisfy an allocation request. 
+    When <literal>new</literal> fails, it first calls the function specified by <literal>set_new_handler().</literal>   
+    If <literal>new_handler</literal> has not been set, a <literal>bad_alloc</literal> object is thrown that can be queried for more information by calling one of its member functions, as shown in <xref linkend="badalloc1cpp"/>. 
+     <xref linkend="setnewhandlercpp"/> shows how to specify our own <literal>new_handler</literal>. 
+  </para>
+  <example id="setnewhandlercpp"><title><ulink url="src/newfailure/setnewhandler.cpp" role="html">src/newfailure/setnewhandler.cpp</ulink></title><screen>#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;new&gt;
+using namespace std;
+
+void memoryEater() {
+    int i = 0;
+    double* ptr;
+    while (1) {
+        ptr = new double[50000000];
+        cerr &lt;&lt; ++i &lt;&lt; '\t' ;
+    }
+}
+
+void out_of_store() {
+    cerr &lt;&lt; &quot;\noperator new failed: out of store\n&quot;;
+    exit(1);
+}
+
+int main() {
+    set_new_handler(out_of_store);
+    memoryEater(); 
+    cout &lt;&lt; &quot;Done!&quot; &lt;&lt; endl;
+    return 0;
+}
+<phrase><emphasis role="strong">Output:</emphasis>
+
+src/newfailure&gt; g++ setnewhandler.cpp
+src/newfailure&gt; ./a.out
+1       2       3       4       5       6       7
+operator new failed: out of store
+OOP&gt;
+
+</phrase>
+
+</screen></example>
+  <para role="parabook">
+    Note the absence of a <literal>try</literal> block. 
+  </para>
+  <important role="question"><title role="question">Question</title>
+   <para role="question"> What happens if the last command in the <literal role="question">out_of_store()</literal> function is not <literal role="question">exit()</literal>? </para>
+  </important>
+ </section>
+ <section id="newhandlerbadalloc">
+  <title> Using <literal>set_new_handler</literal> and <literal>bad_alloc</literal> </title>
+  <para role="parabook">
+    <xref linkend="badalloc2cpp"/> combines both the <literal>new_handler</literal> and an exception, by throwing a standard exception from the <literal>new_handler</literal>. 
+    In this way, you can <emphasis>intercept</emphasis> the default behavior of a <literal>bad_alloc</literal>, but perform some custom operations before conditionally throwing the normal exception. 
+  </para>
+  <example id="badalloc2cpp"><title><ulink url="src/newfailure/bad-alloc2.cpp" role="html">src/newfailure/bad-alloc2.cpp</ulink></title><screen>#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;new&gt;
+using namespace std;
+
+void memoryEater() {
+    int i = 0;
+    double* ptr;
+    try {
+        while (1) {
+            ptr = new double[50000000];
+            cerr &lt;&lt; ++i &lt;&lt; '\t' ;
+        }
+    } catch(bad_alloc&amp; excpt) {
+        cerr &lt;&lt; &quot;\nException occurred: &quot;
+        &lt;&lt; excpt.what() &lt;&lt; endl;
+    }
+}
+
+void out_of_store() {
+    cerr &lt;&lt; &quot;\noperator new failed: out of store\n&quot;;
+    throw bad_alloc();
+}
+
+int main() {
+    set_new_handler(out_of_store);
+    memoryEater(); 
+    cout &lt;&lt; &quot;Done!&quot; &lt;&lt; endl;
+    return 0;
+}
+<phrase><emphasis role="strong">Output:</emphasis>
+
+src/newfailure&gt; g++ bad-alloc2.cpp
+src/newfailure&gt; ./a.out
+1       2       3       4       5       6       7
+operator new failed: out of store
+ 
+Exception occurred: St9bad_alloc
+Done!
+src/newfailure&gt;
+
+</phrase>
+
+</screen></example>
+ </section>
+ <section id="nullcheckingnew">
+  <title>Checking for null: <literal>new(nothrow)</literal> </title>
+  <para role="parabook">
+    You may encounter the old null-checking style for detecting failures of <literal>new</literal> in legacy code. 
+    That's a sure sign that there are going to be problems with maintenance. 
+    Fortunately, there is a simple way to update that old approach.
+  </para>
+  <para role="parabook">
+    In <xref linkend="nullcheckingcpp"/>, we add the qualifier <literal>(nothrow)</literal> to the allocation statement. 
+    As its name suggests, this qualifier supresses the throwing of <literal>bad_alloc</literal> and enables <literal>new</literal> to return a <literal>0</literal> pointer if it fails. 
+  </para>
+  <example id="nullcheckingcpp"><title><ulink url="src/newfailure/nullchecking.cpp" role="html">src/newfailure/nullchecking.cpp</ulink></title><screen>#include &lt;iostream&gt;
+#include &lt;new&gt;
+using namespace std;
+
+void memoryEater() {
+    int i = 0;
+    double* ptr;
+    while (1) {
+        ptr = new (nothrow) double[50000000];
+        if (ptr == 0)
+            return;
+        cerr &lt;&lt; ++i &lt;&lt; '\t' ;
+    }
+}
+
+int main() {
+    memoryEater(); 
+    cout &lt;&lt; &quot;Done!&quot; &lt;&lt; endl;
+    return 0;
+}
+<phrase><emphasis role="strong">Output:</emphasis>
+
+src/newfailure&gt; g++ nullchecking.cpp
+src/newfailure&gt; ./a.out
+1       2       3       4       5       6       7      Done!
+src/newfailure&gt;
+
+</phrase>
+
+</screen></example>
+  <para> According to <xref linkend="Sutter2001"/>, <literal>nothrow</literal> is to be avoided, because it offers no clear advantages over throwing/handling exceptions, and an uncaught memory exception does perform <emphasis>some</emphasis> cleanup, while an uncaught null pointer exception usually terminates without any kind of cleanup. However, on systems with virtual memory, there is little point in checking for <literal>new</literal> failures anyway, because an errant program will often bring the virtual memory system into a thrashing state before any of the new failure handling code is reached. </para>
+ </section>
+</section>

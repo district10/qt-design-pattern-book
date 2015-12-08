@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classAbstractFactory.html" title="An Abstract Factory interface." alt="" coords="5,5,120,35"/>
+<area shape="rect" id="node3" href="$classObjectFactory.html" title="ObjectFactory &#45; a default AbstractFactory." alt="" coords="168,5,272,35"/>
+</map>

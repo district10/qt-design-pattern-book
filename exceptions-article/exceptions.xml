@@ -1,0 +1,790 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xsi:noNamespaceSchemaLocation="http://www.docbook.org/xsd/4.4/docbook.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="exceptions" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <articleinfo> <title>Exceptions </title> 
+    <author> <firstname> Paul </firstname> <surname> Ezust </surname>   </author>
+    <author> <firstname> Alan </firstname> <surname> Ezust </surname>   </author>
+</articleinfo>
+
+  <indexterm> <primary>Murphy's Law</primary></indexterm>
+ <para role="parabook">
+   We all know that things sometimes break and that improbable or unforeseen events can mess up the most carefully laid plans. 
+   This is especially true with programming and might explain why programmers have such great respect for Murphy's Law. <footnote><para>Whatever can go wrong will go wrong.</para> </footnote>
+  
+   When we write programs we try to anticipate the things that can go wrong and make allowances for them; i.e., we try to make our programs foolproof. 
+   This may seem inconsistent with a very important corollary to Murphy's law, <footnote> <para>It is impossible to make anything foolproof because fools are too clever.</para></footnote> but we persevere anyway.
+ </para>
+ <para role="parabook">
+   Exception handling permits the program to respond to an exceptional situation by invoking a procedure that is specifically designed to handle it. 
+   This can enable the program to recover from a condition that might normally cause it to crash or get into a bad state. 
+ </para>
+ <para role="parabook">
+   Exception handling was added to C++ relatively late in the development of the language. 
+   As with any good thing, there is a cost associated with exception handling. 
+   Enabling exception handling adds a significant amount of additional code to the executable, which can degrade runtime performance. 
+   Some developers avoid this feature completely. 
+   Qt library code, for example, does not require any exception handling in client code. 
+ </para>
+ <section id="exceptionhandling">
+  <title>Exception Handling</title>
+  <indexterm><primary>exceptions</primary> <secondary> standard </secondary></indexterm>
+  <indexterm><primary>try</primary></indexterm>
+  <indexterm> <primary>catch</primary> </indexterm>
+  <indexterm> <primary>throw</primary> </indexterm>
+  <para role="parabook">
+    An <emphasis role="strong">exception</emphasis> is an object or piece of data that is <emphasis role="strong">thrown</emphasis> from one place (the location of the error) to another (a <emphasis role="strong"><literal role="strong">catch</literal></emphasis> statement, which contains the appropriate code for handling the situation). 
+    The context for exception handling is a <emphasis role="strong"><literal role="strong">try</literal></emphasis> block which is followed by one or more <literal>catch</literal> statements.
+    Here is an arrangement that might be used to handle exceptions.
+<programlisting>
+try {
+   // to do something
+}
+catch ( <emphasis>ExceptionType<subscript>1</subscript> &amp; refName</emphasis> ) {
+   // handle one <emphasis>ExceptionType</emphasis>
+}
+...
+catch ( <emphasis>ExceptionType<subscript>N</subscript> &amp; optionalParam</emphasis> ) {
+    // statements for processing one of the possible thrown exceptions.
+}</programlisting>
+   
+  </para>
+ </section>
+ <section id="exceptiontypes">
+  <title>Exception Types</title>
+  <para role="parabook">
+    The keyword <literal>throw</literal> can be followed by an expression of <emphasis>any type</emphasis>. 
+    In particular, this includes
+    <itemizedlist>
+     <listitem><para> Standard exceptions</para></listitem>
+     <listitem><para> Built-in types</para></listitem>
+     <listitem><para> Custom classes</para></listitem>
+    </itemizedlist>
+   
+  </para>
+  <para role="parabook">
+    The exception handling mechanism can transmit information about a runtime problem. 
+    Even though it is perfectly legal to <literal>throw</literal> a piece of data of a simple type (e.g., <literal>int</literal>), this is not regarded as good practice. 
+   
+    Instead, it is best to work with <literal>std::exception</literal> objects of classes with descriptive names, and a consistent interface
+    that can be used by client code to increase the informational value of <literal>catch</literal> statements.
+  </para>
+  <para role="parabook">
+   
+    <xref linkend="examplexceptions"/> contains some custom exception types. 
+  </para>
+  <example id="examplexceptions"><title><ulink url="src/exceptions/example/exceptions.h" role="html">src/exceptions/example/exceptions.h</ulink></title><screenco><screen>[ . . . . ]
+/* a custom exception with no data */
+class SizeMatchError {
+  public:
+    SizeMatchError() {}
+    <classname url="/qtdocs/qstring.html">QString</classname> what() {
+        return &quot;Size mismatch for Vector addition!&quot;;
+    }
+};
+
+/* a custom exception with data */
+class BadSizeError {
+  public:
+    BadSizeError(int sz): m_Sz(sz) {}
+    <classname url="/qtdocs/qstring.html">QString</classname> what() const {
+        return <classname url="/qtdocs/qstring.html">QString</classname>(&quot;Invalid size for Vector: %1&quot;).arg(m_Sz);
+    }
+    int m_Sz;
+};
+
+#include &lt;stdexcept&gt;
+using std::exception;
+
+/* a custom exception extending from std::exception */
+class RangeError : public exception { 
+  public:
+    RangeError() {}
+    const char* what() const throw() { <co id="co0-1311620972.36853"/>
+        return &quot;Subscript out of range!&quot;;
+    }
+};
+[ . . . . ]
+</screen><calloutlist><callout arearefs="co0-1311620972.36853"><para>matches base class virtual signature</para></callout></calloutlist></screenco></example>
+  <para role="parabook">
+     In <xref linkend="throwclause"/> we discuss function signatures like that of <literal>RangeError::what()</literal>.
+  </para>
+ </section>
+ <section id="throwclause">
+  <title>
+   <literal>throw</literal>ing things around  </title>
+  <para role="parabook">
+    Generally, <literal>throw</literal> statements occur inside function definitions, and transmit information to the client code about an exceptional circumstance. 
+    The expression inside the throw is <emphasis>copied</emphasis> into a temporary buffer, making it possible to throw temporary stack objects. 
+    A <literal>throw</literal> statement resembles a function call, but really it is more like an express-<literal>return</literal>. 
+    This is why:
+  <itemizedlist>
+     <listitem><para> A <literal>throw</literal> statement always <emphasis>returns</emphasis> information to an earlier position in the program stack. </para></listitem>
+     <listitem><para> There is no way to go &quot;back&quot; to the location of the <literal>throw</literal>, because <literal>throw</literal> has gone &quot;back&quot; already. </para></listitem>
+     <listitem><para> The stack is <emphasis>unwound</emphasis>, meaning that all stack objects are popped and destroyed, until we reach the stack frame corresponding to a <literal>try/catch</literal> block with a compatible <literal>catch</literal> parameter. </para></listitem>
+     <listitem><para> If a matching <literal>catch</literal> statement is found, its code is executed. </para></listitem>
+     <listitem><para> If no matching <literal>catch</literal> is found, the <emphasis role="strong">default handler</emphasis> (<literal>terminate()</literal> or <literal>abort()</literal>) is called, which results in the program terminating.
+    </para></listitem>
+    </itemizedlist>
+   
+  </para>
+  <sidebar>
+   <title>
+    <literal>throw</literal>ing from Constructors and Destructors </title>
+   <indexterm><primary>throw</primary> <secondary>from ctors or dtors</secondary> </indexterm>
+   <indexterm> <primary>exception</primary> <secondary>safety</secondary> </indexterm>
+   <para> For a variety of reasons, exceptions do not mix well with constructors and destructors. </para>
+   <orderedlist>
+    <listitem><para> Throwing from a destructor is a <emphasis>very bad idea</emphasis> especially if one of those objects is being cleaned up as a result of another <literal>throw</literal>. </para></listitem>
+    <listitem><para> Throwing an exception from a constructor means that the object's destructor will never be called. </para></listitem>
+   </orderedlist>
+   <para> To avoid this, these functions should be <emphasis role="strong">exception-safe</emphasis>, meaning that they <literal>catch</literal> and handle any possible exceptions that might be thrown. </para>
+  </sidebar>
+  <bridgehead> <literal>throw()</literal> in a Function Signature </bridgehead>
+  <para role="parabook">
+    The ANSI/ISO standard permits member function declarations in class definitions to specify which exceptions might be thrown when the function is called. 
+    This declaration syntax informs the authors of client code so that they can place <literal>try</literal> blocks and <literal>catch</literal> statements appropriately. 
+    A <literal>throw()</literal> expression in a function declaration is part of that function's signature. 
+  </para>
+  <para role="parabook">
+    The template-based <literal>Vector</literal> class shown in <xref linkend="vectorh"/> throws a variety of different kinds of exceptions, to demonstrate this feature. 
+  </para>
+  <example id="vectorh" segid="classdef"><title><ulink url="src/exceptions/example/vector.h" role="html">src/exceptions/example/vector.h</ulink></title><screen>[ . . . . ]
+
+#include &quot;exceptions.h&quot;
+using std::bad_alloc;
+#include &lt;<classname url="/qtdocs/qstring.html">QString</classname>&gt;
+#include &lt;<classname url="/qtdocs/qstringlist.html">QStringList</classname>&gt;
+#include &lt;<classname url="/qtdocs/qtextstream.html">QTextStream</classname>&gt;
+
+template &lt;class T&gt; class Vector {
+ public:
+    typedef T* iterator;
+    explicit Vector(int n = 100) throw(BadSizeError, bad_alloc);
+    Vector(const Vector &amp; v) throw(bad_alloc);
+    Vector(const T* a, int n) throw(BadSizeError, bad_alloc);
+    ~Vector();
+    <classname url="/qtdocs/qstring.html">QString</classname> toString() const;
+    iterator begin() const {
+        return m_P;
+    }
+    iterator end() const {
+        return m_P + m_Size;
+    }
+    T&amp; operator[](int i) throw(RangeError);
+    Vector&amp; operator=(const Vector&amp; v) throw(bad_alloc);
+    Vector operator+(const Vector&amp; v) const throw(SizeMatchError);
+ private:
+    int m_Size;
+    T* m_P;
+    void copy(const T* a, int n) throw(BadSizeError, bad_alloc);
+};
+</screen></example>
+  <para role="parabook">
+    The conditions for each <literal>throw</literal> are specified in the member function definitions, shown in <xref linkend="vectorhimpl"/>. 
+    Notice we have function definitions in a header file; this is because they are template functions. 
+  </para>
+  <example id="vectorhimpl" segid="impl"><title><ulink url="src/exceptions/example/vector.h" role="html">src/exceptions/example/vector.h</ulink></title><screenco><screen>[ . . . . ]
+
+template &lt;class T&gt; Vector&lt;T&gt;::
+Vector(int n) throw(BadSizeError, bad_alloc) : m_Size(n) {
+    if(n &lt;= 0)
+        throw BadSizeError(n);
+    m_P = new T[m_Size];   <co id="co0-1311620972.41105"/>
+}
+[ . . . . ]
+
+template &lt;class T&gt; T&amp; Vector&lt;T&gt;::
+operator[](int i) throw(RangeError) {
+    if(i &gt;= 0 &amp;&amp; i &lt; m_Size )
+        return (m_P[i]);
+    else
+        throw RangeError();
+}
+[ . . . . ]
+
+template &lt;class T&gt; Vector&lt;T&gt; Vector&lt;T&gt;::
+operator+(const Vector&amp; v) const throw(SizeMatchError) {
+    if(m_Size != v.m_Size) {
+        throw SizeMatchError();
+    } else {
+        Vector sum(m_Size);
+        for(int i = 0; i &lt; m_Size; ++i)
+            sum.m_P[i] = m_P[i] + v.m_P[i];
+        return sum;
+    }
+}
+</screen><calloutlist><callout arearefs="co0-1311620972.41105"><para>new will throw bad_alloc if it fails.</para></callout></calloutlist></screenco></example>
+ </section>
+ <section id="trycatch">
+  <title><literal>try</literal> and <literal>catch</literal></title>
+  <indexterm> <primary>catch</primary> </indexterm>
+  <indexterm> <primary>try</primary> </indexterm>
+  <para role="parabook">
+    Exceptions are raised when certain kinds of operations fail during the execution of a function. 
+    If an exception is thrown from within a <literal>try</literal> block (perhaps deeply nested within the block), it can be handled by a <literal>catch</literal> statement with a parameter that is compatible with the exception type. 
+  </para>
+  <para role="parabook">
+    The syntax of a <literal>try</literal> block has the following form:
+<programlisting> try <emphasis>compoundStatement handlerList</emphasis>
+    </programlisting>
+   
+  </para>
+  <para role="parabook">
+    The order in which handlers are defined determines the order that they will be tested against the type of the thrown expression. 
+    It is an error to list handlers in an order that prevents any of them from being called.<footnote><para> An example would be having a <literal>catch(<classname url="/qtdocs/qobject.html">QObject</classname>&amp;)</literal> before a <literal>catch(<classname url="/qtdocs/qwidget.html">QWidget</classname>&amp;)</literal>. Because only one <literal>catch</literal> gets executed, and the <classname url="/qtdocs/qobject.html">QObject</classname> is more general than the <classname url="/qtdocs/qwidget.html">QWidget</classname>, it makes no sense to have the catch(<classname url="/qtdocs/qwidget.html">QWidget</classname>&amp;) unless it appears before the catch(<classname url="/qtdocs/qobject.html">QObject</classname>&amp;). </para></footnote>
+  </para>
+  <para role="parabook">
+    The <literal>throw</literal> expression matches the <literal>catch</literal> parameter type if it is assignment-compatible with that type. 
+  </para>
+  <para role="parabook">
+    The syntax of a handler has the following form:
+<programlisting>catch (<emphasis>formalArgument</emphasis>) <emphasis>compoundStatement</emphasis> </programlisting>
+   
+    A <literal>catch</literal> statement looks like the definition of a function that has one parameter but no return type. 
+    It is a good idea to declare the <emphasis>formalArgument</emphasis> as a reference, to avoid making an unnecessary copy. 
+  </para>
+  <para role="parabook">
+    If a thrown exception is not caught by an appropriate handler, the default handler will abort the program. 
+  </para>
+  
+  <example id="catchcpp"><title><ulink url="src/exceptions/catch.cpp" role="html">src/exceptions/catch.cpp</ulink></title><screenco><screen>#include  &lt;iostream&gt;
+#include  &lt;cstdlib&gt;
+
+using namespace std;
+
+void foo() {
+    int  i, j;
+    i = 14;
+    j = 15;
+    throw i;
+}
+
+void call_foo() {
+    int  k;
+    k  = 12;
+    foo();
+    throw (&quot;This is from call_foo&quot;);
+}
+
+void call_foo2() {
+    double  x = 1.3;
+    unsigned m = 1234;
+    throw (x);
+    throw m;
+}
+
+int main() {
+    try {
+      call_foo();
+      call_foo2();
+    } 
+    catch(const char* message) { <co id="co0-1311620972.44574"/>
+      cerr &lt;&lt; message &lt;&lt; endl;
+      exit(1);
+    }
+    catch(int &amp;n) {
+      cout &lt;&lt; &quot;caught int &quot; &lt;&lt; n &lt;&lt; endl;
+    } 
+    catch(double&amp; d) { <co id="co1-1311620972.44590"/>
+        cout &lt;&lt; &quot;caught a double:&quot; &lt;&lt; d &lt;&lt;  endl;
+    }
+    catch( ... ) { <co id="co2-1311620972.44600"/>
+      cerr &lt;&lt; &quot;ellipsis catch&quot; &lt;&lt; endl;
+      abort();
+    }
+}
+<phrase><emphasis role="strong">Output:</emphasis>
+
+# with the first throw commented out
+src/generic&gt; g++ catch.cpp
+src/generic&gt; ./a.out
+This is from call_foo
+src/generic&gt;  
+
+# with the first two throws commented out
+src/generic&gt; g++ catch.cpp
+src/generic&gt; ./a.out
+caught a double
+src/generic&gt;  
+ 
+# with the first three throws commented out
+src/generic&gt; g++ catch.cpp
+src/generic&gt; ./a.out
+ellipsis catch
+Aborted
+src/generic&gt;  
+
+# with all the throws enabled
+src/generic&gt; g++ catch.cpp
+src/generic&gt; ./a.out
+caught int 14
+src/generic&gt;  
+
+</phrase>
+</screen><calloutlist><callout arearefs="co0-1311620972.44574"><para>Is const necessary here?</para></callout><callout arearefs="co1-1311620972.44590"><para>abstract parameter</para></callout><callout arearefs="co2-1311620972.44600"><para>default action to be taken</para></callout></calloutlist></screenco></example>
+  <indexterm> <primary>ellipsis</primary> <secondary>in catch</secondary> </indexterm>
+  <para role="parabook">
+    <xref linkend="catchcpp"/> demonstrates a few  possibilities for handlers. 
+    The formal parameter of <literal>catch()</literal> can be abstract (i.e., it can have type information without a variable name). 
+    The final <literal>catch(...)</literal> can use an ellipsis and matches any exception type. 
+  </para>
+  <para role="parabook">
+    The system calls clean-up functions, including destructors for stack objects and for objects local to the try block. 
+    When the handler has completed execution, if the program has not  been terminated, execution will resume at the first statement following the <literal>try</literal> block.
+  </para>
+  <para role="parabook">
+   
+    <xref linkend="exceptionscpp"/> shows come client code for the <literal>Vector</literal> template class and exception classes that we defined in the preceding sections. 
+    Depending on how much system memory you have on your computer, you may need to adjust the initial values of <literal>BIGSIZE</literal> and <literal>WASTERS</literal> to get this program to run properly. 
+    The output is included after the code.
+  </para>
+  <example id="exceptionscpp"><title><ulink url="src/exceptions/example/exceptions.cpp" role="html">src/exceptions/example/exceptions.cpp</ulink></title><screenco><screen>#include &quot;vector.h&quot;
+#include &lt;<classname url="/qtdocs/qtextstream.html">QTextStream</classname>&gt;
+#include &lt;<classname url="/qtdocs/qdebug.html">QDebug</classname>&gt;
+
+<classname url="/qtdocs/qtextstream.html">QTextStream</classname> cout(stdout);
+
+
+void g (int m) {
+    static int counter(0);
+    static const int BIGSIZE(50000000), WASTERS(6);
+    ++counter;
+    try {
+        Vector&lt;int&gt;  a(m), b(m), c(m);
+        qDebug() &lt;&lt; &quot;in try block, doing vector calculations. m= &quot; 
+             &lt;&lt; m ;
+        for (int i = 0; i &lt; m; ++i) {
+            a[i] = i;
+            b[i] = 2 * i + 1;
+        }
+        c = a + b;
+        qDebug() &lt;&lt; c.toString();
+        if (counter == 2) 
+            int value = c[m];  <co id="co0-1311620972.45257"/>
+        if (counter ==3) {
+            Vector&lt;int&gt; d(2*m);
+            for (int i = 0; i &lt; 2*m; ++i)
+                d[i] = i * 3;
+            c = a + d;  <co id="co1-1311620972.45273"/>
+        }
+        if (counter == 4) {
+            for (int i = 0; i &lt; WASTERS; ++i) <co id="co2-1311620972.45282"/>
+                double* ptr = new double(BIGSIZE);
+            Vector&lt;int&gt; d(100 * BIGSIZE);
+            Vector&lt;int&gt; e(100 * BIGSIZE);  <co id="co3-1311620972.45296"/>
+             for (int i = 0; i &lt; BIGSIZE; ++i)
+                 d[i] = 3 * i;
+        }
+    } 
+    catch(BadSizeError&amp; bse) { <co id="co4-1311620972.45308"/>
+        qDebug() &lt;&lt; bse.what() ;
+    }
+    catch(RangeError&amp; rer) {
+        qDebug() &lt;&lt; rer.what() ;
+    }
+    catch(SizeMatchError&amp; sme) {
+        qDebug() &lt;&lt; sme.what();
+    }
+    catch(...) {
+        qDebug() &lt;&lt; &quot;Unhandled error! Aborting...&quot;;
+        abort();
+    }
+    qDebug() &lt;&lt; &quot;This is what happens after the try block.&quot; ;
+}
+
+
+int main() {
+    g(-5);    <co id="co5-1311620972.45336"/>
+    g(5);
+    g(7);
+    g(9);
+}
+
+<phrase><emphasis role="strong">Output:</emphasis>
+
+src/exceptions/example&gt; ./example
+Invalid size for Vector: -5
+This is what happens after the try block.
+in try block, doing vector calculations. m= 5
+&lt;1, 4, 7, 10, 13&gt;
+Subscript out of range!
+This is what happens after the try block.
+in try block, doing vector calculations. m= 7
+&lt;1, 4, 7, 10, 13, 16, 19&gt;
+Size mismatch for Vector addition!
+This is what happens after the try block.
+in try block, doing vector calculations. m= 9
+&lt;1, 4, 7, 10, 13, 16, 19, 22, 25&gt;
+Unhandled error! Aborting...
+Aborted
+src/exceptions/example&gt; 
+
+</phrase>
+
+</screen><calloutlist><callout arearefs="co0-1311620972.45257"><para>Expect RangeError to be thrown.</para></callout><callout arearefs="co1-1311620972.45273"><para>Expect SizeMatchError to be thrown.</para></callout><callout arearefs="co2-1311620972.45282"><para>Use up most of the available  memory.</para></callout><callout arearefs="co3-1311620972.45296"><para>Expect bad_alloc to be thrown.</para></callout><callout arearefs="co4-1311620972.45308"><para>Always catch exception objects by reference.</para></callout><callout arearefs="co5-1311620972.45336"><para>Expect BadSizeError to be thrown.</para></callout></calloutlist></screenco></example>
+  <para role="parabook">
+    Because we did not have a handler for the <literal>bad_alloc</literal> exception, the default handler was called. 
+  </para>
+  <section id="ex-trycatch"><title>Exercises: try and catch</title>
+   <para> Make some changes to <xref linkend="exceptionscpp"/> to better understand exceptions. Try the following experiments and write your observations. </para>
+   <orderedlist>
+    <listitem><para> What happens if we omit/remove the default handler? </para></listitem>
+    <listitem><para> What happens if we omit/remove one of the exception types from the <literal>throw()</literal> list in the member function header? </para></listitem>
+   </orderedlist>
+  </section>
+ </section>
+ <section id="throw">
+  <title> More about <literal>throw</literal> </title>
+  <indexterm> <primary>throw</primary> </indexterm>
+  <para>Syntactically, <literal>throw</literal> can be used in three ways:</para> 
+  <variablelist>
+   <varlistentry>
+    <term><literal>throw</literal><emphasis>expression</emphasis></term>
+    <listitem><para> This form raises an exception. The innermost <literal>try</literal> block in which an exception is raised is used to select the <literal>catch</literal> statement that handles the exception.</para></listitem>
+   </varlistentry>
+   <varlistentry>
+    <term><literal>throw</literal></term>
+    <listitem><para> This form, with no argument, is used inside a <literal>catch</literal> to rethrow the current exception. It is typically used when you want to propagate the exception to the next outer level. </para></listitem>
+   </varlistentry>
+   <varlistentry>
+    <term><emphasis>returnType functionName</emphasis>(<emphasis>arglist</emphasis>)<literal>throw</literal>(<emphasis>exceptionType list</emphasis>); </term>
+    <listitem>
+     <para> An exception specification is part of the function signature. A <literal>throw</literal> following a function prototype indicates that the exception could be thrown from inside the function body and, therefore, should be handled by client code.</para>
+     <para> This construct is somewhat controversial. The C++ developer community is split about when it is a good idea to use exception specifications. </para>
+    </listitem>
+   </varlistentry>
+  </variablelist>
+  <para role="parabook">
+    In  <xref linkend="throw0cpp"/> we make use of the fact that C++ allows composite objects to be thrown. 
+    We define a class specifically so that we can throw an object of that type if necessary. 
+    We use the quadratic formula to compute one of the roots of a quadratic equation and we must be careful not to allow a negative value to be passed to the square root function. 
+  </para>
+  <example id="throw0cpp"><title><ulink url="src/exceptions/throw0/throw0.cpp" role="html">src/exceptions/throw0/throw0.cpp</ulink></title><screen>[ . . . . ]
+class NegArg {
+  public:
+    NegArg(double d) : m_Val(d), m_Msg(&quot;Negative value&quot;) {}
+    <classname url="/qtdocs/qstring.html">QString</classname> getMsg() {
+        return <classname url="/qtdocs/qstring.html">QString</classname>(&quot;%1: %2&quot;).arg(m_Msg).arg(m_Val);
+    }
+  private:
+    double m_Val;
+    <classname url="/qtdocs/qstring.html">QString</classname> m_Msg;
+};
+
+double discr(double a, double b, double c) {
+    double d = b * b - 4 * a * c;
+    if (d &lt; 0)
+        throw NegArg(d);
+    return d;
+}
+
+double quadratic_root1(double a, double b, double c) {
+    return (-b + sqrt(discr(a,b,c))/(2 * a));
+}
+
+int main() {
+    try {
+        qDebug() &lt;&lt; quadratic_root1(1, 3, 1) ;
+        qDebug() &lt;&lt; quadratic_root1(1, 1, 1) ;
+    }
+    catch(NegArg&amp; narg) {
+        qDebug() &lt;&lt; &quot;Attempt to take square root of &quot;
+             &lt;&lt; narg.getMsg() &lt;&lt; endl;
+    }
+    qDebug() &lt;&lt; &quot;Just below the try block.&quot; ;
+}
+<phrase><emphasis role="strong">Output:</emphasis>
+
+-1.88197
+Attempt to take square root of Negative value: -3
+Just below the try block. 
+</phrase>
+</screen></example>
+  <para role="parabook">
+    The <literal>NegArg</literal> object thrown by the <literal>discr()</literal> function persists until the handler with the appropriate signature, <literal>catch(NegArg)</literal> exits. 
+    The NegArg object is available for use inside the handler - in this case to display some information about the problem. 
+    In this example, the throw prevented the program from attempting to compute the square root of a negative number. 
+  </para>
+  <para role="parabook">
+    When a nested function throws an exception, the process stack is  &quot;unwound&quot; until an exception handler with the right signature is found.  
+  </para>
+ </section>
+ <section id="rethrownexceptions">
+  <title> Rethrown Exceptions </title>
+  <para role="parabook">
+    Using <literal>throw</literal> without an expression rethrows a caught exception.
+     The <literal>catch</literal> that rethrows the exception presumably cannot complete the handling of the existing exception, so it passes control to the nearest surrounding <literal>try</literal> block, where a suitable handler with the same signature (or ellipsis) is invoked. 
+    The exception expression continues to exist until all handling is completed. 
+  </para>
+  <para role="parabook">
+    If the exception handler does not terminate the execution of the program, execution resumes below the outermost <literal>try</literal> block that last handled the rethrown expression. 
+   
+    <xref linkend="throw2cpp"/> attempts to illustrate how an outer <literal>try</literal> can handle exceptions that the inner one delegates. 
+  </para>
+  <example id="throw2cpp"><title><ulink url="src/exceptions/throw2/throw2.cpp" role="html">src/exceptions/throw2/throw2.cpp</ulink></title><screenco><screen>#include &lt;iostream&gt;
+
+void foo() {
+    int  i, j;
+    i = 14;
+    j = 15;
+    throw i;
+}
+
+void call_foo() {
+    int  k;
+    k  = 12;
+    foo();
+}
+
+int main() {
+    using namespace std;
+    try {
+        cout &lt;&lt; &quot;In the outer try block&quot; &lt;&lt; endl;
+        try {
+            call_foo(); <co id="co0-1311620972.50500"/>
+        }
+        catch(int n) {
+            cout &lt;&lt; &quot;I can't handle this exception!&quot; &lt;&lt; endl;
+            throw;
+        }
+    } 
+    catch(float z) {
+        cout &lt;&lt; &quot;Wrong catch!&quot; &lt;&lt; endl;
+    }
+    catch(char s) {
+        cout &lt;&lt; &quot;This is also wrong!&quot; &lt;&lt; endl;
+    }
+    catch(int n) {
+        cout &lt;&lt; &quot;\ncaught it &quot; &lt;&lt; n &lt;&lt; endl;
+    }
+    cout &lt;&lt; &quot;Just below the outermost try block.&quot; &lt;&lt; endl;
+}
+<phrase><emphasis role="strong">Output:</emphasis>
+
+In the outer try block
+I can't handle this exception!
+ 
+caught it 14
+Just below the outermost try block.
+
+</phrase>
+</screen><calloutlist><callout arearefs="co0-1311620972.50500"><para>foo exited with i and j destroyed</para></callout></calloutlist></screenco></example>
+  <note>
+   <para>
+Remember that  we do not recommend throwing basic types such as <literal>int</literal>, <literal>float</literal>, and <literal>char</literal>. A single number or character conveys little information and does not explain itself to someone reading the code.  We violate this rule in some of our examples only to keep them as simple and brief as possible. </para>
+  </note>
+ </section>
+ <section id="exceptionexpressions">
+  <title> Exception Expressions </title>
+  <para role="parabook">
+    As we just saw, it is often a good idea to package exception information as an object of a class. 
+    The thrown expression can then provide information that the handler can use when it executes. 
+    For example, such a class could have several constructors. The  <literal>throw</literal> can supply appropriate arguments for the particular constructor that fits the exception. 
+  </para>
+  <programlisting>
+class VectError {
+  private:
+    int  m_Ub, m_Index, m_Size;
+  public:
+    VectError(Error er, int ix, int ub); // subscript out of bounds
+    VectError(Error er, int sz);         // out of memory
+    enum Error { BOUNDS, HEAP, OTHER }  m_ErrType;
+    [ . . . ]
+};
+</programlisting>
+  <para role="parabook">
+    With such a class definition, an exception can be thrown as follows:
+<programlisting>
+throw VectError(VectError::BOUNDS, i, ub);
+or
+throw VectError(VectError::HEAP, size);
+</programlisting>
+   
+  </para>
+  <important role="question"><title role="question">Question</title>
+   <para role="question">  Notice that this is a temporary object that is being thrown, but the <literal role="question">throw</literal> unwinds all stack objects until it gets a matching handler. How can this work? </para>
+  </important>
+  <para> Exception objects are copied into a special location (not the stack) before the stack is unwound.  </para>
+  <para role="parabook">
+    It is possible to nest <literal>try</literal> blocks. 
+    If no matching handler is available in the immediate <literal>try</literal> block, the search continues, stepwise, in each of the surrounding <literal>try</literal> blocks.
+    If no handler can be found that matches, then the default handler is used; i.e., <literal>terminate()</literal>. 
+  </para>
+ </section>
+ <xi:include href="newfailure.xml"/>
+ <section id="exercise">
+ <title> Exercise: Exceptions </title>
+  <orderedlist>
+   <listitem>
+    <para> It is often a good idea to organize exception types in hierarchies. This is done for the same reasons that we organize any classes in hierarchies. </para>
+    <para> Assume that <literal>DerivedTypeError</literal> is derived from <literal>BaseTypeError</literal>.  How many errors can you find in the following sequence of handlers.
+<programlisting>
+    catch(void*)                // any char* would match
+    catch(char*)
+    catch(BaseTypeError&amp;)       // any DerivedTypeError&amp; would match
+    catch(DerivedTypeError&amp;)
+</programlisting>
+    </para>
+   </listitem>
+   <listitem>
+    <para> As we have seen, you can <literal>throw</literal> standard exceptions, custom classes, or even basic types (but please don't throw those).  The following examples demonstrate the use of custom exceptions inside the scope of a <literal>namespace</literal>. </para>
+    <orderedlist>
+     <listitem><para> There are function defintions missing from <xref linkend="registrarcpp"/>, which need to be defined before this application is built. Define the missing functions. </para></listitem>
+     <listitem><para> Complete and test the client code (<xref linkend="registrarclientcodecpp"/>),
+    and ensure it works under exceptional circumstances. </para></listitem>
+    </orderedlist>
+    <para> The <literal>namespace</literal> defined in <xref linkend="registrar"/> contains the main class definitions. </para>
+    <example id="registrar"><title><ulink url="src/exceptions/registrar/registrar.h" role="html">src/exceptions/registrar/registrar.h</ulink></title><screenco><screen>[ . . . . ]
+
+#include &quot;exceptions.h&quot;
+#include &lt;<classname url="/qtdocs/qstringlist.html">QStringList</classname>&gt;
+
+namespace Registrar_Namespace {
+    
+    class Student {
+    public:
+        Student(const <classname url="/qtdocs/qstring.html">QString</classname>&amp; name);
+        long getNumber() const;
+        <classname url="/qtdocs/qstring.html">QString</classname> getName() const;
+        // other members as needed ...
+    private:
+        long m_Number; <co id="co0-1311620972.52042"/>
+        <classname url="/qtdocs/qstring.html">QString</classname> m_Name;
+        static long nextNumber(); <co id="co1-1311620972.52052"/>
+    };
+
+    class Registrar {
+    public:
+        static Registrar&amp; instance();
+        void insert(const Student&amp; stu) throw (DupNumberException);
+        void insert(const <classname url="/qtdocs/qstring.html">QString</classname>&amp; name);
+        void remove(const Student&amp; stu) throw (NoStudentException);
+        void remove(const long num)     throw (NoNumberException);
+        bool isInList(const Student&amp; stu) const;
+        bool isInList(const <classname url="/qtdocs/qstring.html">QString</classname>&amp; name) const;
+        
+        <classname url="/qtdocs/qstringlist.html">QStringList</classname> report(<classname url="/qtdocs/qstring.html">QString</classname> name=&quot;all&quot;);
+        
+        // other members as needed
+    private:
+        Registrar() {};
+        Registrar(const Registrar&amp;); <co id="co2-1311620972.52109"/>
+        Registrar&amp; operator=(const Registrar&amp;);
+        <classname url="/qtdocs/qlist.html">QList</classname>&lt;Student&gt; m_List;
+
+    };
+}
+[ . . . . ]
+</screen><calloutlist><callout arearefs="co0-1311620972.52042"><para>student number</para></callout><callout arearefs="co1-1311620972.52052"><para>used by constructor</para></callout><callout arearefs="co2-1311620972.52109"><para>private constructors</para></callout></calloutlist></screenco></example>
+    <para> In <xref linkend="regexceptionsh"/>, we added some exceptions to the same <literal>namespace</literal> from another header file. </para>
+    <example id="regexceptionsh"><title><ulink url="src/exceptions/registrar/exceptions.h" role="html">src/exceptions/registrar/exceptions.h</ulink></title><screen>#ifndef EXCEPTIONS_H
+#define EXCEPTIONS_H
+
+#include &lt;<classname url="/qtdocs/qstring.html">QString</classname>&gt;
+
+namespace Registrar_Namespace {
+
+    class Exception {
+    public:
+        Exception (const <classname url="/qtdocs/qstring.html">QString</classname>&amp; reason);
+        virtual ~Exception () { }
+        <classname url="/qtdocs/qstring.html">QString</classname> what () const;
+    private:
+        <classname url="/qtdocs/qstring.html">QString</classname> m_Reason;
+    };
+
+    class NoNumberException : public Exception {
+    public:
+        NoNumberException(const <classname url="/qtdocs/qstring.html">QString</classname>&amp; reason);
+    };
+
+    class NoStudentException : public Exception {
+    public:
+        NoStudentException(const <classname url="/qtdocs/qstring.html">QString</classname>&amp; reason);
+    };
+
+    class DupNumberException : public Exception {
+    public:
+        DupNumberException(const <classname url="/qtdocs/qstring.html">QString</classname>&amp; reason);
+    };
+
+}
+
+#endif        //  #ifndef EXCEPTIONS_H
+
+</screen></example>
+    <para> Part of the implementation file is provided to you in <xref linkend="registrarcpp"/>, to help you get started on the exercises.
+</para>
+    <example id="registrarcpp"><title><ulink url="src/exceptions/registrar/registrar.cpp" role="html">src/exceptions/registrar/registrar.cpp</ulink></title><screenco><screen>/*  Selected implementation examples
+    This file is not complete! */
+#include &quot;registrar.h&quot;
+
+namespace Registrar_Namespace {
+    long Student::nextNumber() { <co id="co0-1311620972.54060"/>
+         static long number = 1000000;
+         return ++number;
+    }
+
+    Registrar&amp; Registrar::instance() { <co id="co1-1311620972.54083"/>
+        
+        static Registrar onlyInstance;
+        return onlyInstance;
+    }
+
+    Exception::Exception(const <classname url="/qtdocs/qstring.html">QString</classname>&amp; reason) 
+        : m_Reason(reason) {}
+    
+    <classname url="/qtdocs/qstring.html">QString</classname> Exception::what() const {
+        return m_Reason;
+    }
+    
+    NoNumberException::NoNumberException(const <classname url="/qtdocs/qstring.html">QString</classname>&amp; reason) 
+        : Exception(reason) {}
+    
+    NoStudentException::NoStudentException(const <classname url="/qtdocs/qstring.html">QString</classname>&amp; reason) 
+        : Exception(reason) {}
+    
+    DupNumberException::DupNumberException(const <classname url="/qtdocs/qstring.html">QString</classname>&amp; reason) 
+        : Exception(reason) {}
+}
+</screen><calloutlist><callout arearefs="co0-1311620972.54060"><para>Without the above using declaration, this would be &quot;long
+Registrar_Namespace::Student::nextNumber&quot;</para></callout><callout arearefs="co1-1311620972.54083"><para>Implementation of Singleton factory method: this is the only
+way  clients can create instances of this Registrar.</para></callout></calloutlist></screenco></example>
+    <para>
+     <xref linkend="registrarclientcodecpp"/> contains some some client code to test these classes. </para>
+    <example id="registrarclientcodecpp"><title><ulink url="src/exceptions/registrar/registrarClientCode.cpp" role="html">src/exceptions/registrar/registrarClientCode.cpp</ulink></title><screen>#include &quot;registrar.h&quot;
+#include &lt;<classname url="/qtdocs/qdebug.html">QDebug</classname>&gt;
+
+int main() {
+
+    using namespace Registrar_Namespace;
+    Registrar&amp; reg = Registrar::instance();
+    while (1) {
+        try {
+            reg.insert(&quot;George&quot;);
+            reg.insert(&quot;Peter&quot;);
+            reg.insert(&quot;Mildred&quot;);
+            Student s(&quot;George&quot;);
+            reg.insert(s);
+            reg.remove(1000004);
+            reg.remove(1000004);
+            reg.remove(s);
+            <classname url="/qtdocs/qstringlist.html">QStringList</classname> report = reg.report();
+            qDebug() &lt;&lt; report.join(&quot;\n&quot;);
+        } catch (NoStudentException&amp; nse) {
+            qDebug() &lt;&lt; nse.what() ;
+        }
+        catch (NoNumberException&amp; nne) {
+            qDebug() &lt;&lt; nne.what() ;
+        }
+        catch (DupNumberException&amp; dne) {
+            qDebug() &lt;&lt; dne.what() ;
+        }
+    }
+}
+</screen></example>
+   </listitem>
+  </orderedlist>
+ </section>
+ <xi:include href="bibliography.xml"/>
+</article>

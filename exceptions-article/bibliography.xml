@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bibliography xsi:noNamespaceSchemaLocation="http://www.docbook.org/xsd/4.4/docbook.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="bibliography" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+ <title>Bibliography</title>
+ <bibliodiv id="cppbooks">
+  <title>C++ References</title>
+  <biblioentry id="str97">
+   <abbrev>Stroustrup97</abbrev>
+   <title>The C++ Programming Language</title>
+   <edition> Special Edition</edition>
+   <authorgroup>
+    <author>
+     <firstname>Bjarne</firstname>
+     <surname>Stroustrup</surname>
+    </author>
+   </authorgroup>
+   <pubdate>1997</pubdate>
+   <publishername>Addison Wesley</publishername>
+   <isbn>0-201-70073-5</isbn>
+  </biblioentry>
+  <biblioentry id="meyers">
+   <abbrev>meyers</abbrev>
+   <title>Effective C++</title>
+   <authorgroup>
+    <author>
+     <firstname>Scott</firstname>
+     <surname>Meyers</surname>
+    </author>
+   </authorgroup>
+   <pubdate>1999-2005</pubdate>
+   <publishername>Addison Wesley Professional Software Series
+    </publishername>
+   <isbn>0321334876</isbn>
+  </biblioentry>
+  <biblioentry id="Sutter2001">
+   <biblioset relation="article">
+   <abbrev>Sutter2001</abbrev>
+   <title>To New Perchance To... Part 2</title>
+   <authorgroup>
+    <author>
+     <firstname>Herb</firstname>
+     <surname>Sutter</surname>
+    </author>
+   </authorgroup>
+   <pubdate>May 2001</pubdate>
+   <publishername>
+    <ulink url="http://www.gotw.ca/publications/mill16.htm"><emphasis>C/C++ Users Journal</emphasis></ulink>
+    </publishername>
+    </biblioset>
+  </biblioentry>
+  </bibliodiv>
+</bibliography>

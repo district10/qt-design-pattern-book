@@ -1,0 +1,145 @@
+/* Regular version */
+
+body { 
+	color: black;
+	background: white;
+    margin-top: 10px;
+    margin-right: 50px;
+    margin-left: 20px;
+	padding-right: 20px;
+    font-family: "Bitstream Vera Sans", Verdana, sans-serif;
+}
+
+pre {
+    font-family: "Bitstream Vera Sans Mono", monospace;
+}            
+
+.guibutton, .classname, .sgmltag {
+    font-family: "Bitstream Vera Sans Mono", monospace;
+}
+.guibutton {
+    font-weight: bold;
+}
+a {
+    color: #000099;
+    font-weight: bold;
+    background-color: white;
+    text-decoration: none;
+}
+
+img {
+    border: none;
+}
+
+        
+.programlisting, .screen {
+    font-family: monospace;
+	white-space: pre;
+	background-color: #CCFFFF;
+	color: black;
+}
+
+.remark, .todo {
+	color: red;
+	background-color: white;
+}
+
+.solution, .instructor {
+	color: green;
+}
+
+
+.footer {
+    padding: 10px;
+    margin-top: 10px;
+    margin-right: 20px;
+
+}
+
+
+.copyright {
+    text-align: right;
+}
+
+.gendate {
+    text-align: left;
+}
+
+.command, .firstterm {
+    font-weight: bold;
+    font-style: normal;
+}
+.command {
+    font-family: monospace;   
+}
+
+div .sidebar {
+    margin-right: 20px;
+    color: brown;
+    background-color: white;
+    border-width: 4pt;
+    border-color: brown;
+    border-style: solid;
+}
+
+#navibar {
+        clear: both;
+        display: block;
+        margin: auto;
+        padding: 10px;
+}
+
+#navibar li {
+        float: left;
+        display: block;
+        margin: 0 2px;
+        padding: 2px 5px;
+        border: 1px solid #9C9C9C;
+        border-bottom: none;
+        white-space: nowrap;
+}
+
+*[dir="rtl"] #navibar {
+	float: right;
+}
+
+#navibar li.wikilink {
+        background: white; /*url(../img/tab-wiki.png) repeat-x;*/
+}
+
+#navibar li.userlink {
+        background: #E6EAF0; /*url(../img/tab-user.png) repeat-x;*/
+}
+
+#navibar li:hover {
+        background: #CCCCCC;
+}
+
+a:hover {
+        background: #81BBF2;
+}
+
+.textbook {
+	background-color: FFFF66;
+}
+
+.slides {
+	background-color: 99FFFF;
+}
+
+.parabook {
+  color: blue;
+}
+
+.abstract {
+   font-size: 125%;
+   margin: 10px;
+   padding: 10px;
+   font-style: italic;
+    border-width: medium;
+    border-color: black;
+    border-style: solid;
+}
+
+
+

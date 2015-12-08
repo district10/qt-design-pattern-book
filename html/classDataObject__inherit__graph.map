@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCountry.html" title="an example DataObject" alt="" coords="5,83,72,112"/>
+<area shape="rect" id="node5" href="$classCustomerList.html" title="This class manages a collection of customers, through the child object list." alt="" coords="96,83,195,112"/>
+<area shape="rect" id="node7" href="$classMetaDataObject.html" title="A MetaDataValue with QObject properties, allowing for reflection." alt="" coords="219,83,336,112"/>
+<area shape="rect" id="node9" href="$classAudioMetaData.html" title="A simple typedef for MetaDataObject." alt="" coords="159,160,271,189"/>
+<area shape="rect" id="node11" href="$classPhononItem.html" title="A wrapper around Phonon::MediaSource." alt="" coords="295,160,385,189"/>
+</map>
